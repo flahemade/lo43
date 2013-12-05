@@ -131,6 +131,7 @@ public Integer seNourrir(Element element){
   }
 
   public void mourir(){
+	  
   }
 
 }
