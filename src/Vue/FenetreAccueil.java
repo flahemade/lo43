@@ -1,6 +1,11 @@
 package Vue;
 import java.util.Vector;
 
+/*_______________________________________________________________*/
+/**
+ * @author anaelle
+ *
+ */
 public class FenetreAccueil {
 
   public Integer btn_jouer;
