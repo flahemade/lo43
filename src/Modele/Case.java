@@ -39,22 +39,22 @@ public class Case {
 	public void setListeElements(ArrayList<Element> listeElements) {
 		this.listeElements = listeElements;
 	}
-
+	
 	public ArrayList<Case> getListeCasesAdjacentes() {
 		return listeCasesAdjacentes;
 	}
-
+	
 	public void setListeCasesAdjacentes(ArrayList<Case> listeCasesAdjacentes) {
 		this.listeCasesAdjacentes = listeCasesAdjacentes;
 	}
 //-----------------------------AUTRES METHODES-----------------------------------------//
-  public void addObstacle() {
+  public void addObstacle(Obstacle obstacle){
   }
-
-  public void addRessource() {
+  
+  public void addRessource(Ressource ressource){
   }
-
-  public void addAnimal() {
+  
+  public void addAnimal(Animal animal){
   }
 
 }
