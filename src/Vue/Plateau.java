@@ -4,6 +4,11 @@ import java.util.Vector;
 
 import Modele.Map;
 
+/*_______________________________________________________________*/
+/**
+ * @author anaelle
+ *
+ */
 public class Plateau {
 
   public Integer btn_pause;

@@ -2,7 +2,12 @@ package Modele;
 import java.util.Vector;
 
 
-public class Element extends Ressources, Ressources, Ressources, Ressources, Ressources, Obstacle, Obstacle {
+/*_______________________________________________________________*/
+/**
+ * @author anaelle
+ *
+ */
+public class Element  {
 
   public String Image;
 
@@ -12,8 +17,8 @@ public class Element extends Ressources, Ressources, Ressources, Ressources, Res
 
     public Vector  myRessource;
     public Vector  myCase;
-    public Vector  1;
-    public Case myCase;
+ 
+    public Case myCase2;
 
   public void getPosition() {
   }

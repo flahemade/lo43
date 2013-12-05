@@ -7,7 +7,7 @@ public class Map {
 
   public String Nom;
 
-    public Vector  0..*;
+   
     public ParseurXML myParseurXML;
     public Plateau myPlateau;
     /**

@@ -10,9 +10,9 @@ public class Case {
 
   public Integer taille;
 
-    public Vector  myElement;
-    public Vector  0..*;
-    public Vector  1;
+    public Vector  myElement1;
+ 
+ 
     /**
    * 
    * @element-type Element
@@ -24,7 +24,7 @@ public class Case {
    * @element-type Case
    */
   public Vector  myCase;
-    public Vector  1;
+
 
   public void addObstacle() {
   }
