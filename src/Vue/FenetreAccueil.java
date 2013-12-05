@@ -1,24 +1,77 @@
 package Vue;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.util.Vector;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.Border;
+
 
 /*_______________________________________________________________*/
 /**
  * @author anaelle
  *
  */
-public class FenetreAccueil {
+public class FenetreAccueil extends JFrame{
 
-  public Integer btn_jouer;
+  /**  */
+	private static final long serialVersionUID = 1L;
+	
+/** Bouton jouer */
+	private JButton btn_jouer;
 
-    public Vector  lance;
+	private JLabel messageAccueil;
 
-  public void FenetreAccueil() {
-  }
+	/*_______________________________________________________________*/
+	/**Contructeur
+	 * @param titre titre de la fenêtre
+	 */
+	public FenetreAccueil(String titre) 
+	{
+		super(titre);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setSize(new Dimension(700,500));
+		creerComposants();
+		placerComposants();
+	}
 
-  public void creerComposants() {
-  }
 
-  public void placerComposants() {
-  }
+/*_______________________________________________________________*/
+/**
+ */
+	public void creerComposants() 
+	  {
+		  btn_jouer = new JButton("Jouer");
+		  messageAccueil = new JLabel("Bienvenue sur Savane Yolo !!!");
+	  }
+	
+	  /*_______________________________________________________________*/
+	/**
+	 */
+	public void placerComposants() 
+	{
+		JPanel jp1 = new JPanel();
+		jp1.setLayout(new GridLayout(3, 1));
+		jp1.add(btn_jouer);
+		this.getContentPane().setLayout(new BorderLayout());
+		this.getContentPane().add(jp1, BorderLayout.EAST);
+		this.getContentPane().add(messageAccueil, BorderLayout.NORTH);
+	}
+	  
+	  /*_______________________________________________________________*/
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) 
+	  {
+			FenetreAccueil fen = new FenetreAccueil("Le jeu de la savane");
+			fen.setVisible(true);
+			
+	  }
 
 }
