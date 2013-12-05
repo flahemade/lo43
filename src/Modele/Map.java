@@ -1,29 +1,27 @@
 package Modele;
-import java.util.Vector;
+import java.util.ArrayList;
 
 import Vue.Plateau;
 
 public class Map {
 
-  public String Nom;
-
-   
-    public ParseurXML myParseurXML;
-    public Plateau myPlateau;
+	private String Nom;
+    private ParseurXML myParseurXML;
+    private Plateau myPlateau;
     /**
    * 
    * @element-type Case
    */
-  public Vector  myCase;
-    public Vector  lance;
+    private ArrayList<Case>  listeCases;
 
-  public void charger() {
+  public void charger(Map map) {
   }
 
-  public void enregistrer() {
+  public void enregistrer(Map map) {
   }
 
-  public void rafraichir() {
+  public Map rafraichir(Map map){
+	  return map;
   }
 
 }
