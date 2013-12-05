@@ -1,4 +1,7 @@
+package Modele;
 import java.util.Vector;
+
+import Vue.Plateau;
 
 public class Map {
 

@@ -1,3 +1,4 @@
+package Vue;
 import java.util.Vector;
 
 public class FenetreAccueil {

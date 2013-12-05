@@ -1,4 +1,6 @@
+package Modele;
 import java.util.Vector;
+
 
 public class Element extends Ressources, Ressources, Ressources, Ressources, Ressources, Obstacle, Obstacle {
 

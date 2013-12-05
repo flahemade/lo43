@@ -1,3 +1,5 @@
+package Modele;
+
 public class Animal extends Element {
 
   public Integer Taille;
