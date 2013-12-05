@@ -1,27 +1,33 @@
 package Modele;
 
+import java.util.Vector;
+
+
 public class Animal extends Element {
 
-  public Integer Taille;
+  protected Integer Taille;
 
-  public Integer Vitesse;
+  protected Integer Vitesse;
+  
+  protected  Vector<Integer> Direction;
 
-  public String RegimeAlimentaire;
+  protected String RegimeAlimentaire;
 
-  public Integer Age;
+  protected Integer Age;
 
-  public Integer AgeMax;
+  protected Integer AgeMax;
 
-  public Integer PV;
+  protected Integer PV;
 
-  public Integer Id;
+  protected Integer Id;
 
-  public Boolean sexe;
+  protected Boolean sexe;
 
   public void seDeplacer() {
   }
 
   public void seNourir() {
+	  
   }
 
   public void seReproduire() {
