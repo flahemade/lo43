@@ -1,0 +1,23 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <savane>
+     <map>
+         <case>
+             <taille>
+                 
+             </taille>
+             
+             <position>
+                 <x></x>
+                 
+                 <y> </y>
+             </position>
+             <type></type>
+         </case>
+     </map>
+     <espece>
+         <class>
+             <nom></nom>
+             <nombre></nombre>
+         </class>
+     </espece>
+ </savane>
