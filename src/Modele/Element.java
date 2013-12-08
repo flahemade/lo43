@@ -8,7 +8,7 @@ package Modele;
  */
 public class Element  {
 
-	/** Image de l'élément */
+	/** Image de l'élément  */
 	protected String image;
 
 	/** Nom de l'élément */

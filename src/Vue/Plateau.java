@@ -55,6 +55,9 @@ public class Plateau extends JFrame{
 		
 	}
 
+	/*_______________________________________________________________*/
+	/**Méthode qui place les composants
+	 */
 	private void placerComposants()
 	{
 		JPanel jpBas = new JPanel();

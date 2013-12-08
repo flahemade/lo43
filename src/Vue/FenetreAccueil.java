@@ -29,6 +29,7 @@ public class FenetreAccueil extends JFrame implements ActionListener{
 /** Bouton jouer */
 	private JButton btn_jouer;
 
+	/**le message d'accueil*/
 	private JLabel messageAccueil;
 
 	/*_______________________________________________________________*/

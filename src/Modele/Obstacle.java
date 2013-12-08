@@ -7,7 +7,7 @@ package Modele;
  */
 public class Obstacle extends Element {
 
-	  /** taille de l'obstacle */
+	  /** taille de l'obstacle*/
 	private int taille;
 	  
 	  /** Id de l'obstacle */
