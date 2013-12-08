@@ -1,22 +1,16 @@
 package Modele;
 
-<<<<<<< HEAD
-/*_______________________________________________________________*/
-/**
- * @author anaelle
- *
- */
-public class ParseurXML {
-=======
->>>>>>> branch 'master' of https://github.com/flahemade/lo43.git
-
 import java.io.File;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
-
+/*_______________________________________________________________*/
+/**
+ * @author nicolas
+ *
+ */
 
 /**
  * This class is used to load the map and its content (obstacles and species) described
@@ -96,6 +90,8 @@ public void printDOMInfos(){
 	System.out.println("CONFIGURATION");
 	printDOMConfiguration(document.getDomConfig());*/
 }
+}
+
 /*
 public void write(String chemin, Map map) {
   }
@@ -110,7 +106,7 @@ public void write(String chemin, Map map) {
 */
 /** --------DEBUG -------------*/
 
-public static void main(String[] args) {
+/*public static void main(String[] args) {
 	
 System.out.println("XMLParser debugger");
 ParseurXML parser = new ParseurXML("./res/map.xml");
@@ -118,6 +114,7 @@ parser.printDOMInfos();
 
 }
 
-}
+}*/
+
 
 
