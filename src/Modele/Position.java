@@ -19,6 +19,10 @@ public class Position {
 		this.y = y;
 	}
 	
+	public Position(int z){
+		this.x=z;
+		this.y=z;
+	}
 	/* getters & Setters */
 	public int getX() {
 		return x;
