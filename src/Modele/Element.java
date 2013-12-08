@@ -1,5 +1,4 @@
 package Modele;
-import java.util.Vector;
 
 
 /*_______________________________________________________________*/
@@ -9,24 +8,95 @@ import java.util.Vector;
  */
 public class Element  {
 
-  public String Image;
+	/** Image de l'élément */
+	protected String image;
 
-  public String Nom;
+	/** Nom de l'élément */
+	protected String nom;
+	
+	/*_______________________________________________________________*/
+	/**Constructeur par defaut
+	 */
+	public Element()
+	{
+		
+	}
+    
+    /*_______________________________________________________________*/
+    /**Constructeur avec paramètre
+     * @param image
+     * @param nom
+     */
+    public Element(String image, String nom)
+    {
+    	setImage(image);
+    	setNom(nom);
+    }
+    
+    /*_______________________________________________________________*/
+	/** Permet d'obtenir la valeur du champ image.
+	 * @return la valeur du champ image.
+	 */
+	public String getImage()
+	{
+		return image;
+	}
 
-  public Integer Id;
 
-    public Vector  myRessource;
-    public Vector  myCase;
- 
-    public Case myCase2;
 
-  public void getPosition() {
-  }
 
-  public void afficherElement() {
-  }
+	/*_______________________________________________________________*/
+	/** Modifie la valeur du champ image.
+	 * @param image la nouvelle valeur du champ image.
+	 */
+	public void setImage(String image)
+	{
+		this.image = image;
+	}
 
-  public void move() {
-  }
+
+
+
+	/*_______________________________________________________________*/
+	/** Permet d'obtenir la valeur du champ nom.
+	 * @return la valeur du champ nom.
+	 */
+	public String getNom()
+	{
+		return nom;
+	}
+
+
+
+
+	/*_______________________________________________________________*/
+	/** Modifie la valeur du champ nom.
+	 * @param nom la nouvelle valeur du champ nom.
+	 */
+	public void setNom(String nom)
+	{
+		this.nom = nom;
+	}
+
+
+
+	/*_______________________________________________________________*/
+	/**Retourne la position de l'élément
+	 */
+	public void getPosition() {
+		
+    }
+
+    /*_______________________________________________________________*/
+    /**Affiche l'élément
+     */
+    public void afficherElement() {
+    }
+	
+    /*_______________________________________________________________*/
+    /**
+     */
+    public void move() {
+	}
 
 }
