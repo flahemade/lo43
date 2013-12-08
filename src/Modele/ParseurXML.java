@@ -1,17 +1,17 @@
 package Modele;
 
 
-import javax.xml.parsers.*; 
+import java.io.File;
 
-import org.w3c.dom.*; 
-import org.xml.sax.*; 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
-import java.io.*; 
+import org.w3c.dom.Document;
 
 
 /**
  * This class is used to load the map and its content (obstacles and species) described
- * in the XML file
+ * in the XML file.
  *  
  * @author nicolas
  *
@@ -22,6 +22,7 @@ public class ParseurXML{
 /** -----attributes definitions-----*/
 	
   private String path; /* Chemin relatif vers le fichier XML*/
+  Document document;
 
 /** 
  * Initializes the parser using String Chemin 
@@ -34,7 +35,7 @@ public class ParseurXML{
 	  DocumentBuilderFactory fabrique = DocumentBuilderFactory.newInstance(); //
 	  DocumentBuilder constructeur = fabrique.newDocumentBuilder();
 	  File xml = new File(chemin);
-	  Document document = constructeur.parse(xml);
+	  document = constructeur.parse(xml);
 	  
 	  }catch(Exception e){
 		  //TODO Gerer l'exception
@@ -42,9 +43,7 @@ public class ParseurXML{
 	  
   }
 	  
-	  
-  
-  
+
   
 /**-------- Getters & setters ------*/
   
@@ -59,6 +58,36 @@ public void setPath(String path) {
 /**------------ Methods ------------*/
 
 /*
+ * Méthode copiée/collée du site http://java.developpez.com/faq/xml/?page=dom
+ * L'objéctif etait de voir que le fichier mapxml était fonctionnel */
+public void printDOMInfos(){
+	System.out.println("INFORMATIONS GENERALES");
+	
+	String uri = document.getDocumentURI();
+	System.out.println("URI = "+uri);
+	
+	String xVersion = document.getXmlVersion(); 
+	System.out.println("Version XML = "+xVersion);
+	
+	String xEncoding = document.getXmlEncoding();
+	System.out.println("XML encoding = "+xEncoding);
+	
+	String iEncoding = document.getInputEncoding();
+	System.out.println("Input encoding = "+iEncoding);
+	
+	boolean standalone = document.getXmlStandalone();
+	System.out.println("XML standalone = "+standalone);
+	
+	boolean strictError = document.getStrictErrorChecking();
+	System.out.println("Strict error checking = "+strictError+"\n");
+	
+	/*System.out.println("DOCTYPE");
+	printDoctype(document.getDoctype());
+	
+	System.out.println("CONFIGURATION");
+	printDOMConfiguration(document.getDomConfig());*/
+}
+/*
 public void write(String chemin, Map map) {
   }
 
@@ -70,5 +99,16 @@ public void write(String chemin, Map map) {
   public void save(String chemin, Map map ) {
   }
 */
+/** --------DEBUG -------------*/
+
+public static void main(String[] args) {
+	
+System.out.println("XMLParser debugger");
+ParseurXML parser = new ParseurXML("./res/map.xml");
+parser.printDOMInfos();
+
 }
+
+}
+
 

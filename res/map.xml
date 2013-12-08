@@ -1,17 +1,13 @@
- <?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
  <savane>
      <map>
          <case>
-             <taille>
-                 
-             </taille>
-             
+             <taille>20</taille>
              <position>
-                 <x></x>
-                 
-                 <y> </y>
+                 <x>100</x>
+                 <y>200</y>
              </position>
-             <type></type>
+             <type>TERRE</type>
          </case>
      </map>
      <espece>

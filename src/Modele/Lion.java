@@ -1,8 +1,8 @@
 package Modele;
 
-public class Lion extends Animal {
+/*public class Lion extends Animal {
 
   public void seBattre() {
   }
 
-}
+}*/
