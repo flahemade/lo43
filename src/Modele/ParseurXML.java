@@ -1,5 +1,10 @@
 package Modele;
 
+/*_______________________________________________________________*/
+/**
+ * @author anaelle
+ *
+ */
 public class ParseurXML {
 
   public String path;
