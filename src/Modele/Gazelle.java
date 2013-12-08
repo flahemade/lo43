@@ -1,4 +1,4 @@
 package Modele;
 
-public class Gazelle extends Animal {
-}
+/*public class Gazelle extends Animal {
+}*/
