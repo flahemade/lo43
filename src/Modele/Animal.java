@@ -12,6 +12,7 @@ public class Animal extends Element {
   protected Integer PV;
   protected Integer Id;
   protected Boolean sexe;
+  protected Case caselocation;
   
   //------------------------------CONSTRUCTEUR-------------------------------------------//
   public Animal(Integer taille,Integer Vitesse,Integer RCA,Integer AgeMax,Integer PV,Integer Id,Boolean sexe){
