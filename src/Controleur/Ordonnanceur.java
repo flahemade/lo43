@@ -1,6 +1,8 @@
 package Controleur;
 
-import Modele.*;
+import java.util.ArrayList;
+import Modele.Animal;
+import Modele.Map;
 
 public class Ordonnanceur {
 	private Boolean pause;
@@ -29,6 +31,12 @@ public class Ordonnanceur {
 			  // Jouer...
 			  //Fais jouer la map :
 			  //	-Récupérer tous les animaux vivants
+			  ArrayList<Animal> listeAnimaux=this.map.getListeAnimaux();
+			  for(Integer i=0;listeAnimaux.size()<=i;i++){
+				  
+				  Animal animal=listeAnimaux.get(i);
+				  
+			  }
 			  //		-Boucle activité pour chacun
 		  }
 	}
