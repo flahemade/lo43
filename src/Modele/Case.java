@@ -10,9 +10,13 @@ public class Case {
   private ArrayList<Element> listeElements;
   private ArrayList<Case>  listeCasesAdjacentes;
 //-----------------------------CONSTRUCTEUR--------------------------------------------//
-  public Case(Integer id, Position position,Integer taille,ArrayList<Element> listeElements){ //08/12/13 : Integer rang changé en Position position
+  public Case(Integer id, Position p,Integer taille,ArrayList<Element> listeElements){ //08/12/13 : Integer rang changé en Position position
 	  //setRang(rang);
-	  setPosition(position); // from: nicolas : L'attribut Rang n'a plus lieu d'exister, il a été remplacé par une Position 
+	  position = new Position();
+	  this.listeElements = new ArrayList<Element>();
+	  listeCasesAdjacentes = new ArrayList<Case>();
+	  setId(id);
+	  setPosition(p); 
 	  setTaille(taille);
 	  setListeElements(listeElements);
   }
@@ -38,9 +42,10 @@ public class Case {
   		return position;
   	}
   	
-  	public void setPosition(Position position){
-  		this.position.setX(position.getX());
-  		this.position.setY(position.getY());
+  	public void setPosition(Position p){
+  		
+  	position.setX(p.getX());
+  	position.setY(p.getY());
   	}
   	
 	public Integer getTaille() {
