@@ -4,17 +4,19 @@ import java.util.ArrayList;
 public class Case {
 
   //private Integer rang;
+  private Integer id;
   private Position position;
   private Integer taille;
   private ArrayList<Element> listeElements;
   private ArrayList<Case>  listeCasesAdjacentes;
 //-----------------------------CONSTRUCTEUR--------------------------------------------//
-  public Case(Position position,Integer taille,ArrayList<Element> listeElements){ //08/12/13 : Integer rang changé en Position position
+  public Case(Integer id, Position position,Integer taille,ArrayList<Element> listeElements){ //08/12/13 : Integer rang changé en Position position
 	  //setRang(rang);
 	  setPosition(position); // from: nicolas : L'attribut Rang n'a plus lieu d'exister, il a été remplacé par une Position 
 	  setTaille(taille);
 	  setListeElements(listeElements);
   }
+
 //-----------------------------GETTERS AND SETTERS-------------------------------------//
   /**
   public Integer getRang() {
@@ -25,6 +27,13 @@ public class Case {
 		this.rang = rang;
 	}
 */
+    public Integer getId() {
+		return id;
+	}
+    
+	public void setId(Integer id) {
+		this.id = id;
+	}
   	public Position getPosition(){
   		return position;
   	}
