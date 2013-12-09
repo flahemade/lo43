@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
- <savane><map>
-         <case>
+ <savane><map> <!-- Ajouter attribut dimension ou taille à la carte -->
+         <case> <!-- Ajouter une case par defaut -->
              <taille>20</taille>
              <position>
                  <x>100</x>

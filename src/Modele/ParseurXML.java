@@ -1,6 +1,8 @@
 package Modele;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -29,7 +31,7 @@ public class ParseurXML{
 /** -----attributes definitions-----*/
 	
   private String path; /* Chemin relatif vers le fichier XML*/
-  Document document;
+  private Document document;
 
 /** 
  * Initializes the parser using String Chemin 
@@ -39,10 +41,10 @@ public class ParseurXML{
   public ParseurXML(String chemin){
 	  try {
 	  
-	  DocumentBuilderFactory fabrique = DocumentBuilderFactory.newInstance(); //
+	  DocumentBuilderFactory fabrique = DocumentBuilderFactory.newInstance(); 
 	  DocumentBuilder constructeur = fabrique.newDocumentBuilder();
 	  File xml = new File(chemin);
-	  document = constructeur.parse(xml);
+	  document = constructeur.parse(xml); //On charge le XML dans document, tout le reste ce fera à partir de ce dernier
 	  
 	  }catch(Exception e){
 		  //TODO Gerer l'exception
@@ -64,7 +66,7 @@ public void setPath(String path) {
 
 /**------------ Methods ------------*/
 
-/*
+/**
  * Méthode copiée/collée du site http://java.developpez.com/faq/xml/?page=dom
  * L'objéctif etait de voir que le fichier mapxml était fonctionnel */
 public void printDOMInfos(){
@@ -94,24 +96,41 @@ public void printDOMInfos(){
 public void parseXML(){
 
 	
-	NodeList list = document.getDocumentElement().getChildNodes();
+	NodeList list = document.getDocumentElement().getChildNodes(); //On recupere le premier niveau de Node (map & espece)
 	int i;
 	
 	System.out.println("Debut du parcours du XML"); //DEBUG
 	for (i = 0; i<list.getLength();i++){ 							
 		//System.out.println(list.item(i).getNodeName()); //DEBUG
 		
-			//System.out.println(l.item(i).getNodeName());
-			switch(enumBourrin(list.item(i).getNodeName())){
-			case 0 : break;
-			case 1 : System.out.println("map");mapParser(list.item(i).getChildNodes());break;
-			case 2 : System.out.println("espece");break;
-			default :break ;
+		
+		/**
+		 * /Fonction enumBourrin() à remplacer par quelque chose de propre
+		 *  Retourne un entier correspondant au nom de la node lue (format string)
+		 *  switch n'accepte pas de comparer des strings avant jre 1.7
+		 */
+			switch(enumBourrin(list.item(i).getNodeName())){ 
+
+			case 1 : mapParser(list.item(i).getChildNodes());  //Cas où la node "map" est detectée, on lance la fonction mapParser(NodeListe l)
+			//System.out.println("map"); //DEBUG
+			break;
 			
+			case 2 : //System.out.println("espece"); //DEBUG   //Cas où la node "espece" est detectée, on lance la fonction ? pas implémentée
+			break;
+			
+			default :break ; //Si autre chose que "map" ou "espece" on ne fait rien
 			
 			}
 			} 
 	}
+/**
+ * Fonction qui retourne un entier en fonction de la String pris en attribut afin de faire fonctionner les switch case
+ * Sera remplacé par un enum dans un avenir proche
+ * Si la String n'est pas une node contenue dans le .XML, la fonction retourne 0;
+ * @param node
+ * @return
+ */
+//TODO Remplacer enumBourrin par quelque chose de propre
 private int enumBourrin (String node){
 	int i = 0;
 	if(node == "map"){
@@ -150,6 +169,13 @@ private int enumBourrin (String node){
 	return i;
 }
 
+/**
+ * Recupere l'attribut taille de la classe Case contenue dans le XML
+ * Si la node <case> ne contient pas d'enfant <taille> (cf XML) alors la fonction retourne -1
+ * Sinon retourne la taille contenue entre <taille></taille>  au format Integer
+ * @param l
+ * @return
+ */
 private int getTaille(NodeList l){
 	int taille = -1;
 	int i;
@@ -162,6 +188,11 @@ private int getTaille(NodeList l){
 	}
 	return taille;
 }
+/**
+ * Recupere l'attribut Type (TERRE, EAU, HERBE ...) de la classe (Case ?) à partir du XMl et le retourne au format String
+ * @param l
+ * @return
+ */
 private String getType(NodeList l){
 	int i;
 	String type="";
@@ -175,6 +206,11 @@ private String getType(NodeList l){
 	return type;
 }
 
+/**
+ * Recupere les attribution position x et y de la classe Case à partir du XML et les retourne au format Position
+ * @param l
+ * @return
+ */
 public Position getPosition(NodeList l){
 	int i,j;
 	Position position=new Position();
@@ -194,32 +230,43 @@ public Position getPosition(NodeList l){
 	}
 	return position;
 }
-public void mapParser(NodeList l){
+/**
+ * Recupere les differente case definient dans le XML et creer une liste de case qui sera ensuite retournée
+ * @param l
+ * @return
+ */
+public List <Case> mapParser(NodeList l){
 	int i;
 	int taille;
 	Position position;
 	String type;
-	
+	List<Case> listecase = new ArrayList();
 	for(i=0;i<l.getLength();i++){
 		switch (enumBourrin(l.item(i).getNodeName())){
 		
-		case 3: System.out.println("\tCase");
+		case 3: 
 		taille =getTaille(l.item(i).getChildNodes());
 		type= getType(l.item(i).getChildNodes());
 		position = getPosition(l.item(i).getChildNodes());
-		
+		//listecase.add(new Case()) //TODO A FINIR
+		/*
+		System.out.println("\tCase");
 		System.out.println("\t\tTaille : "+taille +
 				", Type : "+type+
-				", Position "+position.getX()+ 
+				", Position "+position.getX()+ 				//DEBUG
 				" , "+position.getY());
+				*/
 		break;
 		default : break;
 		}
+		
 	}
-	
+	return listecase;
 	
 }
-
+//TODO Ajouter la taille de la carte dans le XML et une case par defaut
+//TODO completer carte la liste de case par des case par deffaut
+//TODO Creer fonction pour verifier l'intégrité de la carte avant de la retourner
 /*
 public void write(String chemin, Map map) {
   }
@@ -233,13 +280,13 @@ public void write(String chemin, Map map) {
   }
 */
 /** --------DEBUG -------------*/
-
-/*public static void main(String[] args) {
+/*
+public static void main(String[] args) {
 	
 System.out.println("XMLParser debugger");
-ParseurXML parser = new ParseurXML("./res/map.xml");
-parser.printDOMInfos();
-parser.parseXML();
+ParseurXML parser = new ParseurXML("./res/map.xml"); //Création d'une instance de Parser, attention à bien spécifier une adresse correcte
+//parser.printDOMInfos();
+parser.parseXML(); //Debut du parsing
 }
 */
 }
