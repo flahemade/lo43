@@ -2,11 +2,6 @@ package Controleur;
 
 import Modele.*;
 
-/*_______________________________________________________________*/
-/**
- * @author anaelle
- *
- */
 public class Ordonnanceur {
 	private Boolean pause;
 	private Map map;
@@ -32,7 +27,9 @@ public class Ordonnanceur {
 	public void run() {
 		  while(this.pause==false){
 			  // Jouer...
-			  //Fais jouer la map.
+			  //Fais jouer la map :
+			  //	-Récupérer tous les animaux vivants
+			  //		-Boucle activité pour chacun
 		  }
 	}
 	public void stop(){
