@@ -9,13 +9,12 @@ public class Map {
     private ParseurXML myParseurXML;
     private Plateau myPlateau;
     private ArrayList<Case>  listeCases;
+    private ArrayList<Animal> listeAnimaux;
 //-------------------------------- CONSTRUCTEUR --------------------------------//   
-    public Map(String nom,Plateau plateau,ArrayList<Case> listeCases){
+    public Map(String nom,Plateau plateau){
     	setNom(nom);
     	setMyPlateau(plateau);
-    	setListeCases(listeCases);
     }
-
 //-------------------------------- SETTERS AND GETTERS --------------------------------//
 	public String getNom() {
 		return Nom;
@@ -41,6 +40,12 @@ public class Map {
 	public void setListeCases(ArrayList<Case> listeCases) {
 		this.listeCases = listeCases;
 	}
+	public ArrayList<Animal> getListeAnimaux() {
+		return listeAnimaux;
+	}
+	public void setListeAnimaux(ArrayList<Animal> listeAnimaux) {
+		this.listeAnimaux = listeAnimaux;
+	}
 //---------------------------------------Autres méthodes-------------------------------//
 	  public void charger(Map map) {
 	  }
@@ -49,5 +54,4 @@ public class Map {
 	  public Map rafraichir(Map map){
 		  return map;
 	  }
-
 }
