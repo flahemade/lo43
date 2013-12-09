@@ -10,12 +10,10 @@ public class Map {
     private Plateau myPlateau;
     private ArrayList<Case>  listeCases;
 //-------------------------------- CONSTRUCTEUR --------------------------------//   
-    public Map(String nom,Plateau plateau,ArrayList<Case> listeCases){
+    public Map(String nom,Plateau plateau){
     	setNom(nom);
     	setMyPlateau(plateau);
-    	setListeCases(listeCases);
     }
-
 //-------------------------------- SETTERS AND GETTERS --------------------------------//
 	public String getNom() {
 		return Nom;
@@ -49,5 +47,4 @@ public class Map {
 	  public Map rafraichir(Map map){
 		  return map;
 	  }
-
 }

@@ -1,5 +1,7 @@
 package Controleur;
 
+import Modele.*;
+
 /*_______________________________________________________________*/
 /**
  * @author anaelle
@@ -7,13 +9,21 @@ package Controleur;
  */
 public class Ordonnanceur {
 	private Boolean pause;
-	//-------------------------------------------CONSTRUCETEUR---------------------------//
-	public Ordonnanceur(){
+	private Map map;
+	//-------------------------------------------CONSTRUCTEUR---------------------------//
+	public Ordonnanceur(Map map){
 		setPause(true);
+		setMap(map);
 	}
 	//-------------------------------------------GETTERS AND SETTERS---------------------//
 	public Boolean getPause() {
 		return pause;
+	}
+	public Map getMap(){
+		return map;
+	}
+	public void setMap(Map map){
+		this.map=map;
 	}
 	public void setPause(Boolean pause) {
 		this.pause = pause;
@@ -22,6 +32,7 @@ public class Ordonnanceur {
 	public void run() {
 		  while(this.pause==false){
 			  // Jouer...
+			  //Fais jouer la map.
 		  }
 	}
 	public void stop(){
