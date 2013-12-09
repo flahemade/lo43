@@ -163,7 +163,16 @@ private int enumBourrin (String node){
 	if(node == "nom"){
 		i = 10;
 	}
-	if(node == "nombre"){
+	if(node == "element"){
+		i = 11;
+	}
+	if(node == "id"){
+		i = 12;
+	}
+	if(node == "obstacle"){
+		i = 13;
+	}
+	if(node == "ressourcej"){
 		i = 11;
 	}
 	return i;
@@ -183,7 +192,12 @@ private int getTaille(NodeList l){
 	{
 		if(l.item(i).getNodeName()=="taille")
 		{
+			try{
 			taille = Integer.parseInt(l.item(i).getTextContent());
+			}
+			catch(Exception e){
+				taille = 20;
+			}
 		}
 	}
 	return taille;
@@ -211,7 +225,7 @@ private String getType(NodeList l){
  * @param l
  * @return
  */
-public Position getPosition(NodeList l){
+private Position getPosition(NodeList l){
 	int i,j;
 	Position position=new Position();
 	for(i=0;i<l.getLength();i++)
@@ -221,14 +235,47 @@ public Position getPosition(NodeList l){
 			NodeList enfant = l.item(i).getChildNodes();
 			for(j=0;j<enfant.getLength();j++){
 				switch(enumBourrin(enfant.item(j).getNodeName())){
-				case 6: position.setX(Integer.parseInt(enfant.item(j).getTextContent()));break;
-				case 7: position.setY(Integer.parseInt(enfant.item(j).getTextContent()));break;
+				case 6: 
+						try{
+						position.setX(Integer.parseInt(enfant.item(j).getTextContent()));
+					}
+					catch(Exception e){
+						position.setX(-1);
+					}
+					break;
+				case 7: 
+						try{
+						position.setY(Integer.parseInt(enfant.item(j).getTextContent()));
+					}
+					catch(Exception e){
+						position.setY(-1);
+					}
+					break;
 				default : break;
 				}
 			}
 		}
 	}
 	return position;
+}
+
+private int getId(org.w3c.dom.Node n){
+	int id =-1;
+	int i;
+	if(n.hasAttributes()){	
+
+		if(n.getAttributes().getNamedItem("id")!=null){
+			try{
+				id = Integer.parseInt(n.getAttributes().getNamedItem("id").getNodeValue());	
+			}catch (Exception e){
+				//TODO Gerer l'exception
+			}
+			
+			
+		}
+	}	
+			
+	return id;
 }
 /**
  * Recupere les differente case definient dans le XML et creer une liste de case qui sera ensuite retournée
@@ -238,6 +285,7 @@ public Position getPosition(NodeList l){
 public List <Case> mapParser(NodeList l){
 	int i;
 	int taille;
+	int id;
 	Position position;
 	String type;
 	List<Case> listecase = new ArrayList();
@@ -248,14 +296,16 @@ public List <Case> mapParser(NodeList l){
 		taille =getTaille(l.item(i).getChildNodes());
 		type= getType(l.item(i).getChildNodes());
 		position = getPosition(l.item(i).getChildNodes());
+		id = getId(l.item(i));
 		//listecase.add(new Case()) //TODO A FINIR
-		/*
-		System.out.println("\tCase");
-		System.out.println("\t\tTaille : "+taille +
+		
+		
+		System.out.println("\t Case : id : "+id +
+				"\tTaille : "+taille +
 				", Type : "+type+
-				", Position "+position.getX()+ 				//DEBUG
+				", Position : "+position.getX()+ 				//DEBUG
 				" , "+position.getY());
-				*/
+				
 		break;
 		default : break;
 		}
@@ -280,15 +330,15 @@ public void write(String chemin, Map map) {
   }
 */
 /** --------DEBUG -------------*/
-/*
-public static void main(String[] args) {
+
+/*public static void main(String[] args) {
 	
 System.out.println("XMLParser debugger");
 ParseurXML parser = new ParseurXML("./res/map.xml"); //Création d'une instance de Parser, attention à bien spécifier une adresse correcte
 //parser.printDOMInfos();
 parser.parseXML(); //Debut du parsing
-}
-*/
+}*/
+
 }
 
 

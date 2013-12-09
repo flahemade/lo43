@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
  <savane><map> <!-- Ajouter attribut dimension ou taille à la carte -->
-         <case> <!-- Ajouter une case par defaut -->
+         <case id = "128"> <!-- Ajouter une case par defaut -->
              <taille>20</taille>
              <position>
-                 <x>100</x>
+                 <x>200</x>
                  <y>200</y>
              </position>
              <type>TERRE</type>
