@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
- <savane><map> <!-- Ajouter attribut dimension ou taille à la carte -->
+ <savane><map id = "1" width ="64" length = "64"> <!-- (64*64)+(-1)=4095 = id max pour cette taille -->
          <case id = "128"> <!-- Ajouter une case par defaut -->
-             <taille>20</taille>
+             <taille default ="20">20</taille> <!-- 64*20 = 1280px c'est peut etre beaucoup 20px par case  -->
              <position>
-                 <x>200</x>
-                 <y>200</y>
+                 <x>0</x> <!-- Puisque félix ne s'en sert pas, il n'y peut etre plus trop d'interet à ces 2 params -->
+                 <y>0</y> <!-- ----------------------------------------------------------------------------------- -->
              </position>
-             <type>TERRE</type>
+             <type default ="TERRE">TERRE</type>
          </case>
      </map>
      <espece>
-         <class>
-             <nom></nom>
-             <nombre></nombre>
+         <class id = "1">
+             <nom>Lion</nom>
+             <caseid>1</caseid>
          </class>
      </espece>
+     <objet>
+     		<ressource id = "1">
+     			<nom>Viande</nom>
+     			<caseid>12</caseid>
+     		</ressource>
+     		<obstacle id ="1">
+     			<caseid>64</caseid>
+     		</obstacle>
+     </objet>
  </savane>

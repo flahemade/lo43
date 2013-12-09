@@ -185,8 +185,8 @@ private int enumBourrin (String node){
  * @param l
  * @return
  */
-private int getTaille(NodeList l){
-	int taille = -1;
+private Integer getTaille(NodeList l){ //TODO Ajouter une gestion de l'attribut "default"
+	Integer taille = -1;
 	int i;
 	for(i=0;i<l.getLength();i++)
 	{
@@ -207,7 +207,7 @@ private int getTaille(NodeList l){
  * @param l
  * @return
  */
-private String getType(NodeList l){
+private String getType(NodeList l){ //TODO Ajouter une gestion de l'attribut "default"
 	int i;
 	String type="";
 	for(i=0;i<l.getLength();i++)
@@ -259,9 +259,8 @@ private Position getPosition(NodeList l){
 	return position;
 }
 
-private int getId(org.w3c.dom.Node n){
-	int id =-1;
-	int i;
+private Integer getId(org.w3c.dom.Node n){
+	Integer id =-1;
 	if(n.hasAttributes()){	
 
 		if(n.getAttributes().getNamedItem("id")!=null){
@@ -284,11 +283,11 @@ private int getId(org.w3c.dom.Node n){
  */
 public List <Case> mapParser(NodeList l){
 	int i;
-	int taille;
-	int id;
+	Integer taille;
+	Integer id;
 	Position position;
 	String type;
-	List<Case> listecase = new ArrayList();
+	List<Case> listecase = new ArrayList<Case>();
 	for(i=0;i<l.getLength();i++){
 		switch (enumBourrin(l.item(i).getNodeName())){
 		
@@ -297,7 +296,7 @@ public List <Case> mapParser(NodeList l){
 		type= getType(l.item(i).getChildNodes());
 		position = getPosition(l.item(i).getChildNodes());
 		id = getId(l.item(i));
-		//listecase.add(new Case()) //TODO A FINIR
+		listecase.add(new Case(id,position,taille,new ArrayList<Modele.Element>())); //TODO A FINIR
 		
 		
 		System.out.println("\t Case : id : "+id +
@@ -337,8 +336,8 @@ System.out.println("XMLParser debugger");
 ParseurXML parser = new ParseurXML("./res/map.xml"); //Création d'une instance de Parser, attention à bien spécifier une adresse correcte
 //parser.printDOMInfos();
 parser.parseXML(); //Debut du parsing
-}*/
-
+}
+*/
 }
 
 
