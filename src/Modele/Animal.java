@@ -99,6 +99,14 @@ public class Animal extends Element {
 	public void setSexe(Boolean sexe) {
 		this.sexe = sexe;
 	}
+	
+	public Case getCaseLocation(){
+		return caselocation;
+	}
+	
+	public void setCaseLocation(Case caselocation){
+		this.caselocation=caselocation;
+	}
   //------------------------------Autres Méthodes----------------------------------------//
 
   public Integer seDeplacer(Integer direction){
