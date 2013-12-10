@@ -6,35 +6,37 @@ package Modele;
  *
  */
 public class Position { 
-	private Integer x;
-	private Integer y;
+	private int x;
+	private int y;
+	
+	
+	/* -------------Constructor------------- */
 	
 	public Position(){
 		x = 0;
-		y = 0;
-		
+		y = 0;	
 	}
-	/* Constructor */
-	public Position(Integer x, Integer y){
+	
+	public Position(int x, int y){
 		this.x = x;
 		this.y = y;
 	}
 	
-	public Position(Integer z){
+	public Position(int z){
 		this.x=z;
 		this.y=z;
 	}
-	/* getters & Setters */
+	/* ---------getters & Setters----------- */
 	public Integer getX() {
 		return x;
 	}
-	public void setX(Integer x) {
+	public void setX(int x) {
 		this.x = x;
 	}
 	public Integer getY() {
 		return y;
 	}
-	public void setY(Integer y) {
+	public void setY(int y) {
 		this.y = y;
 	}
 

@@ -5,4 +5,5 @@ package Modele;
   public void seBattre() {
   }
 
-}*/
+}
+*/

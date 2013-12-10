@@ -2,7 +2,6 @@ package Modele;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -99,6 +98,12 @@ public void parseXML(){
 	NodeList list = document.getDocumentElement().getChildNodes(); //On recupere le premier niveau de Node (map & espece)
 	int i;
 	
+	Dimension dimensionmap;
+	ArrayList<Case> listecase = new ArrayList<Case>();
+	ArrayList<Animal> listeanimaux = new ArrayList<Animal>();
+	ArrayList<Obstacle> listeobstacle = new ArrayList<Obstacle>();
+	ArrayList<Ressource> listeressource = new ArrayList<Ressource>();
+	
 	System.out.println("Debut du parcours du XML"); //DEBUG
 	for (i = 0; i<list.getLength();i++){ 							
 		//System.out.println(list.item(i).getNodeName()); //DEBUG
@@ -111,21 +116,34 @@ public void parseXML(){
 		 */
 			switch(enumBourrin(list.item(i).getNodeName())){ 
 
-			case 1 : mapParser(list.item(i).getChildNodes());  //Cas où la node "map" est detectée, on lance la fonction mapParser(NodeListe l)
-			//System.out.println("map"); //DEBUG
+			case 1 : 
+			dimensionmap = getDimension(list.item(i));
+			listecase = parseMap(list.item(i).getChildNodes());  //Cas où la node "map" est detectee, on lance la fonction mapParser(NodeListe l)
+			//System.out.println("dimensionmap "+dimensionmap.getLength()+" "+dimensionmap.getWidth()); //DEBUG
 			break;
 			
-			case 2 : //System.out.println("espece"); //DEBUG   //Cas où la node "espece" est detectée, on lance la fonction ? pas implémentée
+			case 2 :
+				parseEspece(list.item(i).getChildNodes());
+			//System.out.println("espece"); //DEBUG   //Cas où la node "espece" est detectee, on lance la fonction ? pas implémentée
 			break;
 			
 			default :break ; //Si autre chose que "map" ou "espece" on ne fait rien
 			
 			}
-			} 
+			/**
+			 * Une fois que l'on a obtenu les differente cases, les espece à placer ainsi que les ressources et obstacles,
+			 * il faut génrer les case manquantes grace au attributs default puis
+			 * il faut assembler le tout (placer les animaux, ressources et obstacle dans les case)
+			 * enfin il faut vérifier que la list generee est cohérente (pas d'animaux ou de ressource là où il y a un obstacle)
+			 * des obstacle sur les bords de la carte,
+			 * qu'il y ai une case pour chaque id possible selon la taille de la map
+			 * qu'il n'y ai aucun element avec un id ou une taile =-1
+			 */
+		} 
 	}
 /**
  * Fonction qui retourne un entier en fonction de la String pris en attribut afin de faire fonctionner les switch case
- * Sera remplacé par un enum dans un avenir proche
+ * devrait pouvoir etre remplace par un enum
  * Si la String n'est pas une node contenue dans le .XML, la fonction retourne 0;
  * @param node
  * @return
@@ -133,47 +151,54 @@ public void parseXML(){
 //TODO Remplacer enumBourrin par quelque chose de propre
 private int enumBourrin (String node){
 	int i = 0;
-	if(node == "map"){
+	String node2 =node.toLowerCase();
+	if(node2 == "map"){
 		i = 1;
 	}
-	if(node == "espece"){
+	if(node2 == "espece"){
 		i = 2;
 	}
-	if(node == "case"){
+	if(node2 == "case"){
 		i = 3;
 	}
-	if(node == "taille"){
+	if(node2 == "taille"){
 		i = 4;
 	}
-	if(node == "position"){
+	if(node2 == "position"){
 		i = 5;
 	}
-	if(node == "x"){
+	if(node2 == "x"){
 		i = 6;
 	}
-	if(node == "y"){
+	if(node2 == "y"){
 		i = 7;
 	}
-	if(node == "type"){
+	if(node2 == "type"){
 		i = 8;
 	}
-	if(node == "class"){
+	if(node2 == "animal"){
 		i = 9;
 	}
-	if(node == "nom"){
+	if(node2 == "nomclass"){
 		i = 10;
 	}
-	if(node == "element"){
+	if(node2 == "element"){
 		i = 11;
 	}
-	if(node == "id"){
+	if(node2 == "caseid"){
 		i = 12;
 	}
-	if(node == "obstacle"){
+	if(node2 == "obstacle"){
 		i = 13;
 	}
-	if(node == "ressourcej"){
-		i = 11;
+	if(node2 == "ressource"){
+		i = 14;
+	}
+	if(node2 == "lion"){
+		i = 15;
+	}
+	if(node2 == "gazelle"){
+		i = 16;
 	}
 	return i;
 }
@@ -190,13 +215,13 @@ private Integer getTaille(NodeList l){ //TODO Ajouter une gestion de l'attribut 
 	int i;
 	for(i=0;i<l.getLength();i++)
 	{
-		if(l.item(i).getNodeName()=="taille")
+		if(l.item(i).getNodeName().toLowerCase()=="taille")
 		{
 			try{
 			taille = Integer.parseInt(l.item(i).getTextContent());
 			}
 			catch(Exception e){
-				taille = 20;
+				
 			}
 		}
 	}
@@ -212,9 +237,9 @@ private String getType(NodeList l){ //TODO Ajouter une gestion de l'attribut "de
 	String type="";
 	for(i=0;i<l.getLength();i++)
 	{
-		if(l.item(i).getNodeName()=="type")
+		if(l.item(i).getNodeName().toLowerCase()=="type")
 		{
-			type = l.item(i).getTextContent();
+			type = l.item(i).getTextContent().toLowerCase();
 		}
 	}
 	return type;
@@ -230,7 +255,7 @@ private Position getPosition(NodeList l){
 	Position position=new Position();
 	for(i=0;i<l.getLength();i++)
 	{
-		if(l.item(i).getNodeName()=="position")
+		if(l.item(i).getNodeName().toLowerCase()=="position")
 		{
 			NodeList enfant = l.item(i).getChildNodes();
 			for(j=0;j<enfant.getLength();j++){
@@ -261,6 +286,7 @@ private Position getPosition(NodeList l){
 
 private Integer getId(org.w3c.dom.Node n){
 	Integer id =-1;
+	
 	if(n.hasAttributes()){	
 
 		if(n.getAttributes().getNamedItem("id")!=null){
@@ -268,26 +294,103 @@ private Integer getId(org.w3c.dom.Node n){
 				id = Integer.parseInt(n.getAttributes().getNamedItem("id").getNodeValue());	
 			}catch (Exception e){
 				//TODO Gerer l'exception
+				
 			}
-			
-			
+		}
+	}		
+	return id;
+}
+
+private Integer getCaseId(NodeList l){
+	Integer id =-1;
+	int i;
+	for(i=0;i<l.getLength();i++)
+	{
+		if(l.item(i).getNodeName().toLowerCase()=="caseid")
+		{
+			try{
+			id = Integer.parseInt(l.item(i).getTextContent());
+			}
+			catch(Exception e){
+				
+			}
+		}
+	}
+	return id;
+}
+
+private Dimension getDimension(org.w3c.dom.Node n){
+	
+	Dimension dimension=new Dimension();
+	
+	if(n.hasAttributes()){	
+
+		if(n.getAttributes().getNamedItem("width")!=null){
+			try{
+				dimension.setWidth(Integer.parseInt(n.getAttributes().getNamedItem("width").getNodeValue()));
+			}catch (Exception e){
+				//TODO Gerer l'exception
+			}
+		}
+		
+		if(n.getAttributes().getNamedItem("length")!=null){
+			try{
+				dimension.setLength(Integer.parseInt(n.getAttributes().getNamedItem("length").getNodeValue()));
+			}catch (Exception e){
+				//TODO Gerer l'exception
+			}
 		}
 	}	
-			
-	return id;
+	return dimension;
+}
+
+private String getNomClass(NodeList l){
+	
+	int i;
+	String nomclass="test";
+	
+	for(i=0;i<l.getLength();i++)
+	{
+		if(l.item(i).getNodeName().toLowerCase()=="nomclass")
+		{
+			nomclass = l.item(i).getTextContent().toLowerCase();
+		}
+	}
+	return nomclass;
+}
+
+private Boolean getSexe(NodeList l){
+	int i;
+	Boolean sexe = true; //Par defaut male 
+	
+	for(i=0;i<l.getLength();i++)
+	{
+		if(l.item(i).getNodeName().toLowerCase()=="sexe")
+		{
+			if(l.item(i).getTextContent().toLowerCase().matches("femelle")){ //Pourquoi une simple comparaison ne fonctionne pas ?!
+				sexe = false;
+			}
+			/*if(l.item(i).getTextContent().toLowerCase()=="femelle"){
+				sexe=false;System.out.println("debug");
+			}*/
+		}
+	}
+	
+	return sexe;
 }
 /**
  * Recupere les differente case definient dans le XML et creer une liste de case qui sera ensuite retournée
  * @param l
  * @return
  */
-public List <Case> mapParser(NodeList l){
+private ArrayList <Case> parseMap(NodeList l){
 	int i;
-	Integer taille;
 	Integer id;
+	Integer taille;
 	Position position;
 	String type;
-	List<Case> listecase = new ArrayList<Case>();
+	ArrayList<Case> listecase = new ArrayList<Case>();
+	
 	for(i=0;i<l.getLength();i++){
 		switch (enumBourrin(l.item(i).getNodeName())){
 		
@@ -313,6 +416,37 @@ public List <Case> mapParser(NodeList l){
 	return listecase;
 	
 }
+
+private ArrayList<Animal> parseEspece(NodeList l){
+	
+	int i;
+	ArrayList<Animal> listeanimaux = new ArrayList<Animal>();
+	Integer id, caseid;
+	String nomclass;
+	Boolean sexe;
+	for(i=0;i<l.getLength();i++){
+		switch (enumBourrin(l.item(i).getNodeName())){
+		
+		case 9 :
+		id = getId(l.item(i));
+		caseid = getCaseId(l.item(i).getChildNodes());
+		nomclass = getNomClass(l.item(i).getChildNodes());
+		sexe = getSexe(l.item(i).getChildNodes());
+			switch(enumBourrin(nomclass)){
+			case 15 : break; //Creation d'une classe Lion & ajout dans listeanimaux
+			case 16 : break; //Creation classe Gazelle & ajout dans listeanimaux
+			default : break;
+			}
+		
+		System.out.println("Animal : id :"+id+
+				"\t type : "+nomclass+
+				", caseID : "+caseid+
+				", sexe : "+sexe);
+		break;
+		}
+	}
+	return listeanimaux;
+}
 //TODO Ajouter la taille de la carte dans le XML et une case par defaut
 //TODO completer carte la liste de case par des case par deffaut
 //TODO Creer fonction pour verifier l'intégrité de la carte avant de la retourner
@@ -330,14 +464,14 @@ public void write(String chemin, Map map) {
 */
 /** --------DEBUG -------------*/
 
-/*public static void main(String[] args) {
+public static void main(String[] args) {
 	
 System.out.println("XMLParser debugger");
 ParseurXML parser = new ParseurXML("./res/map.xml"); //Création d'une instance de Parser, attention à bien spécifier une adresse correcte
 //parser.printDOMInfos();
 parser.parseXML(); //Debut du parsing
 }
-*/
+
 }
 
 
