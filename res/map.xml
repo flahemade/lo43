@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
- <savane><map id = "13" width ="64" length = "168"> <!-- (64*64)+(-1)=4095 = id max pour cette taille -->
+ <savane><map id = "1" width ="16" length = "16" defaut_taille_case = "20" defaut_type_case = "eAu"> <!-- (64*64)+(-1)=4095 = id max pour cette taille -->
          <case id = "128"> <!-- Ajouter une case par defaut -->
              <taille default ="20">20</taille> <!-- 64*20 = 1280px c'est peut etre beaucoup 20px par case  -->
              <position>
@@ -21,7 +21,7 @@
      			<type>ViaNde</type>
      			<caseid>12</caseid>
      		</ressource>
-     		<obstacle id = "1">
+     		<obstacle id = "1"> <!-- l id ne sert à rien -->
      			<caseid>64</caseid>
      		</obstacle>
      </objet>

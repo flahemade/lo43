@@ -103,7 +103,7 @@ public void parseXML(){
 	ArrayList<Animal> listeanimaux = new ArrayList<Animal>();
 	ArrayList<Obstacle> listeobstacle = new ArrayList<Obstacle>();
 	ArrayList<Ressource> listeressource = new ArrayList<Ressource>();
-	
+	Case casedefaut;
 	System.out.println("Debut du parcours du XML"); //DEBUG
 	for (i = 0; i<list.getLength();i++){ 							
 		//System.out.println(list.item(i).getNodeName()); //DEBUG
@@ -116,9 +116,14 @@ public void parseXML(){
 		 */
 			switch(enumBourrin(list.item(i).getNodeName())){ 
 
-			case 1 : 
+			case 1 : //Cas où la node "map" est detectee, on lance la fonction mapParser(NodeListe l)
 			dimensionmap = getDimension(list.item(i));
-			listecase = parseMap(list.item(i).getChildNodes());  //Cas où la node "map" est detectee, on lance la fonction mapParser(NodeListe l)
+			listecase = parseMap(list.item(i).getChildNodes());
+			casedefaut = getCaseDefaut(list.item(i));
+			System.out.println("CaseDefaut : id "+casedefaut.getId()+
+					" , Taille "+casedefaut.getTaille()+
+					" , Type "+casedefaut.getType()+
+					" , Position "+casedefaut.getPosition().getX()+" , "+casedefaut.getPosition().getY());
 			//System.out.println("dimensionmap "+dimensionmap.getLength()+" "+dimensionmap.getWidth()); //DEBUG
 			break;
 			
@@ -207,6 +212,35 @@ private int enumBourrin (String node){
 		i = 17;
 	}
 	return i;
+}
+
+private Case getCaseDefaut(org.w3c.dom.Node n){
+	int id =-1, taille =-1;
+	Position position=new Position();
+	String type="terre";
+	Case casedefaut;
+	
+	if(n.hasAttributes()){	
+
+		if(n.getAttributes().getNamedItem("defaut_taille_case")!=null){
+			try{
+				taille =Integer.parseInt(n.getAttributes().getNamedItem("defaut_taille_case").getNodeValue().trim());
+			}
+			catch(Exception e){
+				//TODO gerer l'exception
+			}
+		}
+		if(n.getAttributes().getNamedItem("defaut_type_case")!=null){
+			try{
+				type =n.getAttributes().getNamedItem("defaut_type_case").getNodeValue().toLowerCase().trim();
+			}
+			catch(Exception e){
+				//TODO gerer l'exception
+			}
+		}
+	}
+	 casedefaut =new Case(id,position,taille,type);
+	 return casedefaut;
 }
 
 /**
@@ -350,7 +384,7 @@ private Dimension getDimension(org.w3c.dom.Node n){
 	return dimension;
 }
 
-private String getNomClass(NodeList l){
+private String getNomClass(NodeList l){ //n'est plus utilisé
 	
 	int i;
 	String nomclass="test";
@@ -405,7 +439,7 @@ private ArrayList <Case> parseMap(NodeList l){
 		type= getType(l.item(i).getChildNodes());
 		position = getPosition(l.item(i).getChildNodes());
 		id = getId(l.item(i));
-		listecase.add(new Case(id,position,taille,new ArrayList<Modele.Element>())); //TODO A FINIR
+		listecase.add(new Case(id,position,taille,type)); //TODO A FINIR
 		
 		
 		System.out.println("Case : id : "+id +
@@ -465,7 +499,7 @@ private ArrayList<Obstacle> parseObstacle(NodeList l){
 		if(l.item(i).getNodeName().toLowerCase().trim()=="obstacle"){
 			id = getId(l.item(i));
 			caseid = getCaseId(l.item(i).getChildNodes());
-			//Ajout d'un obstacle à la liste
+			listeobstacle.add(new Obstacle(20, caseid));   //Ajout d'un obstacle à la listeobstacle
 			System.out.println("Obstacle "+id+ //DEBUG
 					" caseID : "+caseid);
 		}

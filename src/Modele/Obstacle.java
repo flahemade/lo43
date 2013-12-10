@@ -9,7 +9,7 @@ public class Obstacle extends Element {
 
 	  /** taille de l'obstacle*/
 	private int taille;
-	  
+	private int idcase;
 	  /** Id de l'obstacle */
 	private static int ID=0;
 	  
@@ -22,6 +22,12 @@ public class Obstacle extends Element {
 		  setTaille(Taille);
 	  }
 	  
+	public Obstacle(int Taille, int idcase)
+	  {
+		  super("Test", "Obstacle"+ID++);
+		  setTaille(Taille);
+		  setIdcase(idcase);
+	  }
 	  /*_______________________________________________________________*/
 	/** getter de taille
 	 * @return la taille
@@ -48,7 +54,23 @@ public class Obstacle extends Element {
 	  {
 		  return ID;
 	  }
-	  
+	
+	 /*_______________________________________________________________*/
+		/** getter de l'idcase
+		 * @return idcase
+		 */
+	public int getIdcase() {
+		return idcase;
+	}
+
+	/*_______________________________________________________________*/
+	/** setter de l'idcase
+	 * @param idcase
+	 */
+	public void setIdcase(int idcase) {
+		this.idcase = idcase;
+	}
+  
 	/*_______________________________________________________________*/
 	/**
 	 * @see Modele.Element#afficherElement()
@@ -57,6 +79,7 @@ public class Obstacle extends Element {
 	{
 		super.afficherElement();
 	}
-  
+
+	
 
 }
