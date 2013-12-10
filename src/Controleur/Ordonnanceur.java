@@ -1,6 +1,7 @@
 package Controleur;
 
 import java.util.ArrayList;
+import Modele.*;
 
 import Modele.Animal;
 import Modele.Case;
@@ -37,6 +38,7 @@ public class Ordonnanceur {
 			  for(Integer i=0;listeAnimaux.size()<=i;i++){
 				  
 				  Animal animal=listeAnimaux.get(i);
+				  Case caseCible=null;
 				  //Vérification âge
 				  Boolean vivant=animal.verifierAge();
 				  if(vivant==false){
@@ -46,7 +48,7 @@ public class Ordonnanceur {
 				  Integer vitesse=animal.getVitesse();
 				  for(Integer j=0;j<=vitesse;j++){
 					  Integer direction=(int)(Math.random()*3)+1;
-					  Case caseCible=animal.getCaseLocation();
+					  caseCible=animal.getCaseLocation();
 					  Integer numeroCase=caseCible.getId();
 					  Integer largeurMap=0;
 					  switch(direction){
@@ -58,9 +60,13 @@ public class Ordonnanceur {
 					  caseCible.setId(numeroCase);
 				  }
 				  //-----------------------
-				  
+//					-Boucle activité pour chacun  
+				  ArrayList<Element> attributsCase=caseCible.getListeElements();
+				  Element attr1=attributsCase.get(0);
+				  Element attr2=attributsCase.get(1);
 			  }
-			  //		-Boucle activité pour chacun
+			  
+			  
 		  }
 	}
 	public void stop(){
