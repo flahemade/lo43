@@ -4,24 +4,24 @@
              <taille default ="20">20</taille> <!-- 64*20 = 1280px c'est peut etre beaucoup 20px par case  -->
              <position>
                  <x>0</x> <!-- Puisque félix ne s'en sert pas, il n'y peut etre plus trop d'interet à ces 2 params -->
-                 <y>0</y> <!-- *********************************************************************************** -->
+                 <y>12</y> <!-- *********************************************************************************** -->
              </position>
              <type default ="TERRE">TERRE</type>
          </case>
      </map>
      <espece>
          <animal id = "768">
-             <nomclass>lion</nomclass>
-             <sexe>male</sexe>
+             <type>lion</type>
+             <sexe>femelle</sexe>
              <caseid>15</caseid>
          </animal>
      </espece>
      <objet>
      		<ressource id = "1">
-     			<nom>Viande</nom>
+     			<type>ViaNde</type>
      			<caseid>12</caseid>
      		</ressource>
-     		<obstacle id ="1">
+     		<obstacle id = "1">
      			<caseid>64</caseid>
      		</obstacle>
      </objet>

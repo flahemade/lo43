@@ -124,9 +124,12 @@ public void parseXML(){
 			
 			case 2 :
 				parseEspece(list.item(i).getChildNodes());
-			//System.out.println("espece"); //DEBUG   //Cas où la node "espece" est detectee, on lance la fonction ? pas implémentée
+			//System.out.println("espece"); //DEBUG   //Cas où la node "espece" est detectee, on lance la fonction parseEspece(NodeList l)
 			break;
 			
+			case 17 : parseObstacle(list.item(i).getChildNodes());     //Cas où la node objet est detectee
+						parseRessource(list.item(i).getChildNodes());
+				break;
 			default :break ; //Si autre chose que "map" ou "espece" on ne fait rien
 			
 			}
@@ -151,7 +154,7 @@ public void parseXML(){
 //TODO Remplacer enumBourrin par quelque chose de propre
 private int enumBourrin (String node){
 	int i = 0;
-	String node2 =node.toLowerCase();
+	String node2 =node.toLowerCase().trim();
 	if(node2 == "map"){
 		i = 1;
 	}
@@ -200,6 +203,9 @@ private int enumBourrin (String node){
 	if(node2 == "gazelle"){
 		i = 16;
 	}
+	if(node2 == "objet"){
+		i = 17;
+	}
 	return i;
 }
 
@@ -218,7 +224,7 @@ private Integer getTaille(NodeList l){ //TODO Ajouter une gestion de l'attribut 
 		if(l.item(i).getNodeName().toLowerCase()=="taille")
 		{
 			try{
-			taille = Integer.parseInt(l.item(i).getTextContent());
+			taille = Integer.parseInt(l.item(i).getTextContent().trim());
 			}
 			catch(Exception e){
 				
@@ -239,7 +245,7 @@ private String getType(NodeList l){ //TODO Ajouter une gestion de l'attribut "de
 	{
 		if(l.item(i).getNodeName().toLowerCase()=="type")
 		{
-			type = l.item(i).getTextContent().toLowerCase();
+			type = l.item(i).getTextContent().toLowerCase().trim();
 		}
 	}
 	return type;
@@ -262,7 +268,7 @@ private Position getPosition(NodeList l){
 				switch(enumBourrin(enfant.item(j).getNodeName())){
 				case 6: 
 						try{
-						position.setX(Integer.parseInt(enfant.item(j).getTextContent()));
+						position.setX(Integer.parseInt(enfant.item(j).getTextContent().trim()));
 					}
 					catch(Exception e){
 						position.setX(-1);
@@ -270,7 +276,7 @@ private Position getPosition(NodeList l){
 					break;
 				case 7: 
 						try{
-						position.setY(Integer.parseInt(enfant.item(j).getTextContent()));
+						position.setY(Integer.parseInt(enfant.item(j).getTextContent().trim()));
 					}
 					catch(Exception e){
 						position.setY(-1);
@@ -291,7 +297,7 @@ private Integer getId(org.w3c.dom.Node n){
 
 		if(n.getAttributes().getNamedItem("id")!=null){
 			try{
-				id = Integer.parseInt(n.getAttributes().getNamedItem("id").getNodeValue());	
+				id = Integer.parseInt(n.getAttributes().getNamedItem("id").getNodeValue().trim());	
 			}catch (Exception e){
 				//TODO Gerer l'exception
 				
@@ -309,7 +315,7 @@ private Integer getCaseId(NodeList l){
 		if(l.item(i).getNodeName().toLowerCase()=="caseid")
 		{
 			try{
-			id = Integer.parseInt(l.item(i).getTextContent());
+			id = Integer.parseInt(l.item(i).getTextContent().trim());
 			}
 			catch(Exception e){
 				
@@ -327,7 +333,7 @@ private Dimension getDimension(org.w3c.dom.Node n){
 
 		if(n.getAttributes().getNamedItem("width")!=null){
 			try{
-				dimension.setWidth(Integer.parseInt(n.getAttributes().getNamedItem("width").getNodeValue()));
+				dimension.setWidth(Integer.parseInt(n.getAttributes().getNamedItem("width").getNodeValue().trim()));
 			}catch (Exception e){
 				//TODO Gerer l'exception
 			}
@@ -335,7 +341,7 @@ private Dimension getDimension(org.w3c.dom.Node n){
 		
 		if(n.getAttributes().getNamedItem("length")!=null){
 			try{
-				dimension.setLength(Integer.parseInt(n.getAttributes().getNamedItem("length").getNodeValue()));
+				dimension.setLength(Integer.parseInt(n.getAttributes().getNamedItem("length").getNodeValue().trim()));
 			}catch (Exception e){
 				//TODO Gerer l'exception
 			}
@@ -353,7 +359,7 @@ private String getNomClass(NodeList l){
 	{
 		if(l.item(i).getNodeName().toLowerCase()=="nomclass")
 		{
-			nomclass = l.item(i).getTextContent().toLowerCase();
+			nomclass = l.item(i).getTextContent().toLowerCase().trim();
 		}
 	}
 	return nomclass;
@@ -402,8 +408,8 @@ private ArrayList <Case> parseMap(NodeList l){
 		listecase.add(new Case(id,position,taille,new ArrayList<Modele.Element>())); //TODO A FINIR
 		
 		
-		System.out.println("\t Case : id : "+id +
-				"\tTaille : "+taille +
+		System.out.println("Case : id : "+id +
+				", Taille : "+taille +
 				", Type : "+type+
 				", Position : "+position.getX()+ 				//DEBUG
 				" , "+position.getY());
@@ -430,7 +436,7 @@ private ArrayList<Animal> parseEspece(NodeList l){
 		case 9 :
 		id = getId(l.item(i));
 		caseid = getCaseId(l.item(i).getChildNodes());
-		nomclass = getNomClass(l.item(i).getChildNodes());
+		nomclass = getType(l.item(i).getChildNodes());
 		sexe = getSexe(l.item(i).getChildNodes());
 			switch(enumBourrin(nomclass)){
 			case 15 : break; //Creation d'une classe Lion & ajout dans listeanimaux
@@ -439,7 +445,7 @@ private ArrayList<Animal> parseEspece(NodeList l){
 			}
 		
 		System.out.println("Animal : id :"+id+
-				"\t type : "+nomclass+
+				", type : "+nomclass+
 				", caseID : "+caseid+
 				", sexe : "+sexe);
 		break;
@@ -447,6 +453,50 @@ private ArrayList<Animal> parseEspece(NodeList l){
 	}
 	return listeanimaux;
 }
+
+
+private ArrayList<Obstacle> parseObstacle(NodeList l){
+	int i;
+	Integer id =-1,caseid=-1;
+	ArrayList<Obstacle> listeobstacle = new ArrayList<Obstacle>();
+	
+	for(i=0;i<l.getLength();i++){
+		
+		if(l.item(i).getNodeName().toLowerCase().trim()=="obstacle"){
+			id = getId(l.item(i));
+			caseid = getCaseId(l.item(i).getChildNodes());
+			//Ajout d'un obstacle à la liste
+			System.out.println("Obstacle "+id+ //DEBUG
+					" caseID : "+caseid);
+		}
+		
+	}
+	return listeobstacle;
+}
+
+private ArrayList<Ressource> parseRessource(NodeList l){
+	int i;
+	Integer id=-1, caseid=-1;
+	String type="";
+	ArrayList<Ressource> listeressource = new ArrayList<Ressource>();
+	
+
+	for(i=0;i<l.getLength();i++){
+		
+		if(l.item(i).getNodeName().toLowerCase().trim()=="ressource"){
+			id = getId(l.item(i));
+			caseid = getCaseId(l.item(i).getChildNodes());
+			type = getType(l.item(i).getChildNodes());
+			//Ajout d'un obstacle à la liste
+			System.out.println("Ressource "+id+
+					" Type : "+type+
+					" CaseId : "+caseid);
+		}
+		
+	}
+	return listeressource;
+}
+
 //TODO Ajouter la taille de la carte dans le XML et une case par defaut
 //TODO completer carte la liste de case par des case par deffaut
 //TODO Creer fonction pour verifier l'intégrité de la carte avant de la retourner
@@ -464,14 +514,14 @@ public void write(String chemin, Map map) {
 */
 /** --------DEBUG -------------*/
 
-public static void main(String[] args) {
+/*public static void main(String[] args) {
 	
 System.out.println("XMLParser debugger");
 ParseurXML parser = new ParseurXML("./res/map.xml"); //Création d'une instance de Parser, attention à bien spécifier une adresse correcte
 //parser.printDOMInfos();
 parser.parseXML(); //Debut du parsing
 }
-
+*/
 }
 
 
