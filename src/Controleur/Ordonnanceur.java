@@ -33,18 +33,18 @@ public class Ordonnanceur {
 		  while(this.pause==false){
 			  // Jouer...
 			  //Fais jouer la map :
-			  //	-Récupérer tous les animaux vivants
+			  //	-Rï¿½cupï¿½rer tous les animaux vivants
 			  ArrayList<Animal> listeAnimaux=this.map.getListeAnimaux();
 			  for(Integer i=0;listeAnimaux.size()<=i;i++){
 				  
 				  Animal animal=listeAnimaux.get(i);
 				  Case caseCible=null;
-				  //Vérification âge
+				  //Vï¿½rification ï¿½ge
 				  Boolean vivant=animal.verifierAge();
 				  if(vivant==false){
 					  animal.mourir();
 				  }
-				  //Définir case cible
+				  //Dï¿½finir case cible
 				  Integer vitesse=animal.getVitesse();
 				  for(Integer j=0;j<=vitesse;j++){
 					  Integer direction=(int)(Math.random()*3)+1;
@@ -60,12 +60,12 @@ public class Ordonnanceur {
 					  caseCible.setId(numeroCase);
 				  }
 				  //-----------------------
-//					-Boucle activité pour chacun  
+//					-Boucle activitï¿½ pour chacun  
 				  ArrayList<Element> attributsCase=caseCible.getListeElements();
 				  Element attr1=attributsCase.get(0);
 				  Element attr2=attributsCase.get(1);
 			  }
-			  
+			  // To be completed.
 			  
 		  }
 	}
