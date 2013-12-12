@@ -25,7 +25,7 @@ import org.w3c.dom.NodeList;
  */
 
 
-public class ParseurXML{
+public class XMLParser{
 
 /** -----attributes definitions-----*/
 	
@@ -37,7 +37,7 @@ public class ParseurXML{
  * to get to the file to parse
  * @param chemin
  */
-  public ParseurXML(String chemin){
+  public XMLParser(String chemin){
 	  try {
 	  
 	  DocumentBuilderFactory fabrique = DocumentBuilderFactory.newInstance(); 
@@ -99,31 +99,35 @@ public void parseXML(){
 	int i;
 	
 	Dimension dimensionmap;
+	ArrayList<Case>listefinale = new ArrayList<Case>();
 	ArrayList<Case> listecase = new ArrayList<Case>();
 	ArrayList<Animal> listeanimaux = new ArrayList<Animal>();
 	ArrayList<Obstacle> listeobstacle = new ArrayList<Obstacle>();
 	ArrayList<Ressource> listeressource = new ArrayList<Ressource>();
 	Case casedefaut;
 	System.out.println("Debut du parcours du XML"); //DEBUG
-	for (i = 0; i<list.getLength();i++){ 							
+	
 		//System.out.println(list.item(i).getNodeName()); //DEBUG
-		
+
 		
 		/**
 		 * /Fonction enumBourrin() à remplacer par quelque chose de propre
 		 *  Retourne un entier correspondant au nom de la node lue (format string)
 		 *  switch n'accepte pas de comparer des strings avant jre 1.7
 		 */
+			for (i = 0; i<list.getLength();i++){ 							
 			switch(enumBourrin(list.item(i).getNodeName())){ 
 
 			case 1 : //Cas où la node "map" est detectee, on lance la fonction mapParser(NodeListe l)
 			dimensionmap = getDimension(list.item(i));
 			listecase = parseMap(list.item(i).getChildNodes());
 			casedefaut = getCaseDefaut(list.item(i));
-			System.out.println("CaseDefaut : id "+casedefaut.getId()+
+			//listefinale=reparerListe(listecase, casedefaut, dimensionmap);
+		/*	System.out.println("CaseDefaut : id "+casedefaut.getId()+
 					" , Taille "+casedefaut.getTaille()+
 					" , Type "+casedefaut.getType()+
 					" , Position "+casedefaut.getPosition().getX()+" , "+casedefaut.getPosition().getY());
+		*/			
 			//System.out.println("dimensionmap "+dimensionmap.getLength()+" "+dimensionmap.getWidth()); //DEBUG
 			break;
 			
@@ -138,6 +142,10 @@ public void parseXML(){
 			default :break ; //Si autre chose que "map" ou "espece" on ne fait rien
 			
 			}
+			//listefinale=assemblerCaseObstacle(listecase, listeobstacle);
+			
+			/*DEBUG*/
+			
 			/**
 			 * Une fois que l'on a obtenu les differente cases, les espece à placer ainsi que les ressources et obstacles,
 			 * il faut génrer les case manquantes grace au attributs default puis
@@ -148,6 +156,11 @@ public void parseXML(){
 			 * qu'il n'y ai aucun element avec un id ou une taile =-1
 			 */
 		} 
+			
+			/*for(i=0;i<listefinale.size();i++){
+				System.out.println("ListeFinale : ID_Case "+listefinale.get(i).getId());
+			}
+			*/
 	}
 /**
  * Fonction qui retourne un entier en fonction de la String pris en attribut afin de faire fonctionner les switch case
@@ -425,6 +438,7 @@ private Boolean getSexe(NodeList l){
  */
 private ArrayList <Case> parseMap(NodeList l){
 	int i;
+	int cpt=0;
 	Integer id;
 	Integer taille;
 	Position position;
@@ -441,7 +455,7 @@ private ArrayList <Case> parseMap(NodeList l){
 		id = getId(l.item(i));
 		listecase.add(new Case(id,position,taille,type)); //TODO A FINIR
 		
-		
+		cpt++;
 		System.out.println("Case : id : "+id +
 				", Taille : "+taille +
 				", Type : "+type+
@@ -453,6 +467,7 @@ private ArrayList <Case> parseMap(NodeList l){
 		}
 		
 	}
+	System.out.println("Compteur : "+cpt);
 	return listecase;
 	
 }
@@ -491,16 +506,17 @@ private ArrayList<Animal> parseEspece(NodeList l){
 
 private ArrayList<Obstacle> parseObstacle(NodeList l){
 	int i;
-	Integer id =-1,caseid=-1;
+	//Integer id =-1;
+	Integer caseid=-1;
 	ArrayList<Obstacle> listeobstacle = new ArrayList<Obstacle>();
 	
 	for(i=0;i<l.getLength();i++){
 		
 		if(l.item(i).getNodeName().toLowerCase().trim()=="obstacle"){
-			id = getId(l.item(i));
+			//id = getId(l.item(i));
 			caseid = getCaseId(l.item(i).getChildNodes());
 			listeobstacle.add(new Obstacle(20, caseid));   //Ajout d'un obstacle à la listeobstacle
-			System.out.println("Obstacle "+id+ //DEBUG
+			System.out.println("Obstacle "+ //DEBUG
 					" caseID : "+caseid);
 		}
 		
@@ -510,7 +526,8 @@ private ArrayList<Obstacle> parseObstacle(NodeList l){
 
 private ArrayList<Ressource> parseRessource(NodeList l){
 	int i;
-	Integer id=-1, caseid=-1;
+	Integer id=-1;
+	int caseid=-1;
 	String type="";
 	ArrayList<Ressource> listeressource = new ArrayList<Ressource>();
 	
@@ -530,7 +547,61 @@ private ArrayList<Ressource> parseRessource(NodeList l){
 	}
 	return listeressource;
 }
-
+private ArrayList<Case> assemblerCaseObstacle(ArrayList<Case> listecase, ArrayList<Obstacle>listeobstacle){
+	int i,j;
+	ArrayList<Case>lcase = listecase;
+	
+	for(i=0;i<listeobstacle.size();i++){
+		for(j=0;j<lcase.size();j++){
+			if(lcase.get(j).getId()==listeobstacle.get(i).getIdcase()){
+				listecase.get(j).addObstacle(listeobstacle.get(i));
+			}
+		}
+	}
+	return listecase;
+}
+/**
+ * Retourne une liste de case valide (liste triée, possedant le bon nombre d'element, avec des id valides);
+ * @param l
+ * @param casedefaut
+ * @param dimensionmap
+ * @return
+ */
+/*private ArrayList<Case> reparerListe (ArrayList<Case> l, Case casedefaut, Dimension dimensionmap){
+	
+	Case casedef = casedefaut;
+	int i;
+	int nbcasemax = dimensionmap.getLength()*dimensionmap.getWidth();
+	ArrayList<Case> listereparee=new ArrayList<Case>();
+	//listereparee.ensureCapacity(nbcasemax);
+	
+	for(i=0;i<l.size();i++){
+		if(l.get(i).getId()>=0){
+			System.out.println("passed 1");
+			listereparee.add(i, l.get(i));
+		}
+		else{
+			System.out.println("passed 2");
+			casedef.setId(i);
+			//System.out.println("Casedef id "+casedef.getId()); //DEBUG
+			listereparee.add(i, casedef);
+			System.out.println("apres "+listereparee.get(i).getId()); //DEBUG
+		}
+	}
+	System.out.println("nb max "+nbcasemax);
+	i=listereparee.size();
+	
+	int j;
+	for(j = listereparee.size() ;j < nbcasemax ; j++){
+			System.out.println("i "+i);
+			casedef.setId(i);
+			listereparee.add(j,casedef);
+			i++;
+	}
+	System.out.println("test " + listereparee.get(1).getId());
+	return listereparee;
+}
+*/
 //TODO Ajouter la taille de la carte dans le XML et une case par defaut
 //TODO completer carte la liste de case par des case par deffaut
 //TODO Creer fonction pour verifier l'intégrité de la carte avant de la retourner
@@ -551,8 +622,8 @@ public void write(String chemin, Map map) {
 /*public static void main(String[] args) {
 	
 System.out.println("XMLParser debugger");
-ParseurXML parser = new ParseurXML("./res/map.xml"); //Création d'une instance de Parser, attention à bien spécifier une adresse correcte
-//parser.printDOMInfos();
+//XMLParser parser = new XMLParser("./res/8x8_simple.xml"); //Création d'une instance de Parser, attention à bien spécifier une adresse correcte
+XMLParser parser = new XMLParser("./res/map.xml");
 parser.parseXML(); //Debut du parsing
 }
 */

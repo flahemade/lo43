@@ -6,7 +6,7 @@ import Vue.Plateau;
 public class Map {
 
 	private String Nom;
-    private ParseurXML myParseurXML;
+    private XMLParser myParseurXML;
     private Plateau myPlateau;
     private ArrayList<Case>  listeCases;
     private ArrayList<Animal> listeAnimaux;
@@ -22,10 +22,10 @@ public class Map {
 	public void setNom(String nom) {
 		Nom = nom;
 	}
-	public ParseurXML getMyParseurXML() {
+	public XMLParser getMyParseurXML() {
 		return myParseurXML;
 	}
-	public void setMyParseurXML(ParseurXML myParseurXML) {
+	public void setMyParseurXML(XMLParser myParseurXML) {
 		this.myParseurXML = myParseurXML;
 	}
 	public Plateau getMyPlateau() {
@@ -46,7 +46,7 @@ public class Map {
 	public void setListeAnimaux(ArrayList<Animal> listeAnimaux) {
 		this.listeAnimaux = listeAnimaux;
 	}
-//---------------------------------------Autres méthodes-------------------------------//
+//---------------------------------------Autres mï¿½thodes-------------------------------//
 	  public void charger(Map map) {
 	  }
 	  public void enregistrer(Map map) {
