@@ -64,8 +64,14 @@ public class Ordonnanceur {
 				  ArrayList<Element> attributsCase=caseCible.getListeElements();
 				  Element attrRessource=attributsCase.get(0);
 				  Element attrAnimal=attributsCase.get(1);
-				  if(attrAnimal==null){
-					  
+				  Element attrObstacle=attributsCase.get(2);
+				  if(attrAnimal==null&&attrRessource==null){
+					  //On peut aller sur la case sans consequence.
+				  }else{
+					  //Conséquence
+					  		//Animal
+					  		//Ressource
+					  		//Obstacle
 				  }
 			  }
 			  // To be completed.
