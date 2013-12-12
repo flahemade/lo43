@@ -34,11 +34,11 @@ public class Ordonnanceur {
 			  // Jouer...
 			  //Fais jouer la map :
 			  //	-R�cup�rer tous les animaux vivants
-			  ArrayList<Animal> listeAnimaux=this.map.getListeAnimaux();
+			  /*ArrayList<Animal> listeAnimaux=this.map.getListeAnimaux();
 			  for(Integer i=0;listeAnimaux.size()<=i;i++){
 				  
 				  Animal animal=listeAnimaux.get(i);
-				  Case caseCible=null;
+				  Integer caseCible=null;
 				  //V�rification �ge
 				  Boolean vivant=animal.verifierAge();
 				  if(vivant==false){
@@ -48,7 +48,7 @@ public class Ordonnanceur {
 				  Integer vitesse=animal.getVitesse();
 				  for(Integer j=0;j<=vitesse;j++){
 					  Integer direction=(int)(Math.random()*3)+1;
-					  caseCible=animal.getCaseLocation();
+					  caseCible=animal.getIdCase();
 					  Integer numeroCase=caseCible.getId();
 					  Integer largeurMap=0;
 					  switch(direction){
@@ -75,7 +75,7 @@ public class Ordonnanceur {
 				  }
 			  }
 			  // To be completed.
-			  
+			  */
 		  }
 	}
 	public void stop(){
