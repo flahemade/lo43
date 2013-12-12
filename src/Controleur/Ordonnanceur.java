@@ -64,6 +64,9 @@ public class Ordonnanceur {
 				  ArrayList<Element> attributsCase=caseCible.getListeElements();
 				  Element attrRessource=attributsCase.get(0);
 				  Element attrAnimal=attributsCase.get(1);
+				  if(attrAnimal==null){
+					  
+				  }
 			  }
 			  // To be completed.
 			  
