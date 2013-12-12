@@ -62,8 +62,8 @@ public class Ordonnanceur {
 				  //-----------------------
 //					-Boucle activit� pour chacun  
 				  ArrayList<Element> attributsCase=caseCible.getListeElements();
-				  Element attr1=attributsCase.get(0);
-				  Element attr2=attributsCase.get(1);
+				  Element attrRessource=attributsCase.get(0);
+				  Element attrAnimal=attributsCase.get(1);
 			  }
 			  // To be completed.
 			  
