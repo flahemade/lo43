@@ -9,6 +9,8 @@ public class Obstacle extends Element {
 
 	  /** taille de l'obstacle*/
 	private int taille;
+	
+	/**  */
 	private int idcase;
 	  /** Id de l'obstacle */
 	private static int ID=0;

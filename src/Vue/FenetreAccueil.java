@@ -102,6 +102,7 @@ public class FenetreAccueil extends JFrame implements ActionListener{
 		{
 			Plateau fen_plateau = new Plateau("Le jeu de la mort qui tue !!");
 			fen_plateau.setVisible(true);
+			this.dispose();
 		}
 		
 	}
