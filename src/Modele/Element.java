@@ -10,10 +10,9 @@ public class Element  {
 
 	/** Image de l'élément  */
 	protected String image;
-
 	/** Nom de l'élément */
 	protected String nom;
-	
+	protected Integer modifierVie;
 	/*_______________________________________________________________*/
 	/**Constructeur par defaut
 	 */
@@ -42,6 +41,9 @@ public class Element  {
 		return image;
 	}
 
+	public Integer getModifierVie(){
+		return modifierVie;
+	}
 
 
 
@@ -54,7 +56,9 @@ public class Element  {
 		this.image = image;
 	}
 
-
+	public void setModifierVie(Integer modifier){
+		this.modifierVie=modifier;
+	}
 
 
 	/*_______________________________________________________________*/
