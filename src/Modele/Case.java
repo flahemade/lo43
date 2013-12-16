@@ -49,7 +49,7 @@ public class Case {
 
   }
 //-----------------------------GETTERS AND SETTERS-------------------------------------//
-  /**
+  /*
   public Integer getRang() {
 		return rang;
 	}

@@ -1,6 +1,7 @@
 package Modele;
 import java.util.ArrayList;
 
+import Controleur.XMLParser;
 import Vue.Plateau;
 
 public class Map {

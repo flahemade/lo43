@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
  <savane><map id = "1" width ="4" length = "4" defaut_taille_case = "20" defaut_type_case = "eAu"> <!-- (64*64)+(-1)=4095 = id max pour cette taille -->
-         <case id = "1"> <!-- Ajouter une case par defaut -->
-             <taille>20</taille> <!-- 64*20 = 1280px c'est peut etre beaucoup 20px par case  -->
+         <case id = "0"> <!-- Ajouter une case par defaut -->
+             <taille>20</taille> 
              <position>
                  <x>0</x> <!-- Puisque félix ne s'en sert pas, il n'y peut etre plus trop d'interet à ces 2 params -->
                  <y>12</y> <!-- *********************************************************************************** -->

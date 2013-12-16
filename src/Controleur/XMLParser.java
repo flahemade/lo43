@@ -1,4 +1,4 @@
-package Modele;
+package Controleur;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -8,6 +8,13 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
+
+import Modele.Animal;
+import Modele.Case;
+import Modele.Dimension;
+import Modele.Obstacle;
+import Modele.Position;
+import Modele.Ressource;
 
 
 /*_______________________________________________________________*/
@@ -98,13 +105,13 @@ public void parseXML(){
 	NodeList list = document.getDocumentElement().getChildNodes(); //On recupere le premier niveau de Node (map & espece)
 	int i;
 	
-	Dimension dimensionmap;
+	Dimension dimensionmap= new Dimension();
 	ArrayList<Case>listefinale = new ArrayList<Case>();
 	ArrayList<Case> listecase = new ArrayList<Case>();
 	ArrayList<Animal> listeanimaux = new ArrayList<Animal>();
 	ArrayList<Obstacle> listeobstacle = new ArrayList<Obstacle>();
 	ArrayList<Ressource> listeressource = new ArrayList<Ressource>();
-	Case casedefaut;
+	Case casedefaut= new Case(0,new Position(),20,"terre");
 	System.out.println("Debut du parcours du XML"); //DEBUG
 	
 		//System.out.println(list.item(i).getNodeName()); //DEBUG
@@ -122,7 +129,7 @@ public void parseXML(){
 			dimensionmap = getDimension(list.item(i));
 			listecase = parseMap(list.item(i).getChildNodes());
 			casedefaut = getCaseDefaut(list.item(i));
-			//listefinale=reparerListe(listecase, casedefaut, dimensionmap);
+			
 		/*	System.out.println("CaseDefaut : id "+casedefaut.getId()+
 					" , Taille "+casedefaut.getTaille()+
 					" , Type "+casedefaut.getType()+
@@ -142,6 +149,11 @@ public void parseXML(){
 			default :break ; //Si autre chose que "map" ou "espece" on ne fait rien
 			
 			}
+			/*listefinale=reparerListe(listecase, casedefaut, dimensionmap);
+			for(i=0;i<listefinale.size();i++){
+				System.out.println("aff "+listefinale.get(i).getId());
+			}
+			*/
 			//listefinale=assemblerCaseObstacle(listecase, listeobstacle);
 			
 			/*DEBUG*/
@@ -547,6 +559,45 @@ private ArrayList<Ressource> parseRessource(NodeList l){
 	}
 	return listeressource;
 }
+
+/**
+ * Retourne une liste de case valide (liste triée, possedant le bon nombre d'element, avec des id valides);
+ * @param l
+ * @param casedefaut
+ * @param dimensionmap
+ * @return
+ */
+/*private ArrayList<Case> reparerListe (ArrayList<Case> l, Case casedefaut, Dimension dimensionmap){
+	
+	Case casedef = new Case(casedefaut.getId(),casedefaut.getPosition(),casedefaut.getTaille(),casedefaut.getType());
+	int i;
+	int nbcasemax = dimensionmap.getLength()*dimensionmap.getWidth();
+	ArrayList<Case> listereparee=new ArrayList<Case>();
+	//listereparee.ensureCapacity(nbcasemax);
+	
+	for(i=0;i<l.size();i++){
+		if(l.get(i).getId()>=0){
+			listereparee.add(i, l.get(i)); //si l'id de la case est valide (superieur a 0), on ajoute la case à la liste
+		}
+		else{
+			casedef.setId(i);
+			listereparee.add(i, casedef);
+		}
+	}
+
+	for(i = listereparee.size() ;i < nbcasemax ; i++){
+			System.out.println("i "+i);
+			casedef.setId(i);
+			System.out.println("casedef "+casedef.getId());
+			listereparee.add(i,casedef);
+			System.out.println("liste "+listereparee.get(i).getId());
+			System.out.println();		
+	}
+	
+	return listereparee;
+}
+*/
+
 private ArrayList<Case> assemblerCaseObstacle(ArrayList<Case> listecase, ArrayList<Obstacle>listeobstacle){
 	int i,j;
 	ArrayList<Case>lcase = listecase;
@@ -560,48 +611,7 @@ private ArrayList<Case> assemblerCaseObstacle(ArrayList<Case> listecase, ArrayLi
 	}
 	return listecase;
 }
-/**
- * Retourne une liste de case valide (liste triée, possedant le bon nombre d'element, avec des id valides);
- * @param l
- * @param casedefaut
- * @param dimensionmap
- * @return
- */
-/*private ArrayList<Case> reparerListe (ArrayList<Case> l, Case casedefaut, Dimension dimensionmap){
-	
-	Case casedef = casedefaut;
-	int i;
-	int nbcasemax = dimensionmap.getLength()*dimensionmap.getWidth();
-	ArrayList<Case> listereparee=new ArrayList<Case>();
-	//listereparee.ensureCapacity(nbcasemax);
-	
-	for(i=0;i<l.size();i++){
-		if(l.get(i).getId()>=0){
-			System.out.println("passed 1");
-			listereparee.add(i, l.get(i));
-		}
-		else{
-			System.out.println("passed 2");
-			casedef.setId(i);
-			//System.out.println("Casedef id "+casedef.getId()); //DEBUG
-			listereparee.add(i, casedef);
-			System.out.println("apres "+listereparee.get(i).getId()); //DEBUG
-		}
-	}
-	System.out.println("nb max "+nbcasemax);
-	i=listereparee.size();
-	
-	int j;
-	for(j = listereparee.size() ;j < nbcasemax ; j++){
-			System.out.println("i "+i);
-			casedef.setId(i);
-			listereparee.add(j,casedef);
-			i++;
-	}
-	System.out.println("test " + listereparee.get(1).getId());
-	return listereparee;
-}
-*/
+
 //TODO Ajouter la taille de la carte dans le XML et une case par defaut
 //TODO completer carte la liste de case par des case par deffaut
 //TODO Creer fonction pour verifier l'intégrité de la carte avant de la retourner

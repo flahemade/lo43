@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> <!-- MAP DE 8X8 ENTOUREE D OBSTACLE -->
- <savane><map id = "1" width ="16" length = "16" defaut_taille_case = "20" defaut_type_case = "Terre"> <!-- (64*64)+(-1)=4095 = id max pour cette taille -->
+ <savane><map id = "1" width ="8" length = "8" defaut_taille_case = "20" defaut_type_case = "Terre"> <!-- (64*64)+(-1)=4095 = id max pour cette taille -->
          <case id = "0">  		<!-- 8x8 id max = 63 -->
              <taille>20</taille>
              <position>
