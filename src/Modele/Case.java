@@ -5,9 +5,9 @@ public class Case {
 
   //private Integer rang;
   private Integer id;		
-  private Position position;
+  private Position position;//vectmath2d
   private Integer taille;
-  private String type;
+  private String type;// enum TypeTerrain
   private ArrayList<Element> listeElements;
   private ArrayList<Case>  listeCasesAdjacentes;
 //-----------------------------CONSTRUCTEURS--------------------------------------------//
