@@ -68,7 +68,7 @@ public class Ordonnanceur {
 				  if(attrAnimal==null&&attrRessource==null){
 					  //On peut aller sur la case sans consequence.
 				  }else{
-					  //Conséquence
+					  //Consï¿½quence
 					  		//Animal
 					  		//Ressource
 					  		//Obstacle

@@ -55,7 +55,7 @@ public class FenetreAccueil extends JFrame implements ActionListener{
 		  btn_jouer = new JButton("Jouer");
 		  btn_jouer.setPreferredSize(new Dimension(100,30));
 		  btn_jouer.addActionListener(this);
-		  messageAccueil = new JLabel("Bienvenue sur Savane Yolo !!!");
+		  messageAccueil = new JLabel("Entrez dans un monde sans pitié !!!");
 		  
 	  }
 	

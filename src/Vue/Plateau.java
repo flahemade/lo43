@@ -23,20 +23,29 @@ import Modele.Map;
  */
 public class Plateau extends JFrame implements ActionListener{
 
+	/**  */
 	private JButton btn_pause;
 
+	/**  */
 	private JButton btn_quitter;
 	
+	/**  */
 	private JButton btn_aide;
 
     private Map myMap;
     
+    /**  */
     private JSplitPane monSplitPane;
     
+    /**  */
     private JSplitPane monSplitPane2;
     
-    private Vector rafraichir;
+   
 	
+	/*_______________________________________________________________*/
+	/**le constructeur de la fenêtre
+	 * @param titre le titre de la fenêtre
+	 */
 	public Plateau(String titre) 
 	{
 		super(titre);
@@ -47,6 +56,9 @@ public class Plateau extends JFrame implements ActionListener{
 		placerComposants();
  	}
 
+	/*_______________________________________________________________*/
+	/**
+	 */
 	private void creerComposants() 
 	{
 		btn_quitter = new JButton("Quitter");
@@ -55,6 +67,7 @@ public class Plateau extends JFrame implements ActionListener{
 		btn_pause.setPreferredSize(new Dimension(150, 30));
 		btn_aide = new JButton("Aide");
 		btn_aide.setPreferredSize(new Dimension(150, 30));
+		btn_quitter.addActionListener(this);
 		
 	}
 
@@ -95,9 +108,9 @@ public class Plateau extends JFrame implements ActionListener{
 	{
 		if (e.getSource()== btn_quitter)
 		{
-			JOptionPane fen_quitter = new JOptionPane();
-			fen_quitter.showConfirmDialog(this, "Voulez-vous quitter?", null, JOptionPane.YES_NO_OPTION);
-			
+			//JOptionPane fen_quitter = new JOptionPane("Voulez-vous quitter?", JOptionPane.QUESTION_MESSAGE, JOptionPane.YES_NO_OPTION);
+			//fen_quitter.setVisible(true);
+			this.dispose();
 			
 		}
 		

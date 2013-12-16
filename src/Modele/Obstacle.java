@@ -7,12 +7,13 @@ package Modele;
  */
 public class Obstacle extends Element {
 
-	  /** taille de l'obstacle*/
+	/** taille de l'obstacle*/
 	private int taille;
 	
-	/**  */
+	/** id de la case */
 	private int idcase;
-	  /** Id de l'obstacle */
+	
+	/** Id de l'obstacle */
 	private static int ID=0;
 	  
 	  /*_______________________________________________________________*/
