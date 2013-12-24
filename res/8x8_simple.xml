@@ -5,7 +5,7 @@
                  <x>0</x> 
                  <y>0</y>
              </position>
-             <type>EAU</type>
+             <type>eau</type>
          </case>
          <case id = "1">  		<!-- 8x8 id max = 63 -->
             

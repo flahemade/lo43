@@ -2,6 +2,7 @@ package Controleur;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -309,9 +310,10 @@ private TypeTerrain getTypeTerrain(NodeList l){
 	TypeTerrain type = TypeTerrain.TERRE;
 	for(i=0;i<l.getLength();i++)
 	{
-		if(l.item(i).getNodeName().toLowerCase()=="type")
+		if(l.item(i).getNodeName().toLowerCase().trim()=="type")
 		{
-			if(l.item(i).getTextContent().trim().toLowerCase()=="eau"){
+			/* Ne veut pas entrer dans ce if*/
+			if(l.item(i).getTextContent().trim().toLowerCase() == "eau"){
 				System.out.println("PASSED");
 				type = TypeTerrain.EAU;
 			}
@@ -356,7 +358,7 @@ private Position getPosition(NodeList l){
 	Position position=new Position();
 	for(i=0;i<l.getLength();i++)
 	{
-		if(l.item(i).getNodeName().toLowerCase()=="position")
+		if(l.item(i).getNodeName().toLowerCase().trim()=="position")
 		{
 			NodeList enfant = l.item(i).getChildNodes();
 			for(j=0;j<enfant.getLength();j++){
@@ -501,7 +503,7 @@ private ArrayList <Case> parseMap(NodeList l){
 		listecase.add(new Case(id,position,type)); //TODO A FINIR
 
 		System.out.println("Case : id : "+id +
-				", Type : "+type.toString()+
+				", Type : "+type.name()+
 				", Position : "+position.getX()+ 				//DEBUG
 				" , "+position.getY());
 				
@@ -660,16 +662,16 @@ public void write(String chemin, Map map) {
   public void save(String chemin, Map map ) {
   }
 */
-/** --------DEBUG -------------*/
+/* --------DEBUG -------------*/
 
-/*public static void main(String[] args) {
+public static void main(String[] args) {
 	
 System.out.println("XMLParser debugger");
 XMLParser parser = new XMLParser("./res/8x8_simple.xml"); //Création d'une instance de Parser, attention à bien spécifier une adresse correcte
 //XMLParser parser = new XMLParser("./res/map.xml");
 parser.parseXML(); //Debut du parsing
 }
-*/
+
 }
 
 
