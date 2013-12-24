@@ -15,6 +15,8 @@ import Modele.Dimension;
 import Modele.Obstacle;
 import Modele.Position;
 import Modele.Ressource;
+import Modele.TypeAnimal;
+import Modele.TypeTerrain;
 
 
 /*_______________________________________________________________*/
@@ -62,7 +64,7 @@ public class XMLParser{
   
 /**-------- Getters & setters ------*/
   
-  public String getPath() {
+ public String getPath() {
 	return path;
 }
 
@@ -70,11 +72,9 @@ public void setPath(String path) {
 	this.path = path;
 }
 
-/**------------ Methods ------------*/
+/*------------ Methods ------------*/
 
-/**
- * Méthode copiée/collée du site http://java.developpez.com/faq/xml/?page=dom
- * L'objéctif etait de voir que le fichier mapxml était fonctionnel */
+/*
 public void printDOMInfos(){
 	System.out.println("INFORMATIONS GENERALES");
 	
@@ -98,9 +98,11 @@ public void printDOMInfos(){
 	
 	}
 
-
+*/
+/**
+ *Parse le XML et retourne une ArrayListe<Case> d'une map fonctionnelle. 
+ */
 public void parseXML(){
-
 	
 	NodeList list = document.getDocumentElement().getChildNodes(); //On recupere le premier niveau de Node (map & espece)
 	int i;
@@ -111,7 +113,7 @@ public void parseXML(){
 	ArrayList<Animal> listeanimaux = new ArrayList<Animal>();
 	ArrayList<Obstacle> listeobstacle = new ArrayList<Obstacle>();
 	ArrayList<Ressource> listeressource = new ArrayList<Ressource>();
-	Case casedefaut= new Case(0,new Position(),20,"terre");
+	Case casedefaut= new Case(0,new Position(),TypeTerrain.TERRE);
 	System.out.println("Debut du parcours du XML"); //DEBUG
 	
 		//System.out.println(list.item(i).getNodeName()); //DEBUG
@@ -158,7 +160,7 @@ public void parseXML(){
 			
 			/*DEBUG*/
 			
-			/**
+			/*
 			 * Une fois que l'on a obtenu les differente cases, les espece à placer ainsi que les ressources et obstacles,
 			 * il faut génrer les case manquantes grace au attributs default puis
 			 * il faut assembler le tout (placer les animaux, ressources et obstacle dans les case)
@@ -178,8 +180,8 @@ public void parseXML(){
  * Fonction qui retourne un entier en fonction de la String pris en attribut afin de faire fonctionner les switch case
  * devrait pouvoir etre remplace par un enum
  * Si la String n'est pas une node contenue dans le .XML, la fonction retourne 0;
- * @param node
- * @return
+ * @param node Nom de la Node
+ * @return Un entier propre à la chaine de caractere d'entrée si elle existe, sinon 0;
  */
 //TODO Remplacer enumBourrin par quelque chose de propre
 private int enumBourrin (String node){
@@ -240,14 +242,15 @@ private int enumBourrin (String node){
 }
 
 private Case getCaseDefaut(org.w3c.dom.Node n){
-	int id =-1, taille =-1;
+	int id =-1;
 	Position position=new Position();
-	String type="terre";
+	TypeTerrain type = TypeTerrain.TERRE;
 	Case casedefaut;
 	
 	if(n.hasAttributes()){	
 
-		if(n.getAttributes().getNamedItem("defaut_taille_case")!=null){
+	/*	INUTILE
+	 * if(n.getAttributes().getNamedItem("defaut_taille_case")!=null){
 			try{
 				taille =Integer.parseInt(n.getAttributes().getNamedItem("defaut_taille_case").getNodeValue().trim());
 			}
@@ -255,16 +258,20 @@ private Case getCaseDefaut(org.w3c.dom.Node n){
 				//TODO gerer l'exception
 			}
 		}
+		
+	*/
 		if(n.getAttributes().getNamedItem("defaut_type_case")!=null){
 			try{
-				type =n.getAttributes().getNamedItem("defaut_type_case").getNodeValue().toLowerCase().trim();
+				//type =n.getAttributes().getNamedItem("defaut_type_case").getNodeValue().toLowerCase().trim();
+			//TODO TERMINER
 			}
+			
 			catch(Exception e){
 				//TODO gerer l'exception
 			}
 		}
 	}
-	 casedefaut =new Case(id,position,taille,type);
+	 casedefaut =new Case(id,position,type);
 	 return casedefaut;
 }
 
@@ -297,15 +304,44 @@ private Integer getTaille(NodeList l){ //TODO Ajouter une gestion de l'attribut 
  * @param l
  * @return
  */
-private String getType(NodeList l){ //TODO Ajouter une gestion de l'attribut "default"
+private TypeTerrain getTypeTerrain(NodeList l){
 	int i;
-	String type="";
+	TypeTerrain type = TypeTerrain.TERRE;
 	for(i=0;i<l.getLength();i++)
 	{
 		if(l.item(i).getNodeName().toLowerCase()=="type")
 		{
-			type = l.item(i).getTextContent().toLowerCase().trim();
+			if(l.item(i).getTextContent().trim().toLowerCase()=="eau"){
+				System.out.println("PASSED");
+				type = TypeTerrain.EAU;
+			}
 		}
+		
+
+	}
+	return type;
+}
+
+private TypeAnimal getTypeAnimal(NodeList l){
+	int i;
+	TypeAnimal type = TypeAnimal.GAZELLE;
+	for(i=0;i<l.getLength();i++)
+	{
+		
+		if(l.item(i).getNodeName().toLowerCase()=="type")
+		{
+			if(l.item(i).getTextContent().trim().toLowerCase()=="lion"){
+				type = TypeAnimal.LION;
+			}
+			if(l.item(i).getTextContent().trim().toLowerCase()=="hyene"){
+				type = TypeAnimal.HYENE;
+			}
+			if(l.item(i).getTextContent().trim().toLowerCase()=="girafe"){
+				type = TypeAnimal.GIRAFE;
+			}
+		}
+		
+
 	}
 	return type;
 }
@@ -450,27 +486,22 @@ private Boolean getSexe(NodeList l){
  */
 private ArrayList <Case> parseMap(NodeList l){
 	int i;
-	int cpt=0;
 	Integer id;
-	Integer taille;
 	Position position;
-	String type;
+	TypeTerrain type=TypeTerrain.TERRE;
 	ArrayList<Case> listecase = new ArrayList<Case>();
 	
 	for(i=0;i<l.getLength();i++){
 		switch (enumBourrin(l.item(i).getNodeName())){
 		
 		case 3: 
-		taille =getTaille(l.item(i).getChildNodes());
-		type= getType(l.item(i).getChildNodes());
+		type= getTypeTerrain(l.item(i).getChildNodes()); //TODO Gerer le type
 		position = getPosition(l.item(i).getChildNodes());
 		id = getId(l.item(i));
-		listecase.add(new Case(id,position,taille,type)); //TODO A FINIR
-		
-		cpt++;
+		listecase.add(new Case(id,position,type)); //TODO A FINIR
+
 		System.out.println("Case : id : "+id +
-				", Taille : "+taille +
-				", Type : "+type+
+				", Type : "+type.toString()+
 				", Position : "+position.getX()+ 				//DEBUG
 				" , "+position.getY());
 				
@@ -479,7 +510,7 @@ private ArrayList <Case> parseMap(NodeList l){
 		}
 		
 	}
-	System.out.println("Compteur : "+cpt);
+	
 	return listecase;
 	
 }
@@ -497,9 +528,10 @@ private ArrayList<Animal> parseEspece(NodeList l){
 		case 9 :
 		id = getId(l.item(i));
 		caseid = getCaseId(l.item(i).getChildNodes());
-		nomclass = getType(l.item(i).getChildNodes());
+		//nomclass = getType(l.item(i).getChildNodes());
+		//TODO Faire un GetType animal
 		sexe = getSexe(l.item(i).getChildNodes());
-			switch(enumBourrin(nomclass)){
+	/*		switch(enumBourrin(nomclass)){
 			case 15 : break; //Creation d'une classe Lion & ajout dans listeanimaux
 			case 16 : break; //Creation classe Gazelle & ajout dans listeanimaux
 			default : break;
@@ -509,6 +541,7 @@ private ArrayList<Animal> parseEspece(NodeList l){
 				", type : "+nomclass+
 				", caseID : "+caseid+
 				", sexe : "+sexe);
+				*/
 		break;
 		}
 	}
@@ -549,7 +582,7 @@ private ArrayList<Ressource> parseRessource(NodeList l){
 		if(l.item(i).getNodeName().toLowerCase().trim()=="ressource"){
 			id = getId(l.item(i));
 			caseid = getCaseId(l.item(i).getChildNodes());
-			type = getType(l.item(i).getChildNodes());
+			//type = getType(l.item(i).getChildNodes());
 			//Ajout d'un obstacle à la liste
 			System.out.println("Ressource "+id+
 					" Type : "+type+
@@ -632,8 +665,8 @@ public void write(String chemin, Map map) {
 /*public static void main(String[] args) {
 	
 System.out.println("XMLParser debugger");
-//XMLParser parser = new XMLParser("./res/8x8_simple.xml"); //Création d'une instance de Parser, attention à bien spécifier une adresse correcte
-XMLParser parser = new XMLParser("./res/map.xml");
+XMLParser parser = new XMLParser("./res/8x8_simple.xml"); //Création d'une instance de Parser, attention à bien spécifier une adresse correcte
+//XMLParser parser = new XMLParser("./res/map.xml");
 parser.parseXML(); //Debut du parsing
 }
 */

@@ -6,45 +6,42 @@ public class Case {
   //private Integer rang;
   private Integer id;		
   private Position position;//vectmath2d
-  private Integer taille;
-  private String type;// enum TypeTerrain
+  private TypeTerrain type;// enum TypeTerrain
   private ArrayList<Element> listeElements;
   private ArrayList<Case>  listeCasesAdjacentes;
+  
 //-----------------------------CONSTRUCTEURS--------------------------------------------//
-  //-----------------------Constructeur complet ----------------------------------------//
-  public Case(Integer id, Position p,Integer taille,String type,ArrayList<Element> listeElements, ArrayList<Case> listeCaseAdjacentes){ 
-	  //setRang(rang);
+//-------------------------Constructeur complet ----------------------------------------//
+  public Case(Integer id, Position p,TypeTerrain type,ArrayList<Element> listeElements, ArrayList<Case> listeCaseAdjacentes){ 
+	  
 	  position = new Position();
 	  this.listeElements = new ArrayList<Element>();
 	  listeCasesAdjacentes = new ArrayList<Case>();
 	  setId(id);
 	  setPosition(p); 
-	  setTaille(taille);
 	  setType(type);
 	  setListeElements(listeElements);
 	  setListeCasesAdjacentes(listeCaseAdjacentes);
   }
   //-------------------Constructeur sans ListeCaseAdjacentes ---------------------------//
-  public Case(Integer id, Position p,Integer taille,String type,ArrayList<Element> listeElements){ 
+  public Case(Integer id, Position p,TypeTerrain type,ArrayList<Element> listeElements){ 
 	  //setRang(rang);
 	  position = new Position();
 	  this.listeElements = new ArrayList<Element>();
 	  listeCasesAdjacentes = new ArrayList<Case>();
 	  setId(id);
 	  setPosition(p); 
-	  setTaille(taille);
 	  setType(type);
 	  setListeElements(listeElements);
   }
   //---------------Constructeur sans ListeCaseAdjacentes et sans listeElement ---------//
-  public Case(Integer id, Position p,Integer taille,String type){
+  public Case(Integer id, Position p,TypeTerrain type){
 	  //setRang(rang);
 	  position = new Position();
 	  this.listeElements = new ArrayList<Element>();
 	  listeCasesAdjacentes = new ArrayList<Case>();
 	  setId(id);
 	  setPosition(p); 
-	  setTaille(taille);
 	  setType(type);
 
   }
@@ -75,13 +72,6 @@ public class Case {
   	position.setY(p.getY());
   	}
   	
-	public Integer getTaille() {
-		return taille;
-	}
-
-	public void setTaille(Integer taille) {
-		this.taille = taille;
-	}
 
 	public ArrayList<Element> getListeElements() {
 		return listeElements;
@@ -99,11 +89,11 @@ public class Case {
 		this.listeCasesAdjacentes = listeCasesAdjacentes;
 	}
 	
-	public String getType() {
+	public TypeTerrain getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(TypeTerrain type) {
 		this.type = type;
 	}
 

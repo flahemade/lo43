@@ -1,15 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?> <!-- MAP DE 8X8 ENTOUREE D OBSTACLE -->
- <savane><map id = "1" width ="8" length = "8" defaut_taille_case = "20" defaut_type_case = "Terre"> <!-- (64*64)+(-1)=4095 = id max pour cette taille -->
+<?xml version="1.0" encoding="UTF-8"?> <!-- MAP DE 8X8 ENTOUREE D OBSTACLE (donc 7x7 utilisable)-->
+ <savane><map id = "1" width ="8" length = "8" defaut_type_case = "Terre"> <!-- (64*64)+(-1)=4095 = id max pour cette taille -->
          <case id = "0">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
              <position>
                  <x>0</x> 
                  <y>0</y>
              </position>
-             <type>TERRE</type>
+             <type>EAU</type>
          </case>
          <case id = "1">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>0</x> 
                  <y>1</y>
@@ -17,7 +16,7 @@
              <type>TERRE</type>
          </case>
          <case id = "2">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>0</x> 
                  <y>2</y>
@@ -25,7 +24,7 @@
              <type>TERRE</type>
          </case>
          <case id = "3">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>0</x> 
                  <y>3</y>
@@ -33,7 +32,7 @@
              <type>TERRE</type>
          </case>
          <case id = "4">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>0</x> 
                  <y>4</y>
@@ -41,7 +40,7 @@
              <type>TERRE</type>
          </case>
          <case id = "5">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>0</x> 
                  <y>5</y>
@@ -49,7 +48,7 @@
              <type>TERRE</type>
          </case>
          <case id = "6">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>0</x> 
                  <y>6</y>
@@ -57,7 +56,7 @@
              <type>TERRE</type>
          </case>
          <case id = "7">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>0</x> 
                  <y>7</y>
@@ -65,7 +64,7 @@
              <type>TERRE</type>
          </case>
          <case id = "8">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>1</x> 
                  <y>0</y>
@@ -73,7 +72,7 @@
              <type>TERRE</type>
          </case>
          <case id = "9">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>1</x> 
                  <y>1</y>
@@ -81,7 +80,7 @@
              <type>TERRE</type>
          </case>
          <case id = "10">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>1</x> 
                  <y>2</y>
@@ -89,7 +88,7 @@
              <type>TERRE</type>
          </case>
          <case id = "11">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>1</x> 
                  <y>3</y>
@@ -97,7 +96,7 @@
              <type>TERRE</type>
          </case>
          <case id = "12">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>1</x> 
                  <y>4</y>
@@ -105,7 +104,7 @@
              <type>TERRE</type>
          </case>
          <case id = "13">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>1</x> 
                  <y>5</y>
@@ -113,7 +112,7 @@
              <type>TERRE</type>
          </case>
          <case id = "14">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>1</x> 
                  <y>6</y>
@@ -121,7 +120,7 @@
              <type>TERRE</type>
          </case>
          <case id = "15">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>1</x> 
                  <y>7</y>
@@ -129,7 +128,7 @@
              <type>TERRE</type>
          </case>
          <case id = "16">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>2</x> 
                  <y>0</y>
@@ -137,7 +136,7 @@
              <type>TERRE</type>
          </case>
          <case id = "17">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>2</x> 
                  <y>1</y>
@@ -145,7 +144,7 @@
              <type>TERRE</type>
          </case>
          <case id = "18">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>2</x> 
                  <y>2</y>
@@ -153,7 +152,7 @@
              <type>TERRE</type>
          </case>
          <case id = "19">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>2</x> 
                  <y>3</y>
@@ -161,7 +160,7 @@
              <type>TERRE</type>
          </case>
          <case id = "20">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>2</x> 
                  <y>4</y>
@@ -169,7 +168,7 @@
              <type>TERRE</type>
          </case>
          <case id = "21">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>2</x> 
                  <y>5</y>
@@ -177,7 +176,7 @@
              <type>TERRE</type>
          </case>
          <case id = "22">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>2</x> 
                  <y>6</y>
@@ -185,7 +184,7 @@
              <type>TERRE</type>
          </case>
          <case id = "23">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>2</x> 
                  <y>7</y>
@@ -193,7 +192,7 @@
              <type>TERRE</type>
          </case>
          <case id = "24">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>3</x> 
                  <y>0</y>
@@ -201,7 +200,7 @@
              <type>TERRE</type>
          </case>
          <case id = "25">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>3</x> 
                  <y>1</y>
@@ -209,7 +208,7 @@
              <type>TERRE</type>
          </case>
          <case id = "26">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>3</x> 
                  <y>2</y>
@@ -217,7 +216,7 @@
              <type>TERRE</type>
          </case>
          <case id = "27">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>3</x> 
                  <y>3</y>
@@ -225,7 +224,7 @@
              <type>TERRE</type>
          </case>
          <case id = "28">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>3</x> 
                  <y>4</y>
@@ -233,7 +232,7 @@
              <type>TERRE</type>
          </case>
          <case id = "29">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>3</x> 
                  <y>5</y>
@@ -241,7 +240,7 @@
              <type>TERRE</type>
          </case>
          <case id = "30">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>3</x> 
                  <y>6</y>
@@ -249,7 +248,7 @@
              <type>TERRE</type>
          </case>
          <case id = "31">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>3</x> 
                  <y>7</y>
@@ -257,7 +256,7 @@
              <type>TERRE</type>
          </case>
          <case id = "32">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>4</x> 
                  <y>0</y>
@@ -265,7 +264,7 @@
              <type>TERRE</type>
          </case>
          <case id = "33">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>4</x> 
                  <y>1</y>
@@ -273,7 +272,7 @@
              <type>TERRE</type>
          </case>
          <case id = "34">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>4</x> 
                  <y>2</y>
@@ -281,7 +280,7 @@
              <type>TERRE</type>
          </case>
          <case id = "35">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>4</x> 
                  <y>3</y>
@@ -289,7 +288,7 @@
              <type>TERRE</type>
          </case>
          <case id = "36">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>4</x> 
                  <y>4</y>
@@ -297,7 +296,7 @@
              <type>TERRE</type>
          </case>
          <case id = "37">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>4</x> 
                  <y>5</y>
@@ -305,7 +304,7 @@
              <type>TERRE</type>
          </case>
          <case id = "38">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>4</x> 
                  <y>6</y>
@@ -313,7 +312,7 @@
              <type>TERRE</type>
          </case>
          <case id = "39">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>4</x> 
                  <y>7</y>
@@ -321,7 +320,7 @@
              <type>TERRE</type>
          </case>
          <case id = "40">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>5</x> 
                  <y>0</y>
@@ -329,7 +328,7 @@
              <type>TERRE</type>
          </case>
          <case id = "41">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>5</x> 
                  <y>1</y>
@@ -337,7 +336,7 @@
              <type>TERRE</type>
          </case>
          <case id = "42">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>5</x> 
                  <y>2</y>
@@ -345,7 +344,7 @@
              <type>TERRE</type>
          </case>
          <case id = "43">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>5</x> 
                  <y>3</y>
@@ -353,7 +352,7 @@
              <type>TERRE</type>
          </case>
          <case id = "44">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>5</x> 
                  <y>4</y>
@@ -361,7 +360,7 @@
              <type>TERRE</type>
          </case>
          <case id = "45">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>5</x> 
                  <y>5</y>
@@ -369,7 +368,7 @@
              <type>TERRE</type>
          </case>
          <case id = "46">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>5</x> 
                  <y>6</y>
@@ -377,7 +376,7 @@
              <type>TERRE</type>
          </case>
          <case id = "47">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>5</x> 
                  <y>7</y>
@@ -385,7 +384,7 @@
              <type>TERRE</type>
          </case>
          <case id = "48">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>6</x> 
                  <y>0</y>
@@ -393,7 +392,7 @@
              <type>TERRE</type>
          </case>
          <case id = "49">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>6</x> 
                  <y>1</y>
@@ -401,7 +400,7 @@
              <type>TERRE</type>
          </case>
          <case id = "50">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>6</x> 
                  <y>2</y>
@@ -409,7 +408,7 @@
              <type>TERRE</type>
          </case>
          <case id = "51">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>6</x> 
                  <y>3</y>
@@ -417,7 +416,7 @@
              <type>TERRE</type>
          </case>
          <case id = "52">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>6</x> 
                  <y>4</y>
@@ -425,7 +424,7 @@
              <type>TERRE</type>
          </case>
          <case id = "53">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>6</x> 
                  <y>5</y>
@@ -433,7 +432,7 @@
              <type>TERRE</type>
          </case>
          <case id = "54">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>6</x> 
                  <y>6</y>
@@ -441,7 +440,7 @@
              <type>TERRE</type>
          </case>
          <case id = "55">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>6</x> 
                  <y>7</y>
@@ -449,7 +448,7 @@
              <type>TERRE</type>
          </case>
          <case id = "56">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>7</x> 
                  <y>0</y>
@@ -457,7 +456,7 @@
              <type>TERRE</type>
          </case>
          <case id = "57">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>7</x> 
                  <y>1</y>
@@ -465,7 +464,7 @@
              <type>TERRE</type>
          </case>
          <case id = "58">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>7</x> 
                  <y>2</y>
@@ -473,7 +472,7 @@
              <type>TERRE</type>
          </case>
          <case id = "59">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>7</x> 
                  <y>3</y>
@@ -481,7 +480,7 @@
              <type>TERRE</type>
          </case>
          <case id = "60">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>7</x> 
                  <y>4</y>
@@ -489,7 +488,7 @@
              <type>TERRE</type>
          </case>
          <case id = "61">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>7</x> 
                  <y>5</y>
@@ -497,7 +496,7 @@
              <type>TERRE</type>
          </case>
          <case id = "62">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>7</x> 
                  <y>6</y>
@@ -505,7 +504,7 @@
              <type>TERRE</type>
          </case>
          <case id = "63">  		<!-- 8x8 id max = 63 -->
-             <taille>20</taille>
+            
              <position>
                  <x>7</x> 
                  <y>7</y>
