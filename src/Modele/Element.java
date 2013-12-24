@@ -12,24 +12,24 @@ public class Element  {
 	protected String image;
 	/** Nom de l'élément */
 	protected String nom;
-	protected Integer modifierVie;
-	/*_______________________________________________________________*/
-	/**Constructeur par defaut
-	 */
-	public Element()
-	{
-		
-	}
+	/**  */
+	protected int modifierVie;
+	/**  */
+	protected int champVision;
+	
+
     
     /*_______________________________________________________________*/
     /**Constructeur avec paramètre
      * @param image
      * @param nom
      */
-    public Element(String image, String nom)
+    public Element(String image, String nom, int modifierVie, int champVision)
     {
     	setImage(image);
     	setNom(nom);
+    	setModifierVie(modifierVie);
+    	setChampVision(champVision);
     }
     
     /*_______________________________________________________________*/
@@ -41,7 +41,11 @@ public class Element  {
 		return image;
 	}
 
-	public Integer getModifierVie(){
+	/*_______________________________________________________________*/
+	/**
+	 * @return
+	 */
+	public int getModifierVie(){
 		return modifierVie;
 	}
 
@@ -56,6 +60,10 @@ public class Element  {
 		this.image = image;
 	}
 
+	/*_______________________________________________________________*/
+	/**
+	 * @param modifier
+	 */
 	public void setModifierVie(Integer modifier){
 		this.modifierVie=modifier;
 	}
@@ -82,13 +90,30 @@ public class Element  {
 		this.nom = nom;
 	}
 
+	/*_______________________________________________________________*/
+	/** Permet d'obtenir la valeur du champ champVision.
+	 * @return la valeur du champ champVision.
+	 */
+	public int getChampVision()
+	{
+		return champVision;
+	}
 
+	/*_______________________________________________________________*/
+	/** Modifie la valeur du champ champVision.
+	 * @param champVision la nouvelle valeur du champ champVision.
+	 */
+	public void setChampVision(int champVision)
+	{
+		this.champVision = champVision;
+	}
 
 	/*_______________________________________________________________*/
 	/**Retourne la position de l'élément
+	 * @param maCase la case de l'élément
 	 */
-	public void getPosition() {
-		
+	public void getPosition(Case maCase) {
+		maCase.getPosition();
     }
 
     /*_______________________________________________________________*/
@@ -97,10 +122,6 @@ public class Element  {
     public void afficherElement() {
     }
 	
-    /*_______________________________________________________________*/
-    /**
-     */
-    public void move() {
-	}
+    
 
 }

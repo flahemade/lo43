@@ -3,19 +3,22 @@ package Modele;
 
 public class Animal extends Element {
 
-  protected Integer Taille;
-  protected Integer Vitesse;
-  protected Integer Direction;
-  protected Integer RangChaineAlimentaire;
-  protected Integer Age;
-  protected Integer AgeMax;
-  protected Integer PV;
-  protected Integer Id;
+  protected int Taille;
+  protected int Vitesse;
+  protected int Direction;
+  protected int RangChaineAlimentaire;
+  protected int Age;
+  protected int AgeMax;
+  protected int PV;
+  protected int Id;
   protected Boolean sexe;
-  protected Integer idCase;
+  protected int idCase;
+  protected int modifierVie;
+  protected int champVision;
   
   //------------------------------CONSTRUCTEUR-------------------------------------------//
-  public Animal(Integer taille,Integer Vitesse,Integer RCA,Integer AgeMax,Integer PV,Integer Id,Boolean sexe){
+  public Animal(String image, String nom, int taille,int Vitesse,int RCA,int AgeMax,int PV,int Id,Boolean sexe, int modifierVie, int champVision){
+	  super(image, nom, modifierVie, champVision);
 	  setTaille(taille);
 	  setVitesse(Vitesse);
 	  setDirection(0);
@@ -25,9 +28,12 @@ public class Animal extends Element {
 	  setPV(PV);
 	  setId(Id);
 	  setSexe(sexe);
+	 
   }
   
-  //------------------------------GETTERS AND SETTERS------------------------------------//
+  
+
+//------------------------------GETTERS AND SETTERS------------------------------------//
   public Integer getTaille() {
 		return Taille;
 	}
@@ -107,14 +113,50 @@ public class Animal extends Element {
 	public void setCaseLocation(Integer idCase){
 		this.idCase=idCase;
 	}
-  //------------------------------Autres Méthodes----------------------------------------//
+	
+	/*_______________________________________________________________*/
+	/** Permet d'obtenir la valeur du champ modifierVie.
+	 * @return la valeur du champ modifierVie.
+	 */
+	public int getModifierVie()
+	{
+		return modifierVie;
+	}
 
-  public Integer seDeplacer(Integer direction){
+	/*_______________________________________________________________*/
+	/** Modifie la valeur du champ modifierVie.
+	 * @param modifierVie la nouvelle valeur du champ modifierVie.
+	 */
+	public void setModifierVie(int modifierVie)
+	{
+		this.modifierVie = modifierVie;
+	}
+
+	/*_______________________________________________________________*/
+	/** Permet d'obtenir la valeur du champ champVision.
+	 * @return la valeur du champ champVision.
+	 */
+	public int getChampVision()
+	{
+		return champVision;
+	}
+
+	/*_______________________________________________________________*/
+	/** Modifie la valeur du champ champVision.
+	 * @param champVision la nouvelle valeur du champ champVision.
+	 */
+	public void setChampVision(int champVision)
+	{
+		this.champVision = champVision;
+	}
+  //------------------------------Autres Mï¿½thodes----------------------------------------//
+
+  public int seDeplacer(Integer direction){
 	  Integer case_cible=0;
 	  return case_cible;
   }
 
-public Integer seNourrir(Element element){
+public int seNourrir(Element element){
 	  Integer result=0;
 	  return result;
   }
