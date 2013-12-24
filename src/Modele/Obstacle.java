@@ -20,7 +20,12 @@ public class Obstacle extends Element {
 	private int champVision;
 	private String nom;
 	private String image;
-	  
+	 
+	
+	public Obstacle(int idcase)
+	{
+		super(idcase);
+	}
 	  /*_______________________________________________________________*/
 	/** constructeur de l'obstacle
 	 */

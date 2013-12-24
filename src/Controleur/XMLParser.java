@@ -313,7 +313,8 @@ private TypeTerrain getTypeTerrain(NodeList l){
 		if(l.item(i).getNodeName().toLowerCase().trim()=="type")
 		{
 			/* Ne veut pas entrer dans ce if*/
-			if(l.item(i).getTextContent().trim().toLowerCase() == "eau"){
+			if(l.item(i).getTextContent().trim().toLowerCase().equals("eau")){
+				
 				System.out.println("PASSED");
 				type = TypeTerrain.EAU;
 			}
@@ -562,7 +563,7 @@ private ArrayList<Obstacle> parseObstacle(NodeList l){
 		if(l.item(i).getNodeName().toLowerCase().trim()=="obstacle"){
 			//id = getId(l.item(i));
 			caseid = getCaseId(l.item(i).getChildNodes());
-			listeobstacle.add(new Obstacle(20, caseid));   //Ajout d'un obstacle à la listeobstacle
+			listeobstacle.add(new Obstacle(caseid));   //Ajout d'un obstacle à la listeobstacle
 			System.out.println("Obstacle "+ //DEBUG
 					" caseID : "+caseid);
 		}

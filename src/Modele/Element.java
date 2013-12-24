@@ -16,10 +16,18 @@ public class Element  {
 	protected int modifierVie;
 	/**  */
 	protected int champVision;
-	
+	/**  */
+	protected int caseId;
 
-    
     /*_______________________________________________________________*/
+    /**Constructeur par defaut
+     */
+    public Element(int caseId)
+    {
+    	setCaseId(caseId);
+    }
+   
+	/*_______________________________________________________________*/
     /**Constructeur avec paramètre
      * @param image
      * @param nom
@@ -115,6 +123,23 @@ public class Element  {
 	public void getPosition(Case maCase) {
 		maCase.getPosition();
     }
+	
+	 /*_______________________________________________________________*/
+		/** Permet d'obtenir la valeur du champ caseId.
+		 * @return la valeur du champ caseId.
+		 */
+		public int getCaseId()
+		{
+			return caseId;
+		}
+		/*_______________________________________________________________*/
+		/** Modifie la valeur du champ caseId.
+		 * @param caseId la nouvelle valeur du champ caseId.
+		 */
+		public void setCaseId(int caseId)
+		{
+			this.caseId = caseId;
+		}
 
     /*_______________________________________________________________*/
     /**Affiche l'élément
