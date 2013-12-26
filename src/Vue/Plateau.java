@@ -1,19 +1,27 @@
 package Vue;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Vector;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
+import javax.swing.border.Border;
 
+import Controleur.Ordonnanceur;
+import Modele.Case;
 import Modele.Map;
 
 /*_______________________________________________________________*/
@@ -32,6 +40,7 @@ public class Plateau extends JFrame implements ActionListener{
 	/**  */
 	private JButton btn_aide;
 
+    /**  */
     private Map myMap;
     
     /**  */
@@ -39,6 +48,10 @@ public class Plateau extends JFrame implements ActionListener{
     
     /**  */
     private JSplitPane monSplitPane2;
+    
+    private ActionUtilisateur utilisateur;
+    
+    private JPanel jpDroit;
     
    
 	
@@ -65,9 +78,12 @@ public class Plateau extends JFrame implements ActionListener{
 		btn_quitter.setPreferredSize(new Dimension(150, 30));
 		btn_pause = new JButton("Pause");
 		btn_pause.setPreferredSize(new Dimension(150, 30));
+		btn_pause.addActionListener(this);
 		btn_aide = new JButton("Aide");
 		btn_aide.setPreferredSize(new Dimension(150, 30));
 		btn_quitter.addActionListener(this);
+		jpDroit = new JPanel();
+		utilisateur = new ActionUtilisateur();
 		
 	}
 
@@ -81,7 +97,6 @@ public class Plateau extends JFrame implements ActionListener{
 		jpBas.add(btn_pause);
 		jpBas.add(btn_aide);
 		jpBas.add(btn_quitter);
-		JPanel jpDroit = new JPanel();
 		jpDroit.setLayout(new BorderLayout());
 		jpDroit.add(jpBas, BorderLayout.SOUTH);
 		JPanel jpGauche = new JPanel();
@@ -89,6 +104,8 @@ public class Plateau extends JFrame implements ActionListener{
 		jpGauche.setPreferredSize(new Dimension(250, this.getHeight()));
 		JPanel jp_gaucheHaut = new JPanel();
 		jp_gaucheHaut.setPreferredSize(new Dimension(250, this.getHeight()/2));
+		jp_gaucheHaut.setLayout(new BorderLayout());
+		jp_gaucheHaut.add(utilisateur);
 		JPanel jp_gaucheBas = new JPanel();
 		monSplitPane2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, jp_gaucheHaut, jp_gaucheBas);
 		monSplitPane2.setDividerSize(15);
@@ -113,9 +130,43 @@ public class Plateau extends JFrame implements ActionListener{
 			this.dispose();
 			
 		}
+		if(e.getSource()== btn_pause)
+		{
+			//A completer
+		}
 		
 	}
 
- 	
+	/*_______________________________________________________________*/
+	/** Permet d'obtenir la valeur du champ myMap.
+	 * @return la valeur du champ myMap.
+	 */
+	public Map getMyMap()
+	{
+		return myMap;
+	}
+
+	/*_______________________________________________________________*/
+	/** Modifie la valeur du champ myMap.
+	 * @param myMap la nouvelle valeur du champ myMap.
+	 */
+	public void setMyMap(Map myMap)
+	{
+		this.myMap = myMap;
+	}
+
+ 	/*_______________________________________________________________*/
+ 	/**
+ 	 * @param maMap
+ 	 */
+ 	public void afficherMap(Map maMap)
+ 	{
+ 		ArrayList<Case> mesCases = maMap.getListeCases();
+ 		for(int i=0; i<mesCases.size(); i++)
+ 		{
+ 			System.out.println("num case : " + mesCases.get(i).getId()+ " " + mesCases.get(i).getPosition().getX()+ " " + mesCases.get(i).getPosition().getY());
+ 		}
+ 		//jpDroit.add(mesCases, BorderLayout.NORTH);
+ 	}
 
 }

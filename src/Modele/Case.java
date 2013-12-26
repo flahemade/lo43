@@ -1,18 +1,36 @@
 package Modele;
 import java.util.ArrayList;
 
+/*_______________________________________________________________*/
+/**
+ * @author anaelle
+ *
+ */
 public class Case {
 
-  //private Integer rang;
-  private Integer id;		
-  private Position position;//vectmath2d
-  private TypeTerrain type;// enum TypeTerrain
-  private ArrayList<Element> listeElements;
-  private ArrayList<Case>  listeCasesAdjacentes;
+  
+  /**  */
+private int id;		
+  /**  */
+private Position position;//vectmath2d
+  /**  */
+private TypeTerrain type;// enum TypeTerrain
+  /**  */
+private ArrayList<Element> listeElements;
+  /**  */
+private ArrayList<Case>  listeCasesAdjacentes;
   
 //-----------------------------CONSTRUCTEURS--------------------------------------------//
-//-------------------------Constructeur complet ----------------------------------------//
-  public Case(Integer id, Position p,TypeTerrain type,ArrayList<Element> listeElements, ArrayList<Case> listeCaseAdjacentes){ 
+
+  /*_______________________________________________________________*/
+/**Constructeur complet
+ * @param id
+ * @param p
+ * @param type
+ * @param listeElements
+ * @param listeCaseAdjacentes
+ */
+public Case(int id, Position p,TypeTerrain type,ArrayList<Element> listeElements, ArrayList<Case> listeCaseAdjacentes){ 
 	  
 	  position = new Position();
 	  this.listeElements = new ArrayList<Element>();
@@ -23,9 +41,15 @@ public class Case {
 	  setListeElements(listeElements);
 	  setListeCasesAdjacentes(listeCaseAdjacentes);
   }
-  //-------------------Constructeur sans ListeCaseAdjacentes ---------------------------//
-  public Case(Integer id, Position p,TypeTerrain type,ArrayList<Element> listeElements){ 
-	  //setRang(rang);
+  
+  /*_______________________________________________________________*/
+/**Constructeur sans ListeCaseAdjacentes
+ * @param id
+ * @param p
+ * @param type
+ * @param listeElements
+ */
+public Case(int id, Position p,TypeTerrain type,ArrayList<Element> listeElements){ 
 	  position = new Position();
 	  this.listeElements = new ArrayList<Element>();
 	  listeCasesAdjacentes = new ArrayList<Case>();
@@ -34,9 +58,15 @@ public class Case {
 	  setType(type);
 	  setListeElements(listeElements);
   }
-  //---------------Constructeur sans ListeCaseAdjacentes et sans listeElement ---------//
-  public Case(Integer id, Position p,TypeTerrain type){
-	  //setRang(rang);
+  
+  /*_______________________________________________________________*/
+/**Constructeur sans ListeCaseAdjacentes et sans listeElement
+ * @param id
+ * @param p
+ * @param type
+ */
+public Case(int id, Position p,TypeTerrain type){
+	 
 	  position = new Position();
 	  this.listeElements = new ArrayList<Element>();
 	  listeCasesAdjacentes = new ArrayList<Case>();
@@ -46,26 +76,34 @@ public class Case {
 
   }
 //-----------------------------GETTERS AND SETTERS-------------------------------------//
-  /*
-  public Integer getRang() {
-		return rang;
-	}
-
-	public void setRang(Integer rang) {
-		this.rang = rang;
-	}
-*/
-    public Integer getId() {
+ 
+    /*_______________________________________________________________*/
+    /**
+     * @return l'id
+     */
+    public int getId() {
 		return id;
 	}
     
+	/*_______________________________________________________________*/
+	/**
+	 * @param id
+	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
+  	/*_______________________________________________________________*/
+  	/**
+  	 * @return la position
+  	 */
   	public Position getPosition(){
   		return position;
   	}
   	
+  	/*_______________________________________________________________*/
+  	/**
+  	 * @param p
+  	 */
   	public void setPosition(Position p){
   		
   	position.setX(p.getX());
@@ -73,39 +111,110 @@ public class Case {
   	}
   	
 
+	/*_______________________________________________________________*/
+	/**
+	 * @return liste d'éléments
+	 */
 	public ArrayList<Element> getListeElements() {
 		return listeElements;
 	}
 
+	/*_______________________________________________________________*/
+	/**
+	 * @param listeElements
+	 */
 	public void setListeElements(ArrayList<Element> listeElements) {
 		this.listeElements = listeElements;
 	}
 	
+	/*_______________________________________________________________*/
+	/**
+	 * @return liste des cases adjacentes
+	 */
 	public ArrayList<Case> getListeCasesAdjacentes() {
 		return listeCasesAdjacentes;
 	}
 	
+	/*_______________________________________________________________*/
+	/**
+	 * @param listeCasesAdjacentes
+	 */
 	public void setListeCasesAdjacentes(ArrayList<Case> listeCasesAdjacentes) {
 		this.listeCasesAdjacentes = listeCasesAdjacentes;
 	}
 	
+	/*_______________________________________________________________*/
+	/**
+	 * @return le type
+	 */
 	public TypeTerrain getType() {
 		return type;
 	}
 
+	/*_______________________________________________________________*/
+	/**
+	 * @param type
+	 */
 	public void setType(TypeTerrain type) {
 		this.type = type;
 	}
 
 	
 //-----------------------------AUTRES METHODES-----------------------------------------//
-  public void addObstacle(Obstacle obstacle){
+  /*_______________________________________________________________*/
+/**
+ * @param obstacle
+ */
+public void addObstacle(Obstacle obstacle){
+	  listeElements.add(obstacle);
   }
   
-  public void addRessource(Ressource ressource){
+  /*_______________________________________________________________*/
+/**
+ * @param ressource
+ */
+public void addRessource(Ressource ressource){
+	  listeElements.add(ressource);
   }
   
-  public void addAnimal(Animal animal){
+  /*_______________________________________________________________*/
+/**
+ * @param animal
+ */
+public void addAnimal(Animal animal){
+	  listeElements.add(animal);
   }
+  
+  /*_______________________________________________________________*/
+/**
+ * @param obstacle
+ */
+public void supprimerObstacle(Obstacle obstacle)
+  {
+	  
+  }
+  
+  /*_______________________________________________________________*/
+/**
+ * @param ressoucre
+ */
+public void supprimerRessource(Ressource ressoucre)
+  {
+	  
+  }
+  
+  /*_______________________________________________________________*/
+/**
+ * @param animal
+ */
+public void supprimerAnimal(Animal animal)
+  {
+	  
+  }
+  
+  
+  
+  
+  
 
 }

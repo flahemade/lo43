@@ -1,58 +1,77 @@
 package Modele;
 import java.util.ArrayList;
 
-import Controleur.XMLParser;
-import Vue.Plateau;
 
+/*_______________________________________________________________*/
+/**
+ * @author anaelle
+ *
+ */
 public class Map {
 
+	/** nom de la map */
 	private String Nom;
-    private XMLParser myParseurXML;
-    private Plateau myPlateau;
+    /**  */
     private ArrayList<Case>  listeCases;
-    private ArrayList<Animal> listeAnimaux;
 //-------------------------------- CONSTRUCTEUR --------------------------------//   
-    public Map(String nom,Plateau plateau){
+    /*_______________________________________________________________*/
+    /**Constructeur
+     * @param nom
+     */
+    public Map(String nom){
     	setNom(nom);
-    	setMyPlateau(plateau);
+    	listeCases = new ArrayList<Case>();
+    	
+    }
+    
+    /*_______________________________________________________________*/
+    /**Constructeur complet
+     * @param nom
+     * @param lesCases
+     */
+    public Map(String nom, ArrayList<Case> lesCases)
+    {
+    	setNom(nom);
+    	setListeCases(lesCases);
+    	
     }
 //-------------------------------- SETTERS AND GETTERS --------------------------------//
+	/*_______________________________________________________________*/
+	/**
+	 * @return le nom
+	 */
 	public String getNom() {
 		return Nom;
 	}
+	/*_______________________________________________________________*/
+	/**
+	 * @param nom
+	 */
 	public void setNom(String nom) {
 		Nom = nom;
 	}
-	public XMLParser getMyParseurXML() {
-		return myParseurXML;
-	}
-	public void setMyParseurXML(XMLParser myParseurXML) {
-		this.myParseurXML = myParseurXML;
-	}
-	public Plateau getMyPlateau() {
-		return myPlateau;
-	}
-	public void setMyPlateau(Plateau myPlateau) {
-		this.myPlateau = myPlateau;
-	}
+	/*_______________________________________________________________*/
+	/**
+	 * @return la liste de case
+	 */
 	public ArrayList<Case> getListeCases() {
 		return listeCases;
 	}
+	/*_______________________________________________________________*/
+	/**
+	 * @param listeCases
+	 */
 	public void setListeCases(ArrayList<Case> listeCases) {
 		this.listeCases = listeCases;
 	}
-	public ArrayList<Animal> getListeAnimaux() {
-		return listeAnimaux;
-	}
-	public void setListeAnimaux(ArrayList<Animal> listeAnimaux) {
-		this.listeAnimaux = listeAnimaux;
-	}
-//---------------------------------------Autres m�thodes-------------------------------//
-	  public void charger(Map map) {
-	  }
-	  public void enregistrer(Map map) {
-	  }
-	  public Map rafraichir(Map map){
+	
+
+	  /*_______________________________________________________________*/
+	/**
+	 * @param map
+	 * @return la map
+	 */
+	public Map rafraichir(Map map){
 		  return map;
 	  }
 }

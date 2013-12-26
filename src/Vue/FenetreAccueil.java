@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
+import Controleur.Ordonnanceur;
+
 
 /*_______________________________________________________________*/
 /**
@@ -79,16 +81,7 @@ public class FenetreAccueil extends JFrame implements ActionListener{
 		
 	}
 	  
-	  /*_______________________________________________________________*/
-	/**
-	 * @param args
-	 */
-/*	public static void main(String[] args) 
-	  {
-			FenetreAccueil fen = new FenetreAccueil("Le jeu de la savane");
-			fen.setVisible(true);
-			
-	  }*/
+	
 
 
 	/*_______________________________________________________________*/

@@ -1,34 +1,123 @@
 package Controleur;
 
 import java.util.ArrayList;
+
 import Modele.*;
 
-import Modele.Animal;
-import Modele.Case;
 import Modele.Map;
+import Vue.ActionUtilisateur;
+import Vue.FenetreAccueil;
+import Vue.Plateau;
 
+/*_______________________________________________________________*/
+/**
+ * @author anaelle
+ *
+ */
 public class Ordonnanceur {
-	private Boolean pause;
+	
+	/** boolean qui indique si le jeu est en pause ou pas */
+	public Boolean pause;
+	/** la map */
 	private Map map;
+	/** le parseur */
+	private XMLParser monXML;
+	/** liste de tous les éléments du jeu */
+	private ArrayList<Element> listeElement;
+	/** partie utilisateur */
+	private ActionUtilisateur utilisateur;
+	
+
 	//-------------------------------------------CONSTRUCTEUR---------------------------//
-	public Ordonnanceur(Map map){
-		setPause(true);
-		setMap(map);
+	/*_______________________________________________________________*/
+	/**
+	 * 
+	 */
+	public Ordonnanceur(){
+		/*FenetreAccueil fen = new FenetreAccueil("Le jeu de la savane");
+		fen.setVisible(true);*/
+		Plateau fen_plateau = new Plateau("Le jeu de la savane");
+		fen_plateau.setVisible(true);
+		monXML = new XMLParser("./res/8x8_simple.xml");
+		ArrayList<Case> mesCases;
+		mesCases= monXML.parseXML();
+		map = new Map("Savane", mesCases);
+		fen_plateau.setMyMap(getMap());
+		listeElement = new ArrayList<Element>();
+		fen_plateau.afficherMap(getMap());
+		
+		
+		
 	}
 	//-------------------------------------------GETTERS AND SETTERS---------------------//
+	/*_______________________________________________________________*/
+	/**
+	 * @return vrai ou faux
+	 */
 	public Boolean getPause() {
 		return pause;
 	}
+	/*_______________________________________________________________*/
+	/**
+	 * @return la map
+	 */
 	public Map getMap(){
 		return map;
 	}
+	/*_______________________________________________________________*/
+	/**
+	 * @param map
+	 */
 	public void setMap(Map map){
 		this.map=map;
 	}
+	/*_______________________________________________________________*/
+	/**
+	 * @param pause
+	 */
 	public void setPause(Boolean pause) {
 		this.pause = pause;
 	}
+	
+	/*_______________________________________________________________*/
+	/** Permet d'obtenir la valeur du champ monXML.
+	 * @return la valeur du champ monXML.
+	 */
+	public XMLParser getMonXML()
+	{
+		return monXML;
+	}
+	/*_______________________________________________________________*/
+	/** Modifie la valeur du champ monXML.
+	 * @param monXML la nouvelle valeur du champ monXML.
+	 */
+	public void setMonXML(XMLParser monXML)
+	{
+		this.monXML = monXML;
+	}
+	
+	/*_______________________________________________________________*/
+	/** Permet d'obtenir la valeur du champ listeElement.
+	 * @return la valeur du champ listeElement.
+	 */
+	public ArrayList<Element> getListeElement()
+	{
+		return listeElement;
+	}
+	/*_______________________________________________________________*/
+	/** Modifie la valeur du champ listeElement.
+	 * @param listeElement la nouvelle valeur du champ listeElement.
+	 */
+	public void setListeElement(ArrayList<Element> listeElement)
+	{
+		this.listeElement = listeElement;
+	}
 	//-------------------------------------------AUTRES METHODES-------------------------//
+	
+	
+	/*_______________________________________________________________*/
+	/**
+	 */
 	public void run() {
 		  while(this.pause==false){
 			  // Jouer...
@@ -78,8 +167,21 @@ public class Ordonnanceur {
 			  */
 		  }
 	}
+	/*_______________________________________________________________*/
+	/**met le jeu sur pause 
+	 */
 	public void stop(){
 		  setPause(true);
 	}
+	
+	  /*_______________________________________________________________*/
+		/**
+		 * @param args
+		 */
+		public static void main(String[] args) 
+		  {
+				Ordonnanceur ordonnanceur = new Ordonnanceur();
+								
+		  }
 
 }
