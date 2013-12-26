@@ -1,11 +1,8 @@
 package Controleur;
 
-import java.awt.Image;
 import java.io.File;
 import java.util.ArrayList;
 
-import javax.imageio.ImageIO;
-import javax.swing.JLabel;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -15,6 +12,10 @@ import org.w3c.dom.NodeList;
 import Modele.Animal;
 import Modele.Case;
 import Modele.Dimension;
+import Modele.Gazelle;
+import Modele.Girafe;
+import Modele.Hyene;
+import Modele.Lion;
 import Modele.Obstacle;
 import Modele.Position;
 import Modele.Ressource;
@@ -179,6 +180,7 @@ public ArrayList<Case> parseXML(){
 			}
 			*/
 			listefinale=assemblerCaseObstacle(listecase, listeobstacle);
+			listefinale=assemblerCaseAnimal(listecase, listeanimaux);
 			return listefinale;
 	}
 /**
@@ -337,13 +339,13 @@ private TypeAnimal getTypeAnimal(NodeList l){
 		
 		if(l.item(i).getNodeName().toLowerCase()=="type")
 		{
-			if(l.item(i).getTextContent().trim().toLowerCase()=="lion"){
+			if(l.item(i).getTextContent().trim().toLowerCase().equals("lion")){
 				type = TypeAnimal.LION;
 			}
-			if(l.item(i).getTextContent().trim().toLowerCase()=="hyene"){
+			if(l.item(i).getTextContent().trim().toLowerCase().equals("hyene")){
 				type = TypeAnimal.HYENE;
 			}
-			if(l.item(i).getTextContent().trim().toLowerCase()=="girafe"){
+			if(l.item(i).getTextContent().trim().toLowerCase().equals("girafe")){
 				type = TypeAnimal.GIRAFE;
 			}
 		}
@@ -502,10 +504,10 @@ private ArrayList <Case> parseMap(NodeList l){
 		switch (enumBourrin(l.item(i).getNodeName())){
 		
 		case 3: 
-		type= getTypeTerrain(l.item(i).getChildNodes()); //TODO Gerer le type
+		type= getTypeTerrain(l.item(i).getChildNodes());
 		position = getPosition(l.item(i).getChildNodes());
 		id = getId(l.item(i));
-		listecase.add(new Case(id,position,type)); //TODO A FINIR
+		listecase.add(new Case(id,position,type)); 
 
 		System.out.println("Case : id : "+id +
 				", Type : "+type.name()+
@@ -526,29 +528,34 @@ private ArrayList<Animal> parseEspece(NodeList l){
 	
 	int i;
 	ArrayList<Animal> listeanimaux = new ArrayList<Animal>();
-	Integer id, caseid;
-	String nomclass;
+	//Integer id;
+	Integer caseid;
+	//String nomclass;
 	Boolean sexe;
+	TypeAnimal type = TypeAnimal.GAZELLE;
 	for(i=0;i<l.getLength();i++){
 		switch (enumBourrin(l.item(i).getNodeName())){
 		
 		case 9 :
-		id = getId(l.item(i));
+		//id = getId(l.item(i));
 		caseid = getCaseId(l.item(i).getChildNodes());
 		//nomclass = getType(l.item(i).getChildNodes());
 		//TODO Faire un GetType animal
+		type = getTypeAnimal(l.item(i).getChildNodes());
 		sexe = getSexe(l.item(i).getChildNodes());
-	/*		switch(enumBourrin(nomclass)){
-			case 15 : break; //Creation d'une classe Lion & ajout dans listeanimaux
-			case 16 : break; //Creation classe Gazelle & ajout dans listeanimaux
+			switch(type){
+			case LION : listeanimaux.add(new Lion(caseid, sexe));break; //Creation d'une classe Lion & ajout dans listeanimaux
+			case GAZELLE : listeanimaux.add(new Gazelle(caseid, sexe)); break; //Creation classe Gazelle & ajout dans listeanima
+			case GIRAFE : listeanimaux.add(new Girafe(caseid, sexe));break;
+			case HYENE: listeanimaux.add(new Hyene(caseid, sexe)); break;
 			default : break;
 			}
 		
-		System.out.println("Animal : id :"+id+
-				", type : "+nomclass+
+		System.out.println("Animal : "+
+				", type : "+type.toString()+
 				", caseID : "+caseid+
 				", sexe : "+sexe);
-				*/
+				
 		break;
 		}
 	}
@@ -653,6 +660,19 @@ private ArrayList<Case> assemblerCaseObstacle(ArrayList<Case> listecase, ArrayLi
 	return listecase;
 }
 
+private ArrayList<Case> assemblerCaseAnimal(ArrayList<Case> listecase, ArrayList<Animal>listeanimaux){
+	int i,j;
+	ArrayList<Case>lcase = listecase;
+	
+	for(i=0;i<listeanimaux.size();i++){
+		for(j=0;j<lcase.size();j++){
+			if(lcase.get(j).getId()==listeanimaux.get(i).getIdCase()){
+				listecase.get(j).addAnimal(listeanimaux.get(i));
+			}
+		}
+	}
+	return listecase;
+}
 //TODO Ajouter la taille de la carte dans le XML et une case par defaut
 //TODO completer carte la liste de case par des case par deffaut
 //TODO Creer fonction pour verifier l'intégrité de la carte avant de la retourner

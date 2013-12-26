@@ -7,6 +7,12 @@ public class Lion extends Animal {
 		init();
 		
 	}
+	public Lion(int caseid, Boolean sexe){
+		super(caseid);
+		init();
+		setSexe(sexe);
+		setCaseId(caseid);
+	}
   public void seBattre() {
   }
 
@@ -14,6 +20,8 @@ public class Lion extends Animal {
 		setAgeMax(100);
 		setChampVision(2);
 		setRangChaineAlimentaire(9);
+		setPV(100);
+		setModifierVie(100);
 		setImage("./res/animaux/lion/lion.png");
   }
 }

@@ -512,6 +512,19 @@
              <type>TERRE</type>
          </case>
      </map>
+     <espece>
+         <animal>
+             <type>lion</type>
+             <sexe>male</sexe>
+             <caseid>12</caseid>
+         </animal>
+         <animal>
+             <type>gazelle</type>
+             <sexe>femelle</sexe>
+             <caseid>13</caseid>
+         </animal>
+     </espece>
+         
      <objet>
      		<obstacle><caseid>0</caseid></obstacle> <!-- 8 obstacle de la ligne 0 -->
      		<obstacle><caseid>1</caseid></obstacle>
