@@ -1,9 +1,11 @@
 package Controleur;
 
+import java.awt.Image;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Locale;
 
+import javax.imageio.ImageIO;
+import javax.swing.JLabel;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -103,7 +105,7 @@ public void printDOMInfos(){
 /**
  *Parse le XML et retourne une ArrayListe<Case> d'une map fonctionnelle. 
  */
-public void parseXML(){
+public ArrayList<Case> parseXML(){
 	
 	NodeList list = document.getDocumentElement().getChildNodes(); //On recupere le premier niveau de Node (map & espece)
 	int i;
@@ -157,7 +159,7 @@ public void parseXML(){
 				System.out.println("aff "+listefinale.get(i).getId());
 			}
 			*/
-			//listefinale=assemblerCaseObstacle(listecase, listeobstacle);
+			
 			
 			/*DEBUG*/
 			
@@ -176,6 +178,8 @@ public void parseXML(){
 				System.out.println("ListeFinale : ID_Case "+listefinale.get(i).getId());
 			}
 			*/
+			listefinale=assemblerCaseObstacle(listecase, listeobstacle);
+			return listefinale;
 	}
 /**
  * Fonction qui retourne un entier en fonction de la String pris en attribut afin de faire fonctionner les switch case
@@ -569,6 +573,7 @@ private ArrayList<Obstacle> parseObstacle(NodeList l){
 		}
 		
 	}
+
 	return listeobstacle;
 }
 
