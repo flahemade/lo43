@@ -18,15 +18,18 @@ public class Element  {
 	protected int champVision;
 	/**  */
 	protected int caseId;
-
+protected static int ID=0;
     /*_______________________________________________________________*/
     /**Constructeur par defaut
      */
     public Element(int caseId)
     {
+    	ID++;
     	setCaseId(caseId);
     }
-   
+   public Element(){
+	   ID++;
+   }
 	/*_______________________________________________________________*/
     /**Constructeur avec paramètre
      * @param image
@@ -34,12 +37,21 @@ public class Element  {
      */
     public Element(String image, String nom, int modifierVie, int champVision)
     {
+    	ID++;
     	setImage(image);
     	setNom(nom);
     	setModifierVie(modifierVie);
     	setChampVision(champVision);
     }
-    
+    public Element(String image, String nom, int modifierVie, int champVision, int idcase)
+    {
+    	ID++;
+    	setImage(image);
+    	setNom(nom);
+    	setModifierVie(modifierVie);
+    	setChampVision(champVision);
+    	setCaseId(idcase);
+    } 
     /*_______________________________________________________________*/
 	/** Permet d'obtenir la valeur du champ image.
 	 * @return la valeur du champ image.
@@ -146,7 +158,7 @@ public class Element  {
      */
     public void afficherElement() {
     }
-	
+
     
 
 }

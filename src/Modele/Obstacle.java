@@ -7,52 +7,41 @@ package Modele;
  */
 public class Obstacle extends Element {
 
-	/** taille de l'obstacle*/
-	private int taille;
+	
+	
 	
 	/** id de la case */
 	private int idcase;
 	
 	/** Id de l'obstacle */
-	private static int ID=0;
+	
 	
 	private int modifierVie;
 	private int champVision;
-	private String nom;
 	private String image;
 	 
-	
-	public Obstacle(int idcase)
+	public Obstacle(int idcase){
+		super("./res/obstacles/obstacle1.png","Obstacle"+(ID+1),0,0, idcase);
+		
+	}
+	public Obstacle(int modifierVie, int champVision, String nom, String image, int idcase)
 	{
-		super(idcase);
+		super("./res/obstacles/obstacle1.png", "Obstacle"+(ID+1), modifierVie, champVision, idcase);
+		
 	}
 	  /*_______________________________________________________________*/
 	/** constructeur de l'obstacle
 	 */
-	public Obstacle(int Taille, int modifierVie, int champVision, String nom, String image)
+	public Obstacle(int modifierVie, int champVision, String nom, String image)
 	  {
-		  super("Test", "Obstacle"+ID++, modifierVie, champVision);
-		  setTaille(Taille);
+		  super(image, "Obstacle"+(ID+1), modifierVie, champVision);
+		  
 	  }
-	  
-	  /*_______________________________________________________________*/
-	/** getter de taille
-	 * @return la taille
-	 */
-	public int getTaille()
-	  {
-		  return taille;
-	  }
-	  
-	  /*_______________________________________________________________*/
-	/**setter de taille
-	 * @param Taille
-	 */
-	public void setTaille(int Taille)
-	  {
-		  taille = Taille;
-	  }
-	 
+	 public Obstacle(){
+		 
+		 super("./res/obstacles/obstacle1.png","Obstacle"+(ID+1),0,0);
+	 }
+
 	  /*_______________________________________________________________*/
 	/** getter de l'ID
 	 * @return lID
@@ -62,7 +51,7 @@ public class Obstacle extends Element {
 		  return ID;
 	  }
 	
-	 /*_______________________________________________________________*/
+/*_____________________________________________________________*/
 		/** getter de l'idcase
 		 * @return idcase
 		 */
