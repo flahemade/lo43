@@ -153,7 +153,6 @@ public Animal(int idcase){
   //------------------------------Autres M�thodes----------------------------------------//
 
 	 private void init(){
-		 ID++;
 		 setAge(0);
 		  setDirection(0);
 	 }

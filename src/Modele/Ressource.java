@@ -16,6 +16,10 @@ public class Ressource extends Element {
 	  
   }
 
+  public void init(){
+	  setChampVision(0);
+	  
+  }
   public void disparaitre() {
   }
 }
