@@ -78,33 +78,10 @@ public void setPath(String path) {
 
 /*------------ Methods ------------*/
 
-/*
-public void printDOMInfos(){
-	System.out.println("INFORMATIONS GENERALES");
-	
-	String uri = document.getDocumentURI();
-	System.out.println("URI = "+uri);
-	
-	String xVersion = document.getXmlVersion(); 
-	System.out.println("Version XML = "+xVersion);
-	
-	String xEncoding = document.getXmlEncoding();
-	System.out.println("XML encoding = "+xEncoding);
-	
-	String iEncoding = document.getInputEncoding();
-	System.out.println("Input encoding = "+iEncoding);
-	
-	boolean standalone = document.getXmlStandalone();
-	System.out.println("XML standalone = "+standalone);
-	
-	boolean strictError = document.getStrictErrorChecking();
-	System.out.println("Strict error checking = "+strictError+"\n");
-	
-	}
 
-*/
 /**
- *Parse le XML et retourne une ArrayListe<Case> d'une map fonctionnelle. 
+ * Parse le fichier XML pour generer une liste des Casede la map
+ * @return Une liste de Case 
  */
 public ArrayList<Case> parseXML(){
 	
@@ -122,12 +99,7 @@ public ArrayList<Case> parseXML(){
 	
 		//System.out.println(list.item(i).getNodeName()); //DEBUG
 
-		
-		/**
-		 * /Fonction enumBourrin() à remplacer par quelque chose de propre
-		 *  Retourne un entier correspondant au nom de la node lue (format string)
-		 *  switch n'accepte pas de comparer des strings avant jre 1.7
-		 */
+
 			for (i = 0; i<list.getLength();i++){ 							
 			switch(enumBourrin(list.item(i).getNodeName())){ 
 
@@ -141,17 +113,17 @@ public ArrayList<Case> parseXML(){
 					" , Type "+casedefaut.getType()+
 					" , Position "+casedefaut.getPosition().getX()+" , "+casedefaut.getPosition().getY());
 		*/			
-			//System.out.println("dimensionmap "+dimensionmap.getLength()+" "+dimensionmap.getWidth()); //DEBUG
 			break;
 			
 			case 2 :
-				listeanimaux = parseEspece(list.item(i).getChildNodes());
-			//System.out.println("espece"); //DEBUG   //Cas où la node "espece" est detectee, on lance la fonction parseEspece(NodeList l)
+			listeanimaux = parseEspece(list.item(i).getChildNodes());
 			break;
 			
-			case 17 : listeobstacle = parseObstacle(list.item(i).getChildNodes());     //Cas où la node objet est detectee
-						listeressource = parseRessource(list.item(i).getChildNodes());
-				break;
+			case 17 : 
+			listeobstacle = parseObstacle(list.item(i).getChildNodes());     //Cas où la node objet est detectee
+			listeressource = parseRessource(list.item(i).getChildNodes());
+			break;
+			
 			default :break ; //Si autre chose que "map" ou "espece" on ne fait rien
 			
 			}
@@ -183,7 +155,7 @@ public ArrayList<Case> parseXML(){
 			listefinale=assemblerCaseAnimal(listecase, listeanimaux);
 			return listefinale;
 	}
-/**
+/*
  * Fonction qui retourne un entier en fonction de la String pris en attribut afin de faire fonctionner les switch case
  * devrait pouvoir etre remplace par un enum
  * Si la String n'est pas une node contenue dans le .XML, la fonction retourne 0;
@@ -673,6 +645,21 @@ private ArrayList<Case> assemblerCaseAnimal(ArrayList<Case> listecase, ArrayList
 	}
 	return listecase;
 }
+
+/*private ArrayList<Ressource> assemblerCaseRessource(ArrayList<Case> listecase, ArrayList<Ressource>listeressources){
+	int i,j;
+	ArrayList<Case>lcase = listecase;
+	
+	for(i=0;i<listeressources.size();i++){
+		for(j=0;j<lcase.size();j++){
+			if(lcase.get(j).getId()==listeressources.get(i).getIdCase()){
+				listecase.get(j).addRessource(listeressources.get(i));
+			}
+		}
+	}
+	return listecase;
+}
+*/
 //TODO Ajouter la taille de la carte dans le XML et une case par defaut
 //TODO completer carte la liste de case par des case par deffaut
 //TODO Creer fonction pour verifier l'intégrité de la carte avant de la retourner
