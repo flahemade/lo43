@@ -145,12 +145,12 @@ public ArrayList<Case> parseXML(){
 			break;
 			
 			case 2 :
-				parseEspece(list.item(i).getChildNodes());
+				listeanimaux = parseEspece(list.item(i).getChildNodes());
 			//System.out.println("espece"); //DEBUG   //Cas où la node "espece" est detectee, on lance la fonction parseEspece(NodeList l)
 			break;
 			
-			case 17 : parseObstacle(list.item(i).getChildNodes());     //Cas où la node objet est detectee
-						parseRessource(list.item(i).getChildNodes());
+			case 17 : listeobstacle = parseObstacle(list.item(i).getChildNodes());     //Cas où la node objet est detectee
+						listeressource = parseRessource(list.item(i).getChildNodes());
 				break;
 			default :break ; //Si autre chose que "map" ou "espece" on ne fait rien
 			

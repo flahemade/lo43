@@ -174,11 +174,11 @@ public class Plateau extends JFrame implements ActionListener{
  			/*int id = mesCases.get(i).getId();
  			pan.add(new JLabel(Integer.toString(id))); DEBUG*/
  			pan.add(ptest);
- 			if(mesCases.get(i).getListeElements().size()!=0)
- 				System.out.println("coucou");
  			for(int j=0; j< mesCases.get(i).getListeElements().size(); j++)
  			{
- 				System.out.println("coucou");
+ 				String image = mesCases.get(i).getListeElements().get(j).getImage();
+ 				ptest.add(new JLabel("oui"));
+ 				
  			}
  			
  				
