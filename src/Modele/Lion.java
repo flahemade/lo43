@@ -22,6 +22,6 @@ public class Lion extends Animal {
 		setRangChaineAlimentaire(9);
 		setPV(100);
 		setModifierVie(100);
-		setImage("./res/animaux/lion/lion.png");
+		setImage("./res/animaux/lion/lion1.png");
   }
 }
