@@ -33,6 +33,10 @@ public class Map {
     {
     	setNom(nom);
     	setListeCases(lesCases);
+    	for(int i=0; i<lesCases.size(); i++)
+    	{
+    		listeCases.get(i).setListeElements(lesCases.get(i).getListeElements());
+    	}
     	
     }
 //-------------------------------- SETTERS AND GETTERS --------------------------------//

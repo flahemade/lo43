@@ -162,11 +162,30 @@ public class Plateau extends JFrame implements ActionListener{
  	public void afficherMap(Map maMap)
  	{
  		ArrayList<Case> mesCases = maMap.getListeCases();
+ 		
+ 		JPanel pan = new JPanel(new GridLayout(8,8));
+		Border blackline = BorderFactory.createLineBorder(Color.black,1);
  		for(int i=0; i<mesCases.size(); i++)
  		{
- 			System.out.println("num case : " + mesCases.get(i).getId()+ " " + mesCases.get(i).getPosition().getX()+ " " + mesCases.get(i).getPosition().getY());
+ 			JPanel ptest = new JPanel();
+ 			ptest.setPreferredSize(new Dimension(70,70));
+ 			ptest.add(mesCases.get(i));
+ 			ptest.setBorder(blackline);
+ 			/*int id = mesCases.get(i).getId();
+ 			pan.add(new JLabel(Integer.toString(id))); DEBUG*/
+ 			pan.add(ptest);
+ 			if(mesCases.get(i).getListeElements().size()!=0)
+ 				System.out.println("coucou");
+ 			for(int j=0; j< mesCases.get(i).getListeElements().size(); j++)
+ 			{
+ 				System.out.println("coucou");
+ 			}
+ 			
+ 				
+ 			//System.out.println("num case : " + mesCases.get(i).getId()+ " " + mesCases.get(i).getPosition().getX()+ " " + mesCases.get(i).getPosition().getY());
  		}
- 		//jpDroit.add(mesCases, BorderLayout.NORTH);
+ 		pan.setBorder(blackline);
+ 		jpDroit.add(pan, BorderLayout.NORTH);
  	}
 
 }

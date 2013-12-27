@@ -1,12 +1,14 @@
 package Modele;
 import java.util.ArrayList;
 
+import javax.swing.JComponent;
+
 /*_______________________________________________________________*/
 /**
  * @author anaelle
  *
  */
-public class Case {
+public class Case extends JComponent{
 
   
   /**  */
@@ -166,7 +168,13 @@ public Case(int id, Position p,TypeTerrain type){
  * @param obstacle
  */
 public void addObstacle(Obstacle obstacle){
-	  listeElements.add(obstacle);
+		try{
+		  listeElements.add(obstacle);
+	  }catch(Exception e)
+	  {
+		  System.out.println("coucou");
+	  }
+	  
   }
   
   /*_______________________________________________________________*/
