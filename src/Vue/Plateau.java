@@ -12,6 +12,7 @@ import java.util.Iterator;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -174,10 +175,18 @@ public class Plateau extends JFrame implements ActionListener{
  			/*int id = mesCases.get(i).getId();
  			pan.add(new JLabel(Integer.toString(id))); DEBUG*/
  			pan.add(ptest);
+ 			
+ 			/*for(int j=0; j<mesCases.get(i).getListeElements().size(); j++)
+ 				System.out.println(mesCases.get(i).getListeElements().get(j).getCaseId());*/
+ 				
  			for(int j=0; j< mesCases.get(i).getListeElements().size(); j++)
  			{
- 				String image = mesCases.get(i).getListeElements().get(j).getImage();
- 				ptest.add(new JLabel("oui"));
+ 				
+ 				/*String nom = mesCases.get(i).getListeElements().get(j).getImage();
+ 				ptest.add(new JLabel(nom));*/
+ 				ImageIcon icone = new ImageIcon(mesCases.get(i).getListeElements().get(j).getImage());
+ 				JLabel image = new JLabel(icone);
+ 				ptest.add(image);
  				
  			}
  			
