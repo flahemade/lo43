@@ -16,7 +16,7 @@ public class Obstacle extends Element {
 	 
 	public Obstacle(int idcase){
 		super("./res/obstacles/obstacle1.png","Obstacle"+(ID+1),0,0, idcase);
-		setCaseId(idcase);
+		setIdcase(idcase);
 		
 	}
 	public Obstacle(int modifierVie, int champVision, String nom, String image, int idcase)
@@ -31,10 +31,12 @@ public class Obstacle extends Element {
 	  {
 		  super(image, "Obstacle"+(ID+1), modifierVie, champVision);
 		  
+		  
 	  }
 	 public Obstacle(){
 		 
 		 super("./res/obstacles/obstacle1.png","Obstacle"+(ID+1),0,0);
+		 
 	 }
 
 	  /*_______________________________________________________________*/
@@ -89,8 +91,6 @@ public class Obstacle extends Element {
 		this.modifierVie = modifierVie;
 	}
 
-	public void Init(){
-		
-	}
+
 
 }
