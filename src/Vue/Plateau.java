@@ -169,8 +169,10 @@ public class Plateau extends JFrame implements ActionListener{
  		for(int i=0; i<mesCases.size(); i++)
  		{
  			JPanel ptest = new JPanel();
- 			ptest.setPreferredSize(new Dimension(44,44));
- 			ptest.add(mesCases.get(i));
+ 			ptest.setLayout(new BorderLayout());
+ 			ptest.setPreferredSize(new Dimension(40,40));
+ 			ptest.setMinimumSize(new Dimension(40, 40));
+ 			ptest.add(mesCases.get(i), BorderLayout.CENTER);
  			ptest.setBorder(blackline);
  			/*int id = mesCases.get(i).getId();
  			pan.add(new JLabel(Integer.toString(id))); DEBUG*/
@@ -186,7 +188,8 @@ public class Plateau extends JFrame implements ActionListener{
  				ptest.add(new JLabel(nom));*/
  				ImageIcon icone = new ImageIcon(mesCases.get(i).getListeElements().get(j).getImage());
  				JLabel image = new JLabel(icone);
- 				ptest.add(image);
+ 				image.setLayout(new BorderLayout());
+ 				ptest.add(image, BorderLayout.CENTER);
  				
  			}
  			
