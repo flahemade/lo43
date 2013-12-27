@@ -169,7 +169,7 @@ public class Plateau extends JFrame implements ActionListener{
  		for(int i=0; i<mesCases.size(); i++)
  		{
  			JPanel ptest = new JPanel();
- 			ptest.setPreferredSize(new Dimension(70,70));
+ 			ptest.setPreferredSize(new Dimension(44,44));
  			ptest.add(mesCases.get(i));
  			ptest.setBorder(blackline);
  			/*int id = mesCases.get(i).getId();
@@ -194,7 +194,7 @@ public class Plateau extends JFrame implements ActionListener{
  			//System.out.println("num case : " + mesCases.get(i).getId()+ " " + mesCases.get(i).getPosition().getX()+ " " + mesCases.get(i).getPosition().getY());
  		}
  		pan.setBorder(blackline);
- 		jpDroit.add(pan, BorderLayout.NORTH);
+ 		jpDroit.add(pan, BorderLayout.CENTER);
  	}
 
 }
