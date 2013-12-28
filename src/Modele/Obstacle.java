@@ -10,9 +10,9 @@ public class Obstacle extends Element {
 
 	/** id de la case */
 	private int idcase;
-	private int modifierVie;
-	private int champVision;
-	private String image;
+	//private int modifierVie;
+	//private int champVision;
+	//private String image;
 	 
 	public Obstacle(int idcase){
 		super("./res/obstacles/obstacle1.png","Obstacle"+(ID+1),0,0, idcase);
