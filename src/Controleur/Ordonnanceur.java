@@ -147,14 +147,14 @@ public class Ordonnanceur {
 	/**Génère la liste des animaux**/
 	
 	public ArrayList<Element> getListeAnimaux(){
-		ArrayList<Element> listeAnimaux;
+		ArrayList<Element> listeAnimaux=null;
 		ArrayList<Case> listeCases=map.getListeCases();
 		for(int i=0; i<listeCases.size(); i++){
 			Case parcourir=listeCases.get(i);
 			ArrayList<Element> listeElements=parcourir.getListeElements();
 			for(int j=0; j<listeCases.size(); j++){
 				Element element_temporaire=listeElements.get(i);
-				if(element_temporaire.getClass()==Animal){
+				if(element_temporaire.getClass().equals("Animal")){
 					listeAnimaux.add(element_temporaire);
 				}
 			}
