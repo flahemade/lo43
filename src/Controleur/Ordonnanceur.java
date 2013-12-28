@@ -129,7 +129,7 @@ public class Ordonnanceur {
 	public void run() {
 		  while(this.pause==false){
 			  // Execute la méthode live de chaque animal.
-			 /* ArrayList<Animal> listeAnimaux=this.map.getListeAnimaux();
+			 /*ArrayList<Animal> listeAnimaux=this.map.getListeAnimaux();
 			  for(Integer i=0;listeAnimaux.size()<=i;i++){
 				  listeAnimaux[i].live();
 			  }
@@ -147,7 +147,7 @@ public class Ordonnanceur {
 	/**Génère la liste des animaux**/
 	
 	public ArrayList<Element> getListeAnimaux(){
-		ArrayList<Element> listeAnimaux=null;
+		ArrayList<Element> listeAnimaux=new ArrayList<Element>();
 		ArrayList<Case> listeCases=map.getListeCases();
 		for(int i=0; i<listeCases.size(); i++){
 			Case parcourir=listeCases.get(i);
