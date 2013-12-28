@@ -6,7 +6,6 @@ import Modele.*;
 
 import Modele.Map;
 import Vue.ActionUtilisateur;
-import Vue.FenetreAccueil;
 import Vue.Plateau;
 
 /*_______________________________________________________________*/
