@@ -155,7 +155,6 @@ public class Ordonnanceur {
 			for(int j=0; j<listeCases.size(); j++){
 				Element element_temporaire=listeElements.get(i);
 				if(element_temporaire.getClass()==Animal){
-					
 					listeAnimaux.add(element_temporaire);
 				}
 			}
