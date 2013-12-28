@@ -14,28 +14,29 @@ public class Animal extends Element {
   protected int PV;
   protected Boolean sexe;
   protected int idCase;
-  protected int modifierVie;
-  protected int champVision;
+ // protected int modifierVie;
+ // protected int champVision;
   
   //------------------------------CONSTRUCTEUR-------------------------------------------//
   public Animal(String image, String nom,int Vitesse,int RCA,int AgeMax,int PV,Boolean sexe, int modifierVie, int champVision){
 	  super(image, "nom"+(ID+1), modifierVie, champVision);
-	 init();
+	  init();
 	  setVitesse(Vitesse);
-
 	  setRangChaineAlimentaire(RCA);
-
 	  setAgeMax(AgeMax);
 	  setPV(PV);
 	  setSexe(sexe);
-	 
   }
   
-  public Animal(){
-	init();    
-  
+ public Animal(){
+	  super();
+	  init();    
+ 
   }
+ 
+  
 public Animal(int idcase){
+	super(idcase);
 	init();
 	setIdCase(idcase);
 
