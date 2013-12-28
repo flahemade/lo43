@@ -45,6 +45,14 @@ public class Ordonnanceur {
 		fen_plateau.setMyMap(getMap());
 		listeElement = new ArrayList<Element>();
 		fen_plateau.afficherMap(getMap());
+		/*for (int i = 0; i< getMap().getListeCases().size(); i++)
+		{
+			for(int j=0; j< getMap().getListeCases().get(i).getListeElements().size(); j++)
+			{
+				listeElement.add(getMap().getListeCases().get(i).getListeElements().get(j));
+			}
+		}*/
+		//Position p = getMap().getListeCases().get(12).getListeElements().get(0).seDeplacer(getMap().getListeCases().get(12).getPosition());
 		
 		
 		

@@ -18,7 +18,9 @@ public class Element  {
 	protected int champVision;
 	/**  */
 	protected int caseId;
-protected static int ID=0;
+	/**  */
+	protected static int ID=0;
+	protected int idPerso;
     /*_______________________________________________________________*/
     /**Constructeur par defaut
      */
@@ -26,9 +28,12 @@ protected static int ID=0;
     {
     	ID++;
     	setCaseId(caseId);
+    	setId(ID);
+    	
     }
    public Element(){
 	   ID++;
+	   setId(ID);
    }
 	/*_______________________________________________________________*/
     /**Constructeur avec paramètre
@@ -42,6 +47,7 @@ protected static int ID=0;
     	setNom(nom);
     	setModifierVie(modifierVie);
     	setChampVision(champVision);
+    	setId(ID);
     }
     public Element(String image, String nom, int modifierVie, int champVision, int idcase)
     {
@@ -51,6 +57,7 @@ protected static int ID=0;
     	setModifierVie(modifierVie);
     	setChampVision(champVision);
     	setCaseId(idcase);
+    	setId(ID);
     } 
     /*_______________________________________________________________*/
 	/** Permet d'obtenir la valeur du champ image.
@@ -153,12 +160,28 @@ protected static int ID=0;
 			this.caseId = caseId;
 		}
 
+		
+		public int getId()
+		{
+			return idPerso;
+		}
+		
+		public void setId(int id)
+		{
+			this.idPerso = id;
+		}
     /*_______________________________________________________________*/
     /**Affiche l'élément
      */
     public void afficherElement() {
     }
 
+    public Position seDeplacer(Position p)
+    {
+		return p;
+    	
+    }
+    
     
 
 }

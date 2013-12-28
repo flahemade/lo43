@@ -199,16 +199,30 @@ public void addAnimal(Animal animal){
  */
 public void supprimerObstacle(Obstacle obstacle)
   {
-	  
+	  for(int i = 0; i< listeElements.size(); i++)
+	  {
+		 if (obstacle.getId() == listeElements.get(i).getId())
+		 {
+			 listeElements.remove(i);
+		 }
+			 
+	  }
   }
   
   /*_______________________________________________________________*/
 /**
  * @param ressoucre
  */
-public void supprimerRessource(Ressource ressoucre)
+public void supprimerRessource(Ressource ressource)
   {
-	  
+	for(int i = 0; i< listeElements.size(); i++)
+	  {
+		 if (ressource.getId() == listeElements.get(i).getId())
+		 {
+			 listeElements.remove(i);
+		 }
+			 
+	  }
   }
   
   /*_______________________________________________________________*/
@@ -217,7 +231,14 @@ public void supprimerRessource(Ressource ressoucre)
  */
 public void supprimerAnimal(Animal animal)
   {
-	  
+	for(int i = 0; i< listeElements.size(); i++)
+	  {
+		 if (animal.getId() == listeElements.get(i).getId())
+		 {
+			 listeElements.remove(i);
+		 }
+			 
+	  }  
   }
   
   

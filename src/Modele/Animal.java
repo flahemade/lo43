@@ -1,5 +1,7 @@
 package Modele;
 
+import java.util.Random;
+
 
 public class Animal extends Element {
 
@@ -156,9 +158,41 @@ public Animal(int idcase){
 		 setAge(0);
 		  setDirection(0);
 	 }
-  public int seDeplacer(Integer direction){ //TODO A TERMINER
+  public Position seDeplacer(Position p)
+  { 
 	  Integer case_cible=0;
-	  return case_cible;
+	  Position nouvelle = new Position();
+	  Random rand = new Random();
+	  int valeur = rand.nextInt(8-1+1) + 1;
+	  switch (valeur)
+	  {
+	  	case 1: nouvelle.setX(p.getX()-1);
+	  			nouvelle.setY(p.getY()-1);
+	  			break;
+	  	case 2: nouvelle.setX(p.getX());
+				nouvelle.setY(p.getY()-1);
+				break;
+	  	case 3: nouvelle.setX(p.getX()+1);
+				nouvelle.setY(p.getY()-1);
+				break;
+	  	case 4: nouvelle.setX(p.getX()+1);
+				nouvelle.setY(p.getY());
+				break;
+	  	case 5: nouvelle.setX(p.getX()+1);
+				nouvelle.setY(p.getY()+1);
+				break;
+	  	case 6: nouvelle.setX(p.getX());
+				nouvelle.setY(p.getY()+1);
+				break;
+	  	case 7: nouvelle.setX(p.getX()-1);
+				nouvelle.setY(p.getY()+1);
+				break;
+	  	case 8: nouvelle.setX(p.getX()-1);
+				nouvelle.setY(p.getY());
+				break;
+	  	default:break;
+	}
+	  return nouvelle;
   }
 
 public int seNourrir(Element element){ //TODO A TERMINER
@@ -189,5 +223,7 @@ public int seNourrir(Element element){ //TODO A TERMINER
   public void mourir(){
 	  
   }
-
+  
 }
+  
+ 
