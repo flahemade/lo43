@@ -128,9 +128,7 @@ public class Ordonnanceur {
 	 */
 	public void run() {
 		  while(this.pause==false){
-			  // Jouer...
-			  //Fais jouer la map :
-			  //	-Rï¿½cupï¿½rer tous les animaux vivants
+			  // Execute la méthode live de chaque animal.
 			  ArrayList<Animal> listeAnimaux=this.map.getListeAnimaux();
 			  for(Integer i=0;listeAnimaux.size()<=i;i++){
 				  listeAnimaux[i].live();
