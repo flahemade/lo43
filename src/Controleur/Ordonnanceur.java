@@ -128,13 +128,12 @@ public class Ordonnanceur {
 	 */
 	public void run() {
 		  while(this.pause==false){
-			  // Execute la méthode live de chaque animal.
-			 /*ArrayList<Animal> listeAnimaux=this.map.getListeAnimaux();
-			  for(Integer i=0;listeAnimaux.size()<=i;i++){
-				  listeAnimaux[i].live();
+			  // Execute la méthode live() de chaque animal.
+			 ArrayList<Element> listeAnimaux=this.getListeAnimaux();
+			  for(Integer i=0; listeAnimaux.size()<=i;i++){
+				  //listeAnimaux.get(i).live();
 			  }
 			  // To be completed.
-			  */
 		  }
 	}
 	/*_______________________________________________________________*/
