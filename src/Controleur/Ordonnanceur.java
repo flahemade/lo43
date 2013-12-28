@@ -53,8 +53,32 @@ public class Ordonnanceur {
 			}
 		}*/
 		//Position p = getMap().getListeCases().get(12).getListeElements().get(0).seDeplacer(getMap().getListeCases().get(12).getPosition());
-		
-		
+		/* Essai de faire un rafraichissement
+		Animal simba = new Animal();
+		int indexNewCase=0;
+		simba = (Animal) getMap().getListeCases().get(12).getListeElements().get(0);
+		Position p = getMap().getListeCases().get(12).getListeElements().get(0).seDeplacer(getMap().getListeCases().get(12).getPosition());
+		getMap().getListeCases().get(12).supprimerAnimal((Animal) getMap().getListeCases().get(12).getListeElements().get(0));
+		for(int i=0; i<getMap().getListeCases().size(); i++)
+		{
+			if(getMap().getListeCases().get(i).getPosition().getX() == p.getX() && getMap().getListeCases().get(i).getPosition().getY() == p.getY())
+			{
+				getMap().getListeCases().get(i).addAnimal(simba);
+				indexNewCase = i;
+				System.out.println("Ã§a rentre");
+			}
+		}
+		System.out.println("nouvelle case: " + getMap().getListeCases().get(indexNewCase).getListeElements().size());
+		try
+		{
+			Thread.sleep(10000);
+		} catch (InterruptedException e)
+		{
+			// PENSER Ã  IMPLEMENTER Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("coucou");
+		fen_plateau.afficherMap(getMap());*/
 		
 	}
 	//-------------------------------------------GETTERS AND SETTERS---------------------//
@@ -128,7 +152,7 @@ public class Ordonnanceur {
 	 */
 	public void run() {
 		  while(this.pause==false){
-			  // Execute la méthode live() de chaque animal.
+			  // Execute la mï¿½thode live() de chaque animal.
 			 ArrayList<Animal> listeAnimaux=this.getListeAnimaux();
 			  for(Integer i=0; listeAnimaux.size()<=i;i++){
 				  listeAnimaux.get(i).live();
@@ -143,7 +167,7 @@ public class Ordonnanceur {
 		  setPause(true);
 	}
 	/*_______________________________________________________________*/
-	/**Génère la liste des animaux**/
+	/**Gï¿½nï¿½re la liste des animaux**/
 	
 	public ArrayList<Animal> getListeAnimaux(){
 		ArrayList<Animal> listeAnimaux=new ArrayList<Animal>();
