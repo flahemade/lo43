@@ -128,48 +128,10 @@ public class Ordonnanceur {
 	 */
 	public void run() {
 		  while(this.pause==false){
-			  // Jouer...
-			  //Fais jouer la map :
-			  //	-Rï¿½cupï¿½rer tous les animaux vivants
-			  /*ArrayList<Animal> listeAnimaux=this.map.getListeAnimaux();
+			  // Execute la méthode live de chaque animal.
+			 /* ArrayList<Animal> listeAnimaux=this.map.getListeAnimaux();
 			  for(Integer i=0;listeAnimaux.size()<=i;i++){
-				  
-				  Animal animal=listeAnimaux.get(i);
-				  Integer caseCible=null;
-				  //Vï¿½rification ï¿½ge
-				  Boolean vivant=animal.verifierAge();
-				  if(vivant==false){
-					  animal.mourir();
-				  }
-				  //Dï¿½finir case cible
-				  Integer vitesse=animal.getVitesse();
-				  for(Integer j=0;j<=vitesse;j++){
-					  Integer direction=(int)(Math.random()*3)+1;
-					  caseCible=animal.getIdCase();
-					  Integer numeroCase=caseCible.getId();
-					  Integer largeurMap=0;
-					  switch(direction){
-					  	case 1: numeroCase=numeroCase-largeurMap;break;
-					  	case 2: numeroCase=numeroCase+1;break;
-					  	case 3: numeroCase=numeroCase+largeurMap;break;
-					  	case 4: numeroCase=numeroCase-1;break;
-					  }
-					  caseCible.setId(numeroCase);
-				  }
-				  //-----------------------
-//					-Boucle activitï¿½ pour chacun  
-				  ArrayList<Element> attributsCase=caseCible.getListeElements();
-				  Element attrRessource=attributsCase.get(0);
-				  Element attrAnimal=attributsCase.get(1);
-				  Element attrObstacle=attributsCase.get(2);
-				  if(attrAnimal==null&&attrRessource==null){
-					  //On peut aller sur la case sans consequence.
-				  }else{
-					  //Consï¿½quence
-					  		//Animal
-					  		//Ressource
-					  		//Obstacle
-				  }
+				  listeAnimaux[i].live();
 			  }
 			  // To be completed.
 			  */
