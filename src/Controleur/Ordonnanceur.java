@@ -152,7 +152,7 @@ public class Ordonnanceur {
 			Case parcourir=listeCases.get(i);
 			ArrayList<Element> listeElements=parcourir.getListeElements();
 			for(int j=0; j<listeCases.size(); j++){
-				Element element_temporaire=listeElements.get(i);
+				Element element_temporaire=listeElements.get(j);
 				if(element_temporaire.getClass().equals("Animal")){
 					Animal pouet=(Animal)(element_temporaire);
 					listeAnimaux.add(pouet);
@@ -169,7 +169,7 @@ public class Ordonnanceur {
 		public static void main(String[] args) 
 		  {
 				Ordonnanceur ordonnanceur = new Ordonnanceur();
-								
+				ordonnanceur.getListeAnimaux();
 		  }
 
 }
