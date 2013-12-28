@@ -143,6 +143,24 @@ public class Ordonnanceur {
 	public void stop(){
 		  setPause(true);
 	}
+	/*_______________________________________________________________*/
+	/**Génère la liste des animaux**/
+	
+	public ArrayList<Element> getListeAnimaux(){
+		ArrayList<Element> listeAnimaux;
+		ArrayList<Case> listeCases=map.getListeCases();
+		for(int i=0; i<listeCases.size(); i++){
+			Case parcourir=listeCases.get(i);
+			ArrayList<Element> listeElements=parcourir.getListeElements();
+			for(int j=0; j<listeCases.size(); j++){
+				Element element_temporaire=listeElements.get(i);
+				if(element_temporaire.getClass()==Animal){
+					listeAnimaux.add(element_temporaire);
+				}
+			}
+		}
+		return listeAnimaux;
+	}
 	
 	  /*_______________________________________________________________*/
 		/**
