@@ -129,7 +129,7 @@ public class Ordonnanceur {
 	public void run() {
 		  while(this.pause==false){
 			  // Execute la méthode live() de chaque animal.
-			 ArrayList<Element> listeAnimaux=this.getListeAnimaux();
+			 ArrayList<Animal> listeAnimaux=this.getListeAnimaux();
 			  for(Integer i=0; listeAnimaux.size()<=i;i++){
 				  listeAnimaux.get(i).live();
 			  }
@@ -145,8 +145,8 @@ public class Ordonnanceur {
 	/*_______________________________________________________________*/
 	/**Génère la liste des animaux**/
 	
-	public ArrayList<Element> getListeAnimaux(){
-		ArrayList<Element> listeAnimaux=new ArrayList<Element>();
+	public ArrayList<Animal> getListeAnimaux(){
+		ArrayList<Animal> listeAnimaux=new ArrayList<Animal>();
 		ArrayList<Case> listeCases=map.getListeCases();
 		for(int i=0; i<listeCases.size(); i++){
 			Case parcourir=listeCases.get(i);
@@ -154,7 +154,8 @@ public class Ordonnanceur {
 			for(int j=0; j<listeCases.size(); j++){
 				Element element_temporaire=listeElements.get(i);
 				if(element_temporaire.getClass().equals("Animal")){
-					listeAnimaux.add(element_temporaire);
+					Animal pouet=(Animal)(element_temporaire);
+					listeAnimaux.add(pouet);
 				}
 			}
 		}
