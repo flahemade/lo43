@@ -13,9 +13,9 @@ public class Animal extends Element {
   protected int AgeMax;
   protected int PV;
   protected Boolean sexe;
-  protected int idCase;
- // protected int modifierVie;
- // protected int champVision;
+//  protected int idCase;
+ // protected int modifierVie; //Se trouve dans Element
+ // protected int champVision; //Se trouve dans Element
   
   //------------------------------CONSTRUCTEUR-------------------------------------------//
   public Animal(String image, String nom,int Vitesse,int RCA,int AgeMax,int PV,Boolean sexe, int modifierVie, int champVision){
@@ -38,7 +38,7 @@ public class Animal extends Element {
 public Animal(int idcase){
 	super(idcase);
 	init();
-	setIdCase(idcase);
+
 
 	
 }
@@ -102,7 +102,7 @@ public Animal(int idcase){
 		this.sexe = sexe;
 	}
 	
-	public Integer getIdCase(){
+/*	public Integer getIdCase(){
 		return idCase;
 	}
 	public void setIdCase(int idcase){
@@ -111,7 +111,7 @@ public Animal(int idcase){
 	public void setCaseLocation(Integer idCase){
 		this.idCase=idCase;
 	}
-	
+*/	
 	/*_______________________________________________________________*/
 	/** Permet d'obtenir la valeur du champ modifierVie.
 	 * @return la valeur du champ modifierVie.
@@ -225,6 +225,9 @@ public int seNourrir(Element element){ //TODO A TERMINER
 	  
   }
   
+  public void live(){
+	  
+  }
 }
   
  

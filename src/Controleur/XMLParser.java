@@ -638,7 +638,7 @@ private ArrayList<Case> assemblerCaseAnimal(ArrayList<Case> listecase, ArrayList
 	
 	for(i=0;i<listeanimaux.size();i++){
 		for(j=0;j<lcase.size();j++){
-			if(lcase.get(j).getId()==listeanimaux.get(i).getIdCase()){
+			if(lcase.get(j).getId()==listeanimaux.get(i).getCaseId()){
 				listecase.get(j).addAnimal(listeanimaux.get(i));
 			}
 		}
