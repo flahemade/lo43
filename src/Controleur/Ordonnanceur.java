@@ -131,7 +131,7 @@ public class Ordonnanceur {
 			  // Execute la méthode live() de chaque animal.
 			 ArrayList<Element> listeAnimaux=this.getListeAnimaux();
 			  for(Integer i=0; listeAnimaux.size()<=i;i++){
-				  //listeAnimaux.get(i).live();
+				  listeAnimaux.get(i).live();
 			  }
 			  // To be completed.
 		  }
