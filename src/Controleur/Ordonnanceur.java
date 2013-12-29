@@ -3,8 +3,6 @@ package Controleur;
 import java.util.ArrayList;
 
 import Modele.*;
-
-import Modele.Map;
 import Vue.ActionUtilisateur;
 import Vue.Plateau;
 
@@ -174,7 +172,8 @@ public class Ordonnanceur {
 		for(int i=0; i<listeCases.size(); i++){
 			Case parcourir=listeCases.get(i);
 			ArrayList<Element> listeElements=parcourir.getListeElements();
-			for(int j=0; j<listeCases.size(); j++){
+			for(int j=0; j<listeElements.size(); j++){
+				
 				Element element_temporaire=listeElements.get(j);
 				if(element_temporaire.getClass().equals("Animal")){
 					Animal pouet=(Animal)(element_temporaire);
