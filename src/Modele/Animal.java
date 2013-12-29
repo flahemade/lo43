@@ -176,8 +176,10 @@ public int seNourrir(Element element){ //TODO A TERMINER
 	  
   }
   
-  public void live(){
+  public void live(Position p){
 	  System.out.println(this.getClass().getSimpleName()+"\tID "+this.getId()+"\t live()");
+	  seDeplacer(p);  
+	  Age++;
   }
 }
   

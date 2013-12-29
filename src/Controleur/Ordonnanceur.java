@@ -131,10 +131,20 @@ public class Ordonnanceur {
 			  // Execute la m�thode live() de chaque animal.
 			 ArrayList<Animal> listeAnimaux=this.getListeAnimaux();
 			  for(Integer i=0; i<listeAnimaux.size();i++){
-				  listeAnimaux.get(i).live();
+				  Position p = new Position();
+				  for(int j=0; j< getMap().getListeCases().size(); j++)
+				  {
+					  if(getMap().getListeCases().get(j).getId()== listeAnimaux.get(i).getId())
+					  {
+						  p = getMap().getListeCases().get(j).getPosition();
+						 //reste à enlever l'animal de la liste de la case
+					  }
+				  }
+				  listeAnimaux.get(i).live(p);
+				  //reste à rajouter l'animal dans la liste des éléments de la case
 			  }
 			// Essai de faire un rafraichissement à modifier bien sur !
-				Animal simba = new Animal();
+			/*	Animal simba = new Animal();
 				int indexNewCase=0;
 				simba = (Animal) getMap().getListeCases().get(12).getListeElements().get(0);
 				Position p = getMap().getListeCases().get(12).getListeElements().get(0).seDeplacer(getMap().getListeCases().get(12).getPosition());
@@ -151,14 +161,15 @@ public class Ordonnanceur {
 				System.out.println("nouvelle case: " + getMap().getListeCases().get(indexNewCase).getListeElements().size());
 				try
 				{
-					Thread.sleep(10000);
+					Thread.sleep(5000);
 				} catch (InterruptedException e)
 				{
 					// PENSER à IMPLEMENTER Auto-generated catch block
 					e.printStackTrace();
 				}
-				System.out.println("coucou");
+				System.out.println("coucou");*/
 				fen_plateau.afficherMap(getMap());
+				
 			  // To be completed.
 		  }
 	}
