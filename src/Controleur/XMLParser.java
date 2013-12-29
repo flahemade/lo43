@@ -130,11 +130,9 @@ public ArrayList<Case> parseXML(){
 			default :break ; //Si autre chose que "map" ou "espece" on ne fait rien
 			
 			}
-			/*listefinale=reparerListe(listecase, casedefaut, dimensionmap);
-			for(i=0;i<listefinale.size();i++){
-				System.out.println("aff "+listefinale.get(i).getId());
-			}
-			*/
+			
+		
+			
 			
 			
 			/*DEBUG*/
@@ -154,6 +152,10 @@ public ArrayList<Case> parseXML(){
 				System.out.println("ListeFinale : ID_Case "+listefinale.get(i).getId());
 			}
 			*/
+			listefinale=reparerListe(listecase, casedefaut, dimensionmap);
+			for(i=0;i<listefinale.size();i++){
+				System.out.println("aff "+listefinale.get(i).getId());
+			}
 			listefinale=assemblerCaseObstacle(listecase, listeobstacle);
 			listefinale=assemblerCaseAnimal(listecase, listeanimaux);
 			listefinale=assemblerCaseRessource(listecase, listeressource);
@@ -610,9 +612,9 @@ private ArrayList<Ressource> parseRessource(NodeList l){
  * @param dimensionmap
  * @return
  */
-/*private ArrayList<Case> reparerListe (ArrayList<Case> l, Case casedefaut, Dimension dimensionmap){
+private ArrayList<Case> reparerListe (ArrayList<Case> l, Case casedefaut, Dimension dimensionmap){
 	
-	Case casedef = new Case(casedefaut.getId(),casedefaut.getPosition(),casedefaut.getTaille(),casedefaut.getType());
+	Case casedef = new Case(casedefaut.getId(),casedefaut.getPosition(),casedefaut.getType());
 	int i;
 	int nbcasemax = dimensionmap.getLength()*dimensionmap.getWidth();
 	ArrayList<Case> listereparee=new ArrayList<Case>();
@@ -639,7 +641,7 @@ private ArrayList<Ressource> parseRessource(NodeList l){
 	
 	return listereparee;
 }
-*/
+
 
 private ArrayList<Case> assemblerCaseObstacle(ArrayList<Case> listecase, ArrayList<Obstacle>listeobstacle){
 	int i,j;
@@ -703,7 +705,7 @@ public void write(String chemin, Map map) {
 public static void main(String[] args) {
 	
 System.out.println("XMLParser debugger");
-XMLParser parser = new XMLParser("./res/8x8_simple.xml"); //Création d'une instance de Parser, attention à bien spécifier une adresse correcte
+XMLParser parser = new XMLParser("./res/map_rapport.xml"); //Création d'une instance de Parser, attention à bien spécifier une adresse correcte
 //XMLParser parser = new XMLParser("./res/map.xml");
 parser.parseXML(); //Debut du parsing
 }
