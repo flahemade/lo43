@@ -86,6 +86,8 @@ public class Plateau extends JFrame implements ActionListener{
 		btn_quitter.addActionListener(this);
 		jpDroit = new JPanel();
 		utilisateur = new ActionUtilisateur();
+		//utilisateur.start();
+		utilisateur.run();
 		
 	}
 
