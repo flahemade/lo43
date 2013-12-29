@@ -24,6 +24,8 @@ public class Ordonnanceur {
 	/** partie utilisateur */
 	private ActionUtilisateur utilisateur;
 	
+	private Plateau fen_plateau;
+	
 
 	//-------------------------------------------CONSTRUCTEUR---------------------------//
 	/*_______________________________________________________________*/
@@ -31,51 +33,8 @@ public class Ordonnanceur {
 	 * 
 	 */
 	public Ordonnanceur(){
-		/*FenetreAccueil fen = new FenetreAccueil("Le jeu de la savane");
-		fen.setVisible(true);*/
-		Plateau fen_plateau = new Plateau("Le jeu de la savane");
-		fen_plateau.setVisible(true);
-		monXML = new XMLParser("./res/8x8_simple.xml");
-		ArrayList<Case> mesCases;
-		mesCases= monXML.parseXML();
-		map = new Map("Savane", mesCases);
-		fen_plateau.setMyMap(getMap());
-		listeElement = new ArrayList<Element>();
-		fen_plateau.afficherMap(getMap());
-		/*for (int i = 0; i< getMap().getListeCases().size(); i++)
-		{
-			for(int j=0; j< getMap().getListeCases().get(i).getListeElements().size(); j++)
-			{
-				listeElement.add(getMap().getListeCases().get(i).getListeElements().get(j));
-			}
-		}*/
-		//Position p = getMap().getListeCases().get(12).getListeElements().get(0).seDeplacer(getMap().getListeCases().get(12).getPosition());
-		/* Essai de faire un rafraichissement
-		Animal simba = new Animal();
-		int indexNewCase=0;
-		simba = (Animal) getMap().getListeCases().get(12).getListeElements().get(0);
-		Position p = getMap().getListeCases().get(12).getListeElements().get(0).seDeplacer(getMap().getListeCases().get(12).getPosition());
-		getMap().getListeCases().get(12).supprimerAnimal((Animal) getMap().getListeCases().get(12).getListeElements().get(0));
-		for(int i=0; i<getMap().getListeCases().size(); i++)
-		{
-			if(getMap().getListeCases().get(i).getPosition().getX() == p.getX() && getMap().getListeCases().get(i).getPosition().getY() == p.getY())
-			{
-				getMap().getListeCases().get(i).addAnimal(simba);
-				indexNewCase = i;
-				System.out.println("ça rentre");
-			}
-		}
-		System.out.println("nouvelle case: " + getMap().getListeCases().get(indexNewCase).getListeElements().size());
-		try
-		{
-			Thread.sleep(10000);
-		} catch (InterruptedException e)
-		{
-			// PENSER à IMPLEMENTER Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("coucou");
-		fen_plateau.afficherMap(getMap());*/
+		
+		
 		
 	}
 	//-------------------------------------------GETTERS AND SETTERS---------------------//
@@ -143,7 +102,27 @@ public class Ordonnanceur {
 	}
 	//-------------------------------------------AUTRES METHODES-------------------------//
 	
-	
+	/*_______________________________________________________________*/
+	/**Initialise le plateau
+	 */
+	public void initPlateau()
+	{
+		/*FenetreAccueil fen = new FenetreAccueil("Le jeu de la savane");
+		fen.setVisible(true);*/
+		fen_plateau = new Plateau("Le jeu de la savane");
+		fen_plateau.setVisible(true);
+		monXML = new XMLParser("./res/8x8_simple.xml");
+		ArrayList<Case> mesCases;
+		mesCases= monXML.parseXML();
+		map = new Map("Savane", mesCases);
+		fen_plateau.setMyMap(getMap());
+		listeElement = new ArrayList<Element>();
+		fen_plateau.afficherMap(getMap());
+		getListeAnimaux();
+		getListeElement();
+		getListeObstacles();
+		getListeRessource();
+	}
 	/*_______________________________________________________________*/
 	/**
 	 */
@@ -154,6 +133,32 @@ public class Ordonnanceur {
 			  for(Integer i=0; i<listeAnimaux.size();i++){
 				  listeAnimaux.get(i).live();
 			  }
+			// Essai de faire un rafraichissement à modifier bien sur !
+				Animal simba = new Animal();
+				int indexNewCase=0;
+				simba = (Animal) getMap().getListeCases().get(12).getListeElements().get(0);
+				Position p = getMap().getListeCases().get(12).getListeElements().get(0).seDeplacer(getMap().getListeCases().get(12).getPosition());
+				getMap().getListeCases().get(12).supprimerAnimal((Animal) getMap().getListeCases().get(12).getListeElements().get(0));
+				for(int i=0; i<getMap().getListeCases().size(); i++)
+				{
+					if(getMap().getListeCases().get(i).getPosition().getX() == p.getX() && getMap().getListeCases().get(i).getPosition().getY() == p.getY())
+					{
+						getMap().getListeCases().get(i).addAnimal(simba);
+						indexNewCase = i;
+						System.out.println("ça rentre");
+					}
+				}
+				System.out.println("nouvelle case: " + getMap().getListeCases().get(indexNewCase).getListeElements().size());
+				try
+				{
+					Thread.sleep(10000);
+				} catch (InterruptedException e)
+				{
+					// PENSER à IMPLEMENTER Auto-generated catch block
+					e.printStackTrace();
+				}
+				System.out.println("coucou");
+				fen_plateau.afficherMap(getMap());
 			  // To be completed.
 		  }
 	}
@@ -164,7 +169,7 @@ public class Ordonnanceur {
 		  setPause(true);
 	}
 	/*_______________________________________________________________*/
-	/**Sort les listes d'�l�ments**/
+	/**Sort les listes d'�l�ments**/
 	
 	public ArrayList<Animal> getListeAnimaux(){
 		ArrayList<Animal> listeAnimaux=new ArrayList<Animal>();
@@ -191,7 +196,7 @@ public class Ordonnanceur {
 			ArrayList<Element> listeElements=parcourir.getListeElements();
 			for(int j=0; j<listeElements.size(); j++){
 				Element element_temporaire=listeElements.get(j);
-				if(element_temporaire instanceof Animal){
+				if(element_temporaire instanceof Obstacle){
 					Obstacle pouet=(Obstacle)(element_temporaire);
 					listeObstacles.add(pouet);
 				}
@@ -208,7 +213,7 @@ public class Ordonnanceur {
 			ArrayList<Element> listeElements=parcourir.getListeElements();
 			for(int j=0; j<listeElements.size(); j++){
 				Element element_temporaire=listeElements.get(j);
-				if(element_temporaire instanceof Animal){
+				if(element_temporaire instanceof Ressource){
 					Ressource pouet=(Ressource)(element_temporaire);
 					listeRessource.add(pouet);
 				}
@@ -224,6 +229,7 @@ public class Ordonnanceur {
 		public static void main(String[] args) 
 		  {
 				Ordonnanceur ordonnanceur = new Ordonnanceur();
+				ordonnanceur.initPlateau();
 				ordonnanceur.run();
 		  }
 
