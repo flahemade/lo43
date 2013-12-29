@@ -177,7 +177,7 @@ public int seNourrir(Element element){ //TODO A TERMINER
   }
   
   public void live(){
-	  System.out.println(this.getClass()+" ID"+this.getId()+ " Position");
+	  System.out.println(this.getClass().getSimpleName()+"\tID "+this.getId()+"\t live()");
   }
 }
   

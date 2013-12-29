@@ -68,6 +68,7 @@ public class Plateau extends JFrame implements ActionListener{
 		this.setLocationRelativeTo(null);
 		creerComposants();
 		placerComposants();
+		
  	}
 
 	/*_______________________________________________________________*/
@@ -76,12 +77,12 @@ public class Plateau extends JFrame implements ActionListener{
 	private void creerComposants() 
 	{
 		btn_quitter = new JButton("Quitter");
-		btn_quitter.setPreferredSize(new Dimension(150, 30));
+		btn_quitter.setPreferredSize(new Dimension(100, 30));
 		btn_pause = new JButton("Pause");
-		btn_pause.setPreferredSize(new Dimension(150, 30));
+		btn_pause.setPreferredSize(new Dimension(100, 30));
 		btn_pause.addActionListener(this);
 		btn_aide = new JButton("Aide");
-		btn_aide.setPreferredSize(new Dimension(150, 30));
+		btn_aide.setPreferredSize(new Dimension(100, 30));
 		btn_quitter.addActionListener(this);
 		jpDroit = new JPanel();
 		utilisateur = new ActionUtilisateur();
@@ -102,9 +103,11 @@ public class Plateau extends JFrame implements ActionListener{
 		jpDroit.add(jpBas, BorderLayout.SOUTH);
 		JPanel jpGauche = new JPanel();
 		jpGauche.setLayout(new BorderLayout());
-		jpGauche.setPreferredSize(new Dimension(250, this.getHeight()));
+	//	jpGauche.setPreferredSize(new Dimension(250, this.getHeight()));
+		jpGauche.setPreferredSize(new Dimension(250, 4*40)); //Pas adaptatif
 		JPanel jp_gaucheHaut = new JPanel();
-		jp_gaucheHaut.setPreferredSize(new Dimension(250, this.getHeight()/2));
+	//	jp_gaucheHaut.setPreferredSize(new Dimension(250, this.getHeight()/2));
+		jp_gaucheHaut.setPreferredSize(new Dimension(250, 4*40)); //C'est moche
 		jp_gaucheHaut.setLayout(new BorderLayout());
 		jp_gaucheHaut.add(utilisateur);
 		JPanel jp_gaucheBas = new JPanel();
@@ -115,6 +118,7 @@ public class Plateau extends JFrame implements ActionListener{
 		monSplitPane.setDividerSize(20);
 		this.getContentPane().setLayout(new BorderLayout());
 		this.getContentPane().add(monSplitPane);
+		
 	}
 
 	/*_______________________________________________________________*/
@@ -199,7 +203,7 @@ public class Plateau extends JFrame implements ActionListener{
  		}
  		pan.setBorder(blackline);
  		jpDroit.add(pan, BorderLayout.CENTER);
- 		
+ 		this.pack();//nicolas : avec ca j'aiplus besoin de mettre la fenetre en plein ecran pour avoir un affichage
  	}
 
 }
