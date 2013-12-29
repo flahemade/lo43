@@ -618,19 +618,47 @@ private ArrayList<Case> reparerListe (ArrayList<Case> l, Case casedefaut, Dimens
 	int i;
 	int nbcasemax = dimensionmap.getLength()*dimensionmap.getWidth();
 	ArrayList<Case> listereparee=new ArrayList<Case>();
-	//listereparee.ensureCapacity(nbcasemax);
 	
-	for(i=0;i<l.size();i++){
+	for(i=0;i<nbcasemax;i++){
+		if(l.size()>i){
+			if(l.get(i).getId()>=0){
+				listereparee.add(l.get(i));
+			}
+		}
+		else{
+			listereparee.add(i, new Case(i,new Position((i/dimensionmap.getLength())-1,(i/dimensionmap.getWidth())-1),casedefaut.getType()));
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*for(i=0;i<l.size();i++){
 		if(l.get(i).getId()>=0){
 			listereparee.add(i, l.get(i)); //si l'id de la case est valide (superieur a 0), on ajoute la case à la liste
 		}
 		else{
-			casedef.setId(i);
-			listereparee.add(i, casedef);
+			//casedef.setId(i);
+			listereparee.get(i).add(new Case(i, new Position(), casedefaut.getType()));
 		}
 	}
-
-	for(i = listereparee.size() ;i < nbcasemax ; i++){
+*/
+	/*for(i = listereparee.size() ;i < nbcasemax ; i++){
 			System.out.println("i "+i);
 			casedef.setId(i);
 			System.out.println("casedef "+casedef.getId());
@@ -638,7 +666,7 @@ private ArrayList<Case> reparerListe (ArrayList<Case> l, Case casedefaut, Dimens
 			System.out.println("liste "+listereparee.get(i).getId());
 			System.out.println();		
 	}
-	
+	*/
 	return listereparee;
 }
 
