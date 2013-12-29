@@ -151,9 +151,7 @@ public class Ordonnanceur {
 		  if(this.pause=!false){
 			  // Execute la mï¿½thode live() de chaque animal.
 			 ArrayList<Animal> listeAnimaux=this.getListeAnimaux();
-			 System.out.println("Run est bien lancée.");
 			  for(Integer i=0; i<listeAnimaux.size();i++){
-				  System.out.println("Animal");
 				  listeAnimaux.get(i).live();
 			  }
 			  // To be completed.
@@ -166,7 +164,7 @@ public class Ordonnanceur {
 		  setPause(true);
 	}
 	/*_______________________________________________________________*/
-	/**Gï¿½nï¿½re la liste des animaux**/
+	/**Sort les listes d'éléments**/
 	
 	public ArrayList<Animal> getListeAnimaux(){
 		ArrayList<Animal> listeAnimaux=new ArrayList<Animal>();
@@ -179,11 +177,44 @@ public class Ordonnanceur {
 				if(element_temporaire instanceof Animal){
 					Animal pouet=(Animal)(element_temporaire);
 					listeAnimaux.add(pouet);
-					System.out.println("Un animal par ci.");
 				}
 			}
 		}
 		return listeAnimaux;
+	}
+	
+	public ArrayList<Obstacle> getListeObstacles(){
+		ArrayList<Obstacle> listeObstacles=new ArrayList<Obstacle>();
+		ArrayList<Case> listeCases=map.getListeCases();
+		for(int i=0; i<listeCases.size(); i++){
+			Case parcourir=listeCases.get(i);
+			ArrayList<Element> listeElements=parcourir.getListeElements();
+			for(int j=0; j<listeElements.size(); j++){
+				Element element_temporaire=listeElements.get(j);
+				if(element_temporaire instanceof Animal){
+					Obstacle pouet=(Obstacle)(element_temporaire);
+					listeObstacles.add(pouet);
+				}
+			}
+		}
+		return listeObstacles;
+	}
+	
+	public ArrayList<Ressource> getListeRessource(){
+		ArrayList<Ressource> listeRessource=new ArrayList<Ressource>();
+		ArrayList<Case> listeCases=map.getListeCases();
+		for(int i=0; i<listeCases.size(); i++){
+			Case parcourir=listeCases.get(i);
+			ArrayList<Element> listeElements=parcourir.getListeElements();
+			for(int j=0; j<listeElements.size(); j++){
+				Element element_temporaire=listeElements.get(j);
+				if(element_temporaire instanceof Animal){
+					Ressource pouet=(Ressource)(element_temporaire);
+					listeRessource.add(pouet);
+				}
+			}
+		}
+		return listeRessource;
 	}
 	
 	  /*_______________________________________________________________*/
