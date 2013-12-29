@@ -13,7 +13,7 @@ public class Animal extends Element {
   protected int AgeMax;
   protected int PV;
   protected Boolean sexe;
-//  protected int idCase;
+//  protected int idCase; //Se trouve dans Element
  // protected int modifierVie; //Se trouve dans Element
  // protected int champVision; //Se trouve dans Element
   
@@ -40,7 +40,6 @@ public Animal(int idcase){
 	init();
 
 
-	
 }
 //------------------------------GETTERS AND SETTERS------------------------------------//
 
@@ -102,57 +101,9 @@ public Animal(int idcase){
 		this.sexe = sexe;
 	}
 	
-/*	public Integer getIdCase(){
-		return idCase;
-	}
-	public void setIdCase(int idcase){
-		this.idCase = idcase;
-	}
-	public void setCaseLocation(Integer idCase){
-		this.idCase=idCase;
-	}
-*/	
-	/*_______________________________________________________________*/
-	/** Permet d'obtenir la valeur du champ modifierVie.
-	 * @return la valeur du champ modifierVie.
-	 */
-	public int getModifierVie()
-	{
-		return modifierVie;
-	}
 
-	/*_______________________________________________________________*/
-	/** Modifie la valeur du champ modifierVie.
-	 * @param modifierVie la nouvelle valeur du champ modifierVie.
-	 */
-	public void setModifierVie(int modifierVie)
-	{
-		this.modifierVie = modifierVie;
-	}
 
-	/*_______________________________________________________________*/
-	/** Permet d'obtenir la valeur du champ champVision.
-	 * @return la valeur du champ champVision.
-	 */
-	public int getChampVision()
-	{
-		return champVision;
-	}
-
-	/*_______________________________________________________________*/
-	/** Modifie la valeur du champ champVision.
-	 * @param champVision la nouvelle valeur du champ champVision.
-	 */
-	public void setChampVision(int champVision)
-	{
-		this.champVision = champVision;
-	}
-	
-	
-	
-	
-	
-	
+		
   //------------------------------Autres M�thodes----------------------------------------//
 
 	 private void init(){
@@ -226,7 +177,7 @@ public int seNourrir(Element element){ //TODO A TERMINER
   }
   
   public void live(){
-	  
+	  System.out.println(this.getClass()+" ID"+this.getId()+ " Position");
   }
 }
   
