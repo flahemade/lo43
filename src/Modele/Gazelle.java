@@ -10,7 +10,7 @@ public class Gazelle extends Animal {
 	public Gazelle(int caseid, Boolean sexe){
 		super(caseid);
 		init();
-		setCaseId(caseid);
+		//setCaseId(caseid);
 		setSexe(sexe);
 		
 	}

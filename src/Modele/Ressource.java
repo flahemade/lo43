@@ -2,34 +2,27 @@ package Modele;
 
 public class Ressource extends Element {
 
-	//private int idcase;
-	//private int modifierVie;
-	//private int champVision;
-	//private String image;
+	
   
 	/*--------Constructeurs----------*/
   public Ressource(String nom, String image, int modifierVie, int champVision){
 	  super(image, nom , modifierVie, champVision );    
   }
   
+ /* public Ressource(){
+	  super();
+	  init();
+  }
+  */
   public Ressource (int idcase){
 	  
 	super(idcase);
-	
 	init();
   }
 /*-----------SETTERS & GETTERS--------*/
 
-  
-/*  public int getIdcase() {
-	return idcase;
-}
 
-public void setIdcase(int idcase) {
-	this.idcase = idcase;
-}
-*/
-public int getModifierVie() {
+/*public int getModifierVie() {
 	return modifierVie;
 }
 
@@ -52,14 +45,16 @@ public String getImage() {
 public void setImage(String image) {
 	this.image = image;
 }
-
+*/
 
 /*----------AUTRES METHODES ----------*/
 
 public void init(){
+	
 	  setChampVision(0);
-	  
+	 
   }
+
   public void disparaitre() {
   }
 }

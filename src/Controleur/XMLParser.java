@@ -17,10 +17,13 @@ import Modele.Girafe;
 import Modele.Hyene;
 import Modele.Lion;
 import Modele.Obstacle;
+import Modele.Plante;
 import Modele.Position;
 import Modele.Ressource;
 import Modele.TypeAnimal;
+import Modele.TypeRessource;
 import Modele.TypeTerrain;
+import Modele.Viande;
 
 
 /*_______________________________________________________________*/
@@ -153,6 +156,7 @@ public ArrayList<Case> parseXML(){
 			*/
 			listefinale=assemblerCaseObstacle(listecase, listeobstacle);
 			listefinale=assemblerCaseAnimal(listecase, listeanimaux);
+			listefinale=assemblerCaseRessource(listecase, listeressource);
 			return listefinale;
 	}
 /*
@@ -309,7 +313,7 @@ private TypeAnimal getTypeAnimal(NodeList l){
 	for(i=0;i<l.getLength();i++)
 	{
 		
-		if(l.item(i).getNodeName().toLowerCase()=="type")
+		if(l.item(i).getNodeName().toLowerCase().equals("type"))
 		{
 			if(l.item(i).getTextContent().trim().toLowerCase().equals("lion")){
 				type = TypeAnimal.LION;
@@ -327,6 +331,21 @@ private TypeAnimal getTypeAnimal(NodeList l){
 	return type;
 }
 
+private TypeRessource getTypeRessource(NodeList l){
+	
+	int i;
+	TypeRessource type = TypeRessource.PLANTE;
+	for(i=0;i<l.getLength();i++){
+		
+		if(l.item(i).getTextContent().toLowerCase().trim().equals("plante")){
+			type = TypeRessource.PLANTE;
+		}
+		if(l.item(i).getTextContent().toLowerCase().trim().equals("viande")){
+			type = TypeRessource.VIANDE;
+		}
+	}
+	return type;
+}
 /**
  * Recupere les attribution position x et y de la classe Case à partir du XML et les retourne au format Position
  * @param l
@@ -509,10 +528,8 @@ private ArrayList<Animal> parseEspece(NodeList l){
 		switch (enumBourrin(l.item(i).getNodeName())){
 		
 		case 9 :
-		//id = getId(l.item(i));
 		caseid = getCaseId(l.item(i).getChildNodes());
 		//nomclass = getType(l.item(i).getChildNodes());
-		//TODO Faire un GetType animal
 		type = getTypeAnimal(l.item(i).getChildNodes());
 		sexe = getSexe(l.item(i).getChildNodes());
 			switch(type){
@@ -558,20 +575,26 @@ private ArrayList<Obstacle> parseObstacle(NodeList l){
 
 private ArrayList<Ressource> parseRessource(NodeList l){
 	int i;
-	Integer id=-1;
 	int caseid=-1;
-	String type="";
+	TypeRessource type =null;
 	ArrayList<Ressource> listeressource = new ArrayList<Ressource>();
 	
 
 	for(i=0;i<l.getLength();i++){
 		
 		if(l.item(i).getNodeName().toLowerCase().trim()=="ressource"){
-			id = getId(l.item(i));
+			//id = getId(l.item(i));
 			caseid = getCaseId(l.item(i).getChildNodes());
 			//type = getType(l.item(i).getChildNodes());
+			type = getTypeRessource(l.item(i).getChildNodes());
+			switch(type){
+			
+				case PLANTE : listeressource.add(new Plante (caseid));break;
+				case VIANDE : listeressource.add(new Viande (caseid));break;
+				default : break;
+			}
 			//Ajout d'un obstacle à la liste
-			System.out.println("Ressource "+id+
+			System.out.println("Ressource "+
 					" Type : "+type+
 					" CaseId : "+caseid);
 		}
@@ -620,11 +643,11 @@ private ArrayList<Ressource> parseRessource(NodeList l){
 
 private ArrayList<Case> assemblerCaseObstacle(ArrayList<Case> listecase, ArrayList<Obstacle>listeobstacle){
 	int i,j;
-	ArrayList<Case>lcase = listecase;
+	//ArrayList<Case>lcase = listecase;
 	
 	for(i=0;i<listeobstacle.size();i++){
-		for(j=0;j<lcase.size();j++){
-			if(lcase.get(j).getId()==listeobstacle.get(i).getIdcase()){
+		for(j=0;j<listecase.size();j++){
+			if(listecase.get(j).getId()==listeobstacle.get(i).getCaseId()){
 				listecase.get(j).addObstacle(listeobstacle.get(i));
 			}
 		}
@@ -634,11 +657,11 @@ private ArrayList<Case> assemblerCaseObstacle(ArrayList<Case> listecase, ArrayLi
 
 private ArrayList<Case> assemblerCaseAnimal(ArrayList<Case> listecase, ArrayList<Animal>listeanimaux){
 	int i,j;
-	ArrayList<Case>lcase = listecase;
+	//ArrayList<Case>lcase = listecase;
 	
 	for(i=0;i<listeanimaux.size();i++){
-		for(j=0;j<lcase.size();j++){
-			if(lcase.get(j).getId()==listeanimaux.get(i).getCaseId()){
+		for(j=0;j<listecase.size();j++){
+			if(listecase.get(j).getId()==listeanimaux.get(i).getCaseId()){
 				listecase.get(j).addAnimal(listeanimaux.get(i));
 			}
 		}
@@ -646,20 +669,20 @@ private ArrayList<Case> assemblerCaseAnimal(ArrayList<Case> listecase, ArrayList
 	return listecase;
 }
 
-/*private ArrayList<Ressource> assemblerCaseRessource(ArrayList<Case> listecase, ArrayList<Ressource>listeressources){
+private ArrayList<Case> assemblerCaseRessource(ArrayList<Case> listecase, ArrayList<Ressource>listeressources){
 	int i,j;
-	ArrayList<Case>lcase = listecase;
+	//ArrayList<Case>lcase = listecase;
 	
 	for(i=0;i<listeressources.size();i++){
-		for(j=0;j<lcase.size();j++){
-			if(lcase.get(j).getId()==listeressources.get(i).getIdCase()){
+		for(j=0;j<listecase.size();j++){
+			if(listecase.get(j).getId()==listeressources.get(i).getCaseId()){
 				listecase.get(j).addRessource(listeressources.get(i));
 			}
 		}
 	}
 	return listecase;
 }
-*/
+
 //TODO Ajouter la taille de la carte dans le XML et une case par defaut
 //TODO completer carte la liste de case par des case par deffaut
 //TODO Creer fonction pour verifier l'intégrité de la carte avant de la retourner

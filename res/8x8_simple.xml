@@ -519,6 +519,16 @@
              <caseid>12</caseid>
          </animal>
          <animal>
+             <type>hyene</type>
+             <sexe>male</sexe>
+             <caseid>44</caseid>
+         </animal>
+         <animal>
+             <type>girafe</type>
+             <sexe>male</sexe>
+             <caseid>26</caseid>
+         </animal>
+         <animal>
              <type>gazelle</type>
              <sexe>femelle</sexe>
              <caseid>13</caseid>
@@ -557,5 +567,14 @@
      		<obstacle><caseid>39</caseid></obstacle>
      		<obstacle><caseid>47</caseid></obstacle>
      		<obstacle><caseid>55</caseid></obstacle>
+     		
+     		<ressource> 
+     			<type>plante</type> <!-- Une instance de la classe plante va être instanciee -->
+     			<caseid>27</caseid> <!-- La ressource sera placee dans la case d'id 26 -->
+     		</ressource>
+     		<ressource> 
+     			<type>viande</type> <!-- Une instance de la classe viande va être instanciee -->
+     			<caseid>36</caseid> <!-- La ressource sera placee dans la case d'id 33 -->
+     		</ressource>
      </objet>
  </savane>

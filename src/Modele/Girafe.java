@@ -10,7 +10,7 @@ public class Girafe extends Animal{
 	public Girafe(int caseid, Boolean sexe){
 		super(caseid);
 		init();
-		setCaseId(caseid);
+		//setCaseId(caseid);
 		setSexe(sexe);
 		
 	}

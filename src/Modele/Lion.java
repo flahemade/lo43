@@ -11,7 +11,7 @@ public class Lion extends Animal {
 		super(caseid);
 		init();
 		setSexe(sexe);
-		setCaseId(caseid);
+		//setCaseId(caseid);
 	}
   public void seBattre() {
   }

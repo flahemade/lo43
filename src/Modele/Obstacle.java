@@ -7,16 +7,9 @@ package Modele;
  */
 public class Obstacle extends Element {
 
-
-	/** id de la case */
-	private int idcase;
-	//private int modifierVie;
-	//private int champVision;
-	//private String image;
-	 
+	
 	public Obstacle(int idcase){
 		super("./res/obstacles/obstacle1.png","Obstacle"+(ID+1),0,0, idcase);
-		setIdcase(idcase);
 		
 	}
 	public Obstacle(int modifierVie, int champVision, String nom, String image, int idcase)
@@ -40,30 +33,15 @@ public class Obstacle extends Element {
 	 }
 
 	  /*_______________________________________________________________*/
-	/** getter de l'ID
+/*	/** getter de l'ID
 	 * @return lID
 	 */
-	public int getId()
+	/*public int getId()
 	  {
 		  return ID;
 	  }
-	
-/*_____________________________________________________________*/
-		/** getter de l'idcase
-		 * @return idcase
-		 */
-	public int getIdcase() {
-		return idcase;
-	}
+	*/
 
-	/*_______________________________________________________________*/
-	/** setter de l'idcase
-	 * @param idcase
-	 */
-	public void setIdcase(int idcase) {
-		this.idcase = idcase;
-	}
-  
 	/*_______________________________________________________________*/
 	/**
 	 * @see Modele.Element#afficherElement()

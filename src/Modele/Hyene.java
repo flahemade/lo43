@@ -10,7 +10,7 @@ public class Hyene extends Animal{
 	public Hyene(int caseid, Boolean sexe){
 		super(caseid);
 		init();
-		setCaseId(caseid);
+		//setCaseId(caseid);
 		setSexe(sexe);
 		
 	}
