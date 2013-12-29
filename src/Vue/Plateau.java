@@ -133,7 +133,7 @@ public class Plateau extends JFrame implements ActionListener{
 		}
 		if(e.getSource()== btn_pause)
 		{
-			//A completer
+			//this.afficherMap(getMyMap());
 		}
 		
 	}
@@ -162,6 +162,7 @@ public class Plateau extends JFrame implements ActionListener{
  	 */
  	public void afficherMap(Map maMap)
  	{
+ 		this.repaint();
  		ArrayList<Case> mesCases = maMap.getListeCases();
  		
  		JPanel pan = new JPanel(new GridLayout(8,8));
@@ -198,6 +199,7 @@ public class Plateau extends JFrame implements ActionListener{
  		}
  		pan.setBorder(blackline);
  		jpDroit.add(pan, BorderLayout.CENTER);
+ 		
  	}
 
 }
