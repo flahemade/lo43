@@ -148,10 +148,12 @@ public class Ordonnanceur {
 	/**
 	 */
 	public void run() {
-		  while(this.pause==false){
+		  if(this.pause=!false){
 			  // Execute la mï¿½thode live() de chaque animal.
 			 ArrayList<Animal> listeAnimaux=this.getListeAnimaux();
-			  for(Integer i=0; listeAnimaux.size()<=i;i++){
+			 System.out.println("Run est bien lancée.");
+			  for(Integer i=0; i<listeAnimaux.size();i++){
+				  System.out.println("Animal");
 				  listeAnimaux.get(i).live();
 			  }
 			  // To be completed.
@@ -173,11 +175,11 @@ public class Ordonnanceur {
 			Case parcourir=listeCases.get(i);
 			ArrayList<Element> listeElements=parcourir.getListeElements();
 			for(int j=0; j<listeElements.size(); j++){
-				
 				Element element_temporaire=listeElements.get(j);
-				if(element_temporaire.getClass().equals("Animal")){
+				if(element_temporaire instanceof Animal){
 					Animal pouet=(Animal)(element_temporaire);
 					listeAnimaux.add(pouet);
+					System.out.println("Un animal par ci.");
 				}
 			}
 		}
@@ -191,7 +193,7 @@ public class Ordonnanceur {
 		public static void main(String[] args) 
 		  {
 				Ordonnanceur ordonnanceur = new Ordonnanceur();
-				ordonnanceur.getListeAnimaux();
+				ordonnanceur.run();
 		  }
 
 }
