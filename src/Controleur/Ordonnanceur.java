@@ -173,6 +173,7 @@ public class Ordonnanceur {
 			Case parcourir=listeCases.get(i);
 			ArrayList<Element> listeElements=parcourir.getListeElements();
 			for(int j=0; j<listeElements.size(); j++){
+				
 				Element element_temporaire=listeElements.get(j);
 				if(element_temporaire.getClass().equals("Animal")){
 					Animal pouet=(Animal)(element_temporaire);
