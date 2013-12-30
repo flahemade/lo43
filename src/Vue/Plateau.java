@@ -121,8 +121,8 @@ public class Plateau extends JFrame implements ActionListener, MouseListener{
 	//	jp_gaucheHaut.setPreferredSize(new Dimension(250, this.getHeight()/2));
 		jp_gaucheHaut.setPreferredSize(new Dimension(250, 4*40)); //C'est moche
 		jp_gaucheHaut.setLayout(new BorderLayout());
-		jp_gaucheHaut.add(utilisateur);
-		jp_gaucheBas.setLayout(new GridLayout(6, 1));
+		jp_gaucheHaut.add(utilisateur, BorderLayout.CENTER);
+		jp_gaucheBas.setLayout(new BorderLayout());
 		monSplitPane2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, jp_gaucheHaut, jp_gaucheBas);
 		monSplitPane2.setDividerSize(15);
 		jpGauche.add(monSplitPane2);
@@ -231,6 +231,7 @@ public class Plateau extends JFrame implements ActionListener, MouseListener{
  	public void afficherStat(/*int lion, int hyene, int girafe, int gazelle*/int animal, int obstacle, int ressource)
  	{
  		ArrayList<JLabel> labels = new ArrayList<JLabel>();
+ 		labels.add(new JLabel("Statistique du jeu:"));
  		//labels.add(new JLabel("Nombre de Lions :" + lion));
  		//labels.add(new JLabel("Nombre de Hyenes :" + hyene));
  		//labels.add(new JLabel("Nombre de Girafes :" + girafe));
@@ -238,10 +239,13 @@ public class Plateau extends JFrame implements ActionListener, MouseListener{
  		labels.add(new JLabel("Nombre d'Animal :" + animal));
  		labels.add(new JLabel("Nombre d'Obstacles :" + obstacle));
  		labels.add(new JLabel("Nombre de Ressources :" + ressource));
+ 		JPanel pan = new JPanel();
+ 		pan.setLayout(new GridLayout(7,1));
  		for (int i = 0; i < labels.size(); i++)
 		{
-			jp_gaucheBas.add(labels.get(i));
+			pan.add(labels.get(i));
 		}
+ 		jp_gaucheBas.add(pan, BorderLayout.NORTH);
  	}
 
 	/*_______________________________________________________________*/
