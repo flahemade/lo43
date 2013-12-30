@@ -181,11 +181,19 @@ public int seNourrir(Element element){ //TODO A TERMINER
 	  System.out.println(this.getClass().getSimpleName()+"\tID "+this.getId()+"\t live()");
 	  Position positionCible=seDeplacer(c.getPosition());
 	  Case ancienne=c;
+	  Case nouvelle=c;
 	  ArrayList<Case> listeCases=c.getListeCasesAdjacentes();
 	  System.out.println("POUET : "+positionCible.toString());
 	  for(int i=0;i<listeCases.size();i++){
 		  System.out.println(listeCases.toString());
+		  if(listeCases.get(i).getPosition()==positionCible){
+			  nouvelle=listeCases.get(i);
+		  }
 	  }
+	  //Gestion du déplacement.
+	  
+	  //ancienne.supprimerAnimal(this);
+	  //nouvelle.addAnimal(this);
 	  Age++;
   }
 }
