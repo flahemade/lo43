@@ -216,7 +216,8 @@ public class Plateau extends JFrame implements ActionListener, MouseListener{
  		}
  		pan.setBorder(blackline);
  		jpDroit.add(pan, BorderLayout.CENTER);
- 		//this.pack();//nicolas : avec ca j'aiplus besoin de mettre la fenetre en plein ecran pour avoir un affichage
+ 		
+ 		this.pack();//nicolas : avec ca j'aiplus besoin de mettre la fenetre en plein ecran pour avoir un affichage
  	}
  	
  	/*_______________________________________________________________*/

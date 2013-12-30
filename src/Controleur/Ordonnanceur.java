@@ -320,6 +320,9 @@ public class Ordonnanceur {
 		*/
 		return listecasesadjacentes;
 	}
+	public void updateGUI(){
+		fen_plateau.afficherMap(getMap());
+	}
 	  /*_______________________________________________________________*/
 		/**
 		 * @param args
@@ -330,6 +333,7 @@ public class Ordonnanceur {
 				ordonnanceur.initPlateau();
 				for(;;){
 				ordonnanceur.run();
+				ordonnanceur.updateGUI();
 				try {
 					Thread.sleep(5000);
 				} catch (InterruptedException e) {
