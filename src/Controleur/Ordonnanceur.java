@@ -123,6 +123,7 @@ public class Ordonnanceur {
 		getListeElement();
 		getListeObstacles();
 		getListeRessource();
+		fen_plateau.afficherStat(getListeAnimaux().size(), getListeObstacles().size(), getListeRessource().size());
 	}
 	/*_______________________________________________________________*/
 	/**
@@ -181,7 +182,9 @@ public class Ordonnanceur {
 		  setPause(true);
 	}
 	/*_______________________________________________________________*/
-	/**Sort les listes d'�l�ments**/
+	/**Sort les listes d'�l�ments
+	 * @return la liste d'animaux
+	**/
 	
 	public ArrayList<Animal> getListeAnimaux(){
 		ArrayList<Animal> listeAnimaux=new ArrayList<Animal>();
@@ -200,6 +203,10 @@ public class Ordonnanceur {
 		return listeAnimaux;
 	}
 	
+	/*_______________________________________________________________*/
+	/**
+	 * @return une liste d'obstacle
+	 */
 	public ArrayList<Obstacle> getListeObstacles(){
 		ArrayList<Obstacle> listeObstacles=new ArrayList<Obstacle>();
 		ArrayList<Case> listeCases=map.getListeCases();
@@ -217,6 +224,10 @@ public class Ordonnanceur {
 		return listeObstacles;
 	}
 	
+	/*_______________________________________________________________*/
+	/**
+	 * @return la liste des ressources
+	 */
 	public ArrayList<Ressource> getListeRessource(){
 		ArrayList<Ressource> listeRessource=new ArrayList<Ressource>();
 		ArrayList<Case> listeCases=map.getListeCases();
