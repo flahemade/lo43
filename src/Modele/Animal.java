@@ -183,6 +183,7 @@ public int seNourrir(Element element){ //TODO A TERMINER
 	  Case ancienne=c;
 	  Case nouvelle=c;
 	  ArrayList<Case> listeCases=c.getListeCasesAdjacentes();
+	  System.out.println("Swag : "+c.getListeCasesAdjacentes().toString());
 	  System.out.println("POUET : "+positionCible.toString());
 	  for(int i=0;i<listeCases.size();i++){
 		  System.out.println(listeCases.toString());
@@ -192,8 +193,10 @@ public int seNourrir(Element element){ //TODO A TERMINER
 	  }
 	  //Gestion du déplacement.
 	  
-	  //ancienne.supprimerAnimal(this);
-	  //nouvelle.addAnimal(this);
+	  ancienne.supprimerAnimal(this);
+	  System.out.println("Fion "+ancienne.getId());
+	  nouvelle.addAnimal(this);
+	  System.out.println("Fion "+nouvelle.getId());
 	  Age++;
   }
 }
