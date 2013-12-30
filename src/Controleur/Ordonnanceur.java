@@ -131,17 +131,17 @@ public class Ordonnanceur {
 		  if(this.pause=!false){
 			  // Execute la m�thode live() de chaque animal.
 			 ArrayList<Animal> listeAnimaux=this.getListeAnimaux();
+			 Case c=null;
 			  for(Integer i=0; i<listeAnimaux.size();i++){
-				  Position p = new Position();
 				  for(int j=0; j< getMap().getListeCases().size(); j++)
 				  {
 					  if(getMap().getListeCases().get(j).getId()== listeAnimaux.get(i).getId())
 					  {
-						  p = getMap().getListeCases().get(j).getPosition();
+						  c = getMap().getListeCases().get(j);
 						 //reste à enlever l'animal de la liste de la case
 					  }
 				  }
-				  listeAnimaux.get(i).live(p);
+				  listeAnimaux.get(i).live(c);
 				  //reste à rajouter l'animal dans la liste des éléments de la case
 			  }
 			// Essai de faire un rafraichissement à modifier bien sur !

@@ -1,5 +1,6 @@
 package Modele;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 
@@ -176,9 +177,10 @@ public int seNourrir(Element element){ //TODO A TERMINER
 	  
   }
   
-  public void live(Position p){
+  public void live(Case c){
 	  System.out.println(this.getClass().getSimpleName()+"\tID "+this.getId()+"\t live()");
-	  seDeplacer(p);  
+	  Position positionCible=seDeplacer(c.getPosition());
+	  
 	  Age++;
   }
 }
