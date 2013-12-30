@@ -193,10 +193,11 @@ public int seNourrir(Element element){ //TODO A TERMINER
 	  }
 	  //Gestion du d�placement.
 	  
-	  ancienne.supprimerAnimal(this);
-	  System.out.println("Fion "+ancienne.getId());
+	  
 	  nouvelle.addAnimal(this);
 	  System.out.println("Fion "+nouvelle.getId());
+	  ancienne.supprimerAnimal(this);
+	  System.out.println("Fion "+ancienne.getId());
 	  Age++;
   }
 }

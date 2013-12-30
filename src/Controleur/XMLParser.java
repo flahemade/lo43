@@ -779,14 +779,14 @@ public void write(String chemin, Map map) {
 */
 /* --------DEBUG -------------*/
 
-public static void main(String[] args) {
+/*public static void main(String[] args) {
 	
 System.out.println("XMLParser debugger");
 XMLParser parser = new XMLParser("./res/8x8_test.xml"); //Création d'une instance de Parser, attention à bien spécifier une adresse correcte
 //XMLParser parser = new XMLParser("./res/map.xml");
 parser.parseXML(); //Debut du parsing
 }
-
+*/
 }
 
 

@@ -39,5 +39,7 @@ public class Position {
 	public void setY(int y) {
 		this.y = y;
 	}
-
+ public String toString(){
+	 return(this.getX()+" , "+this.getY());
+ }
 }

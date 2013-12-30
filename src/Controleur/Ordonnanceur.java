@@ -143,6 +143,7 @@ public class Ordonnanceur {
 						  System.out.println(map.getListeCases().get(i).getListeCasesAdjacentes().get(j).getId());
 					  }
 				  }
+				 
 			  // Execute la m�thode live() de chaque animal.
 			 ArrayList<Animal> listeAnimaux=this.getListeAnimaux();
 			 Case c=null;
