@@ -135,7 +135,8 @@ public ArrayList<Case> parseXML(){
 				System.out.println("ListeFinale : ID_Case "+listefinale.get(i).getId());
 			}
 			*/
-			listefinale=reparerListe(listecase, casedefaut, dimensionmap);
+			listefinale=trierListe(listecase);
+			listefinale=reparerListe(listefinale, dimensionmap, casedefaut);
 			listeobstacle=genererCeintureObstacle(listeobstacle, dimensionmap);
 			listefinale=assemblerCaseObstacle(listecase, listeobstacle);
 			listefinale=assemblerCaseAnimal(listecase, listeanimaux);
@@ -607,16 +608,11 @@ private ArrayList<Ressource> parseRessource(NodeList l){
  * @param dimensionmap
  * @return
  */
-private ArrayList<Case> reparerListe (ArrayList<Case> l, Case casedefaut, Dimension dimensionmap){
+private ArrayList<Case> trierListe (ArrayList<Case> l){
 	
 	
-	int i,cpt=0;
-	int j;
+	int i;
 	Boolean permut;
-	int nbcasemax = dimensionmap.getLength()*dimensionmap.getWidth();
-	l.ensureCapacity(nbcasemax);
-	ArrayList<Case> listereparee=new ArrayList<Case>();
-	
 	//Trier la liste par ordre croissant d'id de case
 	do {
 		// hypothèse : le tableau est trié
@@ -638,7 +634,7 @@ private ArrayList<Case> reparerListe (ArrayList<Case> l, Case casedefaut, Dimens
 			
 		}
 	} while (permut);
-	
+
 /*	System.out.println("l.size() "+l.size());
 	for(j=0;j<64;j++){
 	 System.out.println("j "+j);
@@ -672,7 +668,38 @@ private ArrayList<Case> reparerListe (ArrayList<Case> l, Case casedefaut, Dimens
 	
 	
 }
+private ArrayList<Case>	reparerListe (ArrayList<Case> lcase, Dimension dmap,Case casedef){
+	int i;
+	int cpt=0;
+	int length = dmap.getLength();
+	int width = dmap.getWidth();
+	int taillelcase = lcase.size();
+	int nbcasemax = dmap.getLength()*dmap.getWidth();
+	ArrayList<Case> listereparee = lcase;
+	System.out.println("Liste size "+listereparee.size());
+	if(listereparee.size()!=0){
+	for(i=0;i<listereparee.size();i++){
+		System.out.println("Id de la case analalysée "+listereparee.get(i).getId()+
+				" i "+i);
+		if((i==listereparee.size()-1)&& (listereparee.get(i).getId()==nbcasemax-2)){
+			listereparee.add(new Case(nbcasemax-1,new Position(length-1,width-1),casedef.getType()));
+		}
+		if(listereparee.get(i).getId()>i){
+		listereparee.add(i,new Case(i,new Position(i%length,i/width),casedef.getType()));
+		System.out.println("Ajout Case ID "+i);
+		}
+	
+	}
+	}
+	else{
+		for(i=0;i<nbcasemax;i++){
+			listereparee.add(new Case(i,new Position(i%length,i/width),casedef.getType()));
+		}
+	}
+	System.out.println("Liste size "+listereparee.size());
 
+	return listereparee;
+}
 private ArrayList<Obstacle> genererCeintureObstacle (ArrayList<Obstacle> listeobstacle,Dimension dimensionmap){
 	
 	int i;
