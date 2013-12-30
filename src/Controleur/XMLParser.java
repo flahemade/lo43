@@ -669,11 +669,9 @@ private ArrayList<Case> trierListe (ArrayList<Case> l){
 	
 }
 private ArrayList<Case>	reparerListe (ArrayList<Case> lcase, Dimension dmap,Case casedef){
-	int i;
-	int cpt=0;
+	int i;;
 	int length = dmap.getLength();
 	int width = dmap.getWidth();
-	int taillelcase = lcase.size();
 	int nbcasemax = dmap.getLength()*dmap.getWidth();
 	ArrayList<Case> listereparee = lcase;
 	System.out.println("Liste size "+listereparee.size());
