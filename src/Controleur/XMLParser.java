@@ -675,13 +675,17 @@ private ArrayList<Case>	reparerListe (ArrayList<Case> lcase, Dimension dmap,Case
 	int nbcasemax = dmap.getLength()*dmap.getWidth();
 	ArrayList<Case> listereparee = lcase;
 	System.out.println("Liste size "+listereparee.size());
-	if(listereparee.size()!=0){
+	//Si la liste n'est pas nulle, on repare
+	if(listereparee.size()!=0){ 
 	for(i=0;i<listereparee.size();i++){
 		System.out.println("Id de la case analalysée "+listereparee.get(i).getId()+
 				" i "+i);
+		//Si la case est manquante (situation particuliere), on l'ajoute
 		if((i==listereparee.size()-1)&& (listereparee.get(i).getId()==nbcasemax-2)){
 			listereparee.add(new Case(nbcasemax-1,new Position(length-1,width-1),casedef.getType()));
 		}
+		//Si l'id de la case est > à i, c'est qu'il manque une case à cet endroit
+		//On ajoute donc une case à cet emplacement
 		if(listereparee.get(i).getId()>i){
 		listereparee.add(i,new Case(i,new Position(i%length,i/width),casedef.getType()));
 		System.out.println("Ajout Case ID "+i);
@@ -689,7 +693,7 @@ private ArrayList<Case>	reparerListe (ArrayList<Case> lcase, Dimension dmap,Case
 	
 	}
 	}
-	else{
+	else{ //Le XML ne contient aucune case, on genère une liste par defaut
 		for(i=0;i<nbcasemax;i++){
 			listereparee.add(new Case(i,new Position(i%length,i/width),casedef.getType()));
 		}
