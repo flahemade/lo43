@@ -132,18 +132,22 @@ public class Ordonnanceur {
 	/**
 	 */
 	public void run() {
-		int i;
+		int i,j;
 		  if(this.pause=!false){
 			  map.rafraichirPositionElement();
 			  for(i=0;i<map.getListeCases().size();i++){
 				  map.getListeCases().get(i).setListeCasesAdjacentes(genererListeCaseAdjacentes(map.getListeCases().get(i)));
 			  }
-				  
+				  for(i=0;i<map.getListeCases().size();i++){
+					  for(j=0;j<map.getListeCases().get(i).getListeCasesAdjacentes().size();j++){
+						  System.out.println(map.getListeCases().get(i).getListeCasesAdjacentes().get(j).getId());
+					  }
+				  }
 			  // Execute la m�thode live() de chaque animal.
 			 ArrayList<Animal> listeAnimaux=this.getListeAnimaux();
 			 Case c=null;
 			  for( i=0; i<listeAnimaux.size();i++){
-				  for(int j=0; j< getMap().getListeCases().size(); j++)
+				  for(j=0; j< getMap().getListeCases().size(); j++)
 				  {
 					  if(getMap().getListeCases().get(j).getId()== listeAnimaux.get(i).getId())
 					  {

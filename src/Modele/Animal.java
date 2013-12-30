@@ -191,7 +191,7 @@ public int seNourrir(Element element){ //TODO A TERMINER
 			  nouvelle=listeCases.get(i);
 		  }
 	  }
-	  //Gestion du déplacement.
+	  //Gestion du dï¿½placement.
 	  
 	  ancienne.supprimerAnimal(this);
 	  System.out.println("Fion "+ancienne.getId());
