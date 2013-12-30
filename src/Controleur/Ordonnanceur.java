@@ -2,9 +2,12 @@ package Controleur;
 
 import java.util.ArrayList;
 
-import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
-
-import Modele.*;
+import Modele.Animal;
+import Modele.Case;
+import Modele.Element;
+import Modele.Map;
+import Modele.Obstacle;
+import Modele.Ressource;
 import Vue.ActionUtilisateur;
 import Vue.Plateau;
 
@@ -158,6 +161,7 @@ public class Ordonnanceur {
 					  }
 				  }
 				  listeAnimaux.get(i).live(c);
+				 
 				  //reste à rajouter l'animal dans la liste des éléments de la case
 			  }
 			// Essai de faire un rafraichissement à modifier bien sur !
@@ -185,7 +189,7 @@ public class Ordonnanceur {
 					e.printStackTrace();
 				}
 				System.out.println("coucou");*/
-				fen_plateau.afficherMap(getMap());
+				fen_plateau.afficherMap(map);
 				
 			  // To be completed.
 		  }
@@ -324,7 +328,15 @@ public class Ordonnanceur {
 		  {
 				Ordonnanceur ordonnanceur = new Ordonnanceur();
 				ordonnanceur.initPlateau();
+				for(;;){
 				ordonnanceur.run();
+				try {
+					Thread.sleep(5000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				}
 		  }
 
 }
