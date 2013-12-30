@@ -132,7 +132,7 @@ public class Ordonnanceur {
 	/**
 	 */
 	public void run() {
-		int i,j;
+		int i,j,k;
 		  if(this.pause=!false){
 			  map.rafraichirPositionElement();
 			  for(i=0;i<map.getListeCases().size();i++){
@@ -148,12 +148,13 @@ public class Ordonnanceur {
 			 ArrayList<Animal> listeAnimaux=this.getListeAnimaux();
 			 Case c=null;
 			  for( i=0; i<listeAnimaux.size();i++){
-				  for(j=0; j< getMap().getListeCases().size(); j++)
-				  {
-					  if(getMap().getListeCases().get(j).getId()== listeAnimaux.get(i).getId())
-					  {
-						  c = getMap().getListeCases().get(j);
-						 //reste à enlever l'animal de la liste de la case
+				  for(j=0; j< map.getListeCases().size(); j++){
+					  Case temp=map.getListeCases().get(j);
+					  for(k=0; k<temp.getListeElements().size(); k++){
+						  if(listeAnimaux.get(i).getId()==temp.getListeElements().get(k).getId()){
+							  c = getMap().getListeCases().get(j);
+							 //reste à enlever l'animal de la liste de la case
+						  }
 					  }
 				  }
 				  listeAnimaux.get(i).live(c);

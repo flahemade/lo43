@@ -192,7 +192,9 @@ public int seNourrir(Element element){ //TODO A TERMINER
 	  
 	  
 	  nouvelle.addAnimal(this);
+	  System.out.println("Nouvelle :"+nouvelle.getId());
 	  ancienne.supprimerAnimal(this);
+	  System.out.println("Ancienne :"+ancienne.getId());
 	  Age++;
   }
 }
