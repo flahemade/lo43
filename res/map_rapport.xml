@@ -4,7 +4,7 @@
  <!-- Les attributs "defaut_type_case" permettra de générer des case par defaut si la liste de case est incomplete -->
  <!-- Dans cet exemple la taille de la carte et 4*4 = 16 mais seulement 1 case est définie -->
  <!-- Le parseur va donc devoir génrer 15 case "par défaut" -->
-     <map id = "1" width ="16" length = "16" defaut_type_case = "terre"> <!-- Liste des cases definissant la map -->
+     <map id = "1" width ="8" length = "8" defaut_type_case = "terre"> <!-- Liste des cases definissant la map -->
          <case id = "0"> <!-- La map contient une seule case -->
              <position> <!-- spécifie la position de la case (permet d'ecrire les case dans le désordre) -->
                  <x>0</x> 
@@ -17,7 +17,7 @@
          <animal>
              <type>lion</type> <!-- Une instance de la classe Lion va etre créer -->
              <sexe>femelle</sexe> <!-- l'attribut "sexe" de la classe sera définie à true -->
-             <caseid>18</caseid> <!-- L'animal sera placé dans la case d'id 14 -->
+             <caseid>0</caseid> <!-- L'animal sera placé dans la case d'id 14 -->
          </animal>
      </espece>
      <objet> <!-- debut de la liste des elements composant l'environnement (actuellement Ressource et Obstacle -->

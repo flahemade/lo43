@@ -130,35 +130,25 @@ public ArrayList<Case> parseXML(){
 			default :break ; //Si autre chose que "map" ou "espece" on ne fait rien
 			
 			}
-			
-		
-			
-			
-			
-			/*DEBUG*/
-			
-			/*
-			 * Une fois que l'on a obtenu les differente cases, les espece à placer ainsi que les ressources et obstacles,
-			 * il faut génrer les case manquantes grace au attributs default puis
-			 * il faut assembler le tout (placer les animaux, ressources et obstacle dans les case)
-			 * enfin il faut vérifier que la list generee est cohérente (pas d'animaux ou de ressource là où il y a un obstacle)
-			 * des obstacle sur les bords de la carte,
-			 * qu'il y ai une case pour chaque id possible selon la taille de la map
-			 * qu'il n'y ai aucun element avec un id ou une taile =-1
-			 */
-		} 
-			
+			}
 			/*for(i=0;i<listefinale.size();i++){
 				System.out.println("ListeFinale : ID_Case "+listefinale.get(i).getId());
 			}
 			*/
-			listefinale=reparerListe(listecase, casedefaut, dimensionmap);
-			for(i=0;i<listefinale.size();i++){
-				System.out.println("aff "+listefinale.get(i).getId());
-			}
+			listeobstacle=genererCeintureObstacle(listeobstacle, dimensionmap);
 			listefinale=assemblerCaseObstacle(listecase, listeobstacle);
 			listefinale=assemblerCaseAnimal(listecase, listeanimaux);
 			listefinale=assemblerCaseRessource(listecase, listeressource);
+			//listefinale=reparerListe(listecase, casedefaut, dimensionmap);
+			
+			for(i=0;i<listefinale.size();i++){
+				//System.out.println("CaseFinale id\t"+listefinale.get(i).getId()+"\ttype "+listefinale.get(i).getType()+"\tposition\t"+listefinale.get(i).getPosition().getX()+" , "+listefinale.get(i).getPosition().getY());
+			}
+			/*for(i=0;i<listeobstacle.size();i++){
+				System.out.println("Obstacle"+listeobstacle.get(i).getId()+
+						" CaseId "+listeobstacle.get(i).getCaseId());
+			}
+			*/
 			return listefinale;
 	}
 /*
@@ -614,40 +604,27 @@ private ArrayList<Ressource> parseRessource(NodeList l){
  */
 private ArrayList<Case> reparerListe (ArrayList<Case> l, Case casedefaut, Dimension dimensionmap){
 	
-	Case casedef = new Case(casedefaut.getId(),casedefaut.getPosition(),casedefaut.getType());
+	//Case casedef = new Case(casedefaut.getId(),casedefaut.getPosition(),casedefaut.getType());
 	int i;
 	int nbcasemax = dimensionmap.getLength()*dimensionmap.getWidth();
 	ArrayList<Case> listereparee=new ArrayList<Case>();
 	
 	for(i=0;i<nbcasemax;i++){
 		if(l.size()>i){
+			System.out.println("passed1");
 			if(l.get(i).getId()>=0){
+				System.out.println("passed2");
 				listereparee.add(l.get(i));
+				System.out.println("passed2.2");
 			}
 		}
-		else{
-			listereparee.add(i, new Case(i,new Position((i/dimensionmap.getLength())-1,(i/dimensionmap.getWidth())-1),casedefaut.getType()));
+		if(l.get(i).getId()==-1){
+			System.out.println("passed3");
+			listereparee.add(i, new Case(i,new Position((i%(dimensionmap.getLength())),(i/(dimensionmap.getWidth()))),casedefaut.getType()));
+			System.out.println("Reparation Case ID\t"+i);
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	/*for(i=0;i<l.size();i++){
 		if(l.get(i).getId()>=0){
 			listereparee.add(i, l.get(i)); //si l'id de la case est valide (superieur a 0), on ajoute la case à la liste
@@ -670,7 +647,26 @@ private ArrayList<Case> reparerListe (ArrayList<Case> l, Case casedefaut, Dimens
 	return listereparee;
 }
 
-
+private ArrayList<Obstacle> genererCeintureObstacle (ArrayList<Obstacle> listeobstacle,Dimension dimensionmap){
+	
+	int i;
+	int length=dimensionmap.getLength();
+	int width=dimensionmap.getWidth();
+	int nbcase = length*width;
+	//On genere la premiere ligne et la derniere
+	for(i=0;i<length;i++){
+		System.out.println("passed1");
+		listeobstacle.add(new Obstacle(i));
+		listeobstacle.add(new Obstacle((nbcase-1)-i));
+	}
+	//On genere la colone de gauche et la colone de droite
+	for(i=0;i<width;i++){
+		System.out.println("passed2");
+		listeobstacle.add(new Obstacle(i*length));
+		listeobstacle.add(new Obstacle(i*length+length-1));
+	}
+	return listeobstacle;
+}
 private ArrayList<Case> assemblerCaseObstacle(ArrayList<Case> listecase, ArrayList<Obstacle>listeobstacle){
 	int i,j;
 	//ArrayList<Case>lcase = listecase;
