@@ -17,7 +17,7 @@ public class Girafe extends Animal{
 	
 	private void init(){
 		setAgeMax(100);
-		setChampVision(5);
+		setChampVision(1);
 		setRangChaineAlimentaire(1);
 		setPV(75);
 		setModifierVie(20);

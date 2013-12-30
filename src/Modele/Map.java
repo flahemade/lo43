@@ -78,4 +78,10 @@ public class Map {
 	public Map rafraichir(Map map){
 		  return map;
 	  }
+	
+	public void rafraichirPositionElement(){
+		for (int i =0;i<listeCases.size();i++){
+			listeCases.get(i).genererPositionElement();
+		}
+	}
 }

@@ -21,7 +21,9 @@ public class Element  {
 	/**  */
 	protected static int ID=0;
 	protected int idPerso;
-    /*_______________________________________________________________*/
+	protected Position position;
+   
+	/*_______________________________________________________________*/
     /**Constructeur par defaut
      */
     public Element(int caseId)
@@ -59,6 +61,14 @@ public class Element  {
     	setCaseId(idcase);
     	setId(ID);
     } 
+    
+    public Position getPosition() {
+		return position;
+	}
+	public void setPosition(Position position) {
+		this.position = position;
+	}
+	
     /*_______________________________________________________________*/
 	/** Permet d'obtenir la valeur du champ image.
 	 * @return la valeur du champ image.

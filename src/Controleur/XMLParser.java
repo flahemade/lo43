@@ -90,7 +90,7 @@ public ArrayList<Case> parseXML(){
 	
 	NodeList list = document.getDocumentElement().getChildNodes(); //On recupere le premier niveau de Node (map & espece)
 	int i;
-	
+	int cpt=0;
 	Dimension dimensionmap= new Dimension();
 	ArrayList<Case>listefinale = new ArrayList<Case>();
 	ArrayList<Case> listecase = new ArrayList<Case>();
@@ -135,16 +135,21 @@ public ArrayList<Case> parseXML(){
 				System.out.println("ListeFinale : ID_Case "+listefinale.get(i).getId());
 			}
 			*/
+			listefinale=reparerListe(listecase, casedefaut, dimensionmap);
 			listeobstacle=genererCeintureObstacle(listeobstacle, dimensionmap);
 			listefinale=assemblerCaseObstacle(listecase, listeobstacle);
 			listefinale=assemblerCaseAnimal(listecase, listeanimaux);
 			listefinale=assemblerCaseRessource(listecase, listeressource);
-			//listefinale=reparerListe(listecase, casedefaut, dimensionmap);
-			
 			for(i=0;i<listefinale.size();i++){
-				//System.out.println("CaseFinale id\t"+listefinale.get(i).getId()+"\ttype "+listefinale.get(i).getType()+"\tposition\t"+listefinale.get(i).getPosition().getX()+" , "+listefinale.get(i).getPosition().getY());
+				System.out.println("Listefinale Case ID\t"+listefinale.get(i).getId());
+				cpt++;
 			}
-			/*for(i=0;i<listeobstacle.size();i++){
+			System.out.println("CPT "+cpt);
+		/*	for(i=0;i<listefinale.size();i++){
+				System.out.println("CaseFinale id\t"+listefinale.get(i).getId()+"\ttype "+listefinale.get(i).getType()+"\tposition\t"+listefinale.get(i).getPosition().getX()+" , "+listefinale.get(i).getPosition().getY());
+			}
+			*/
+			/*for(i=0;i<listeobstacle.size();i++)
 				System.out.println("Obstacle"+listeobstacle.get(i).getId()+
 						" CaseId "+listeobstacle.get(i).getCaseId());
 			}
@@ -604,27 +609,47 @@ private ArrayList<Ressource> parseRessource(NodeList l){
  */
 private ArrayList<Case> reparerListe (ArrayList<Case> l, Case casedefaut, Dimension dimensionmap){
 	
-	//Case casedef = new Case(casedefaut.getId(),casedefaut.getPosition(),casedefaut.getType());
-	int i;
+	
+	int i,cpt=0;
+	int j;
+	Boolean permut;
 	int nbcasemax = dimensionmap.getLength()*dimensionmap.getWidth();
+	l.ensureCapacity(nbcasemax);
 	ArrayList<Case> listereparee=new ArrayList<Case>();
 	
-	for(i=0;i<nbcasemax;i++){
-		if(l.size()>i){
-			System.out.println("passed1");
-			if(l.get(i).getId()>=0){
-				System.out.println("passed2");
-				listereparee.add(l.get(i));
-				System.out.println("passed2.2");
+	//Trier la liste par ordre croissant d'id de case
+	do {
+		// hypothèse : le tableau est trié
+		permut = false;
+		for ( i = 0; i < l.size() - 1; i++) {
+			// Teste si 2 éléments successifs sont dans le bon ordre ou non
+			if (l.get(i).getId() > l.get(i+1).getId()) {
+				// s'ils ne le sont pas, on échange leurs positions
+				l.add(i, l.get(i+1));
+				l.remove(i+2);
+				permut = true;
+				/*tampon = tableau[i];
+				tableau[i] = tableau[i + 1];
+				tableau[i + 1] = tampon;
+				permut = true;
+				*/
+				
 			}
+			
 		}
-		if(l.get(i).getId()==-1){
-			System.out.println("passed3");
-			listereparee.add(i, new Case(i,new Position((i%(dimensionmap.getLength())),(i/(dimensionmap.getWidth()))),casedefaut.getType()));
-			System.out.println("Reparation Case ID\t"+i);
+	} while (permut);
+	
+/*	System.out.println("l.size() "+l.size());
+	for(j=0;j<64;j++){
+	 System.out.println("j "+j);
+		if(l.get(j).getId()>j ){
+			System.out.println("PASSED");
+			l.add(new Case(j,new Position(j%dimensionmap.getLength(),j/dimensionmap.getWidth()),casedefaut.getType()));
+			l.ad
 		}
-	}
 
+	*/
+	return l;
 	/*for(i=0;i<l.size();i++){
 		if(l.get(i).getId()>=0){
 			listereparee.add(i, l.get(i)); //si l'id de la case est valide (superieur a 0), on ajoute la case à la liste
@@ -644,7 +669,8 @@ private ArrayList<Case> reparerListe (ArrayList<Case> l, Case casedefaut, Dimens
 			System.out.println();		
 	}
 	*/
-	return listereparee;
+	
+	
 }
 
 private ArrayList<Obstacle> genererCeintureObstacle (ArrayList<Obstacle> listeobstacle,Dimension dimensionmap){
@@ -655,13 +681,11 @@ private ArrayList<Obstacle> genererCeintureObstacle (ArrayList<Obstacle> listeob
 	int nbcase = length*width;
 	//On genere la premiere ligne et la derniere
 	for(i=0;i<length;i++){
-		System.out.println("passed1");
 		listeobstacle.add(new Obstacle(i));
 		listeobstacle.add(new Obstacle((nbcase-1)-i));
 	}
 	//On genere la colone de gauche et la colone de droite
 	for(i=0;i<width;i++){
-		System.out.println("passed2");
 		listeobstacle.add(new Obstacle(i*length));
 		listeobstacle.add(new Obstacle(i*length+length-1));
 	}
@@ -729,7 +753,7 @@ public void write(String chemin, Map map) {
 public static void main(String[] args) {
 	
 System.out.println("XMLParser debugger");
-XMLParser parser = new XMLParser("./res/map_rapport.xml"); //Création d'une instance de Parser, attention à bien spécifier une adresse correcte
+XMLParser parser = new XMLParser("./res/8x8_test.xml"); //Création d'une instance de Parser, attention à bien spécifier une adresse correcte
 //XMLParser parser = new XMLParser("./res/map.xml");
 parser.parseXML(); //Debut du parsing
 }

@@ -18,7 +18,7 @@ public class Lion extends Animal {
 
   private void init(){
 		setAgeMax(100);
-		setChampVision(2);
+		setChampVision(1);
 		setRangChaineAlimentaire(9);
 		setPV(100);
 		setModifierVie(100);

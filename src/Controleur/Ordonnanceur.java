@@ -2,6 +2,8 @@ package Controleur;
 
 import java.util.ArrayList;
 
+import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
+
 import Modele.*;
 import Vue.ActionUtilisateur;
 import Vue.Plateau;
@@ -119,6 +121,7 @@ public class Ordonnanceur {
 		fen_plateau.setMyMap(getMap());
 		listeElement = new ArrayList<Element>();
 		fen_plateau.afficherMap(getMap());
+		/*A quoi servent les 4 lignes au dessous ?*/
 		getListeAnimaux();
 		getListeElement();
 		getListeObstacles();
@@ -129,11 +132,17 @@ public class Ordonnanceur {
 	/**
 	 */
 	public void run() {
+		int i;
 		  if(this.pause=!false){
+			  map.rafraichirPositionElement();
+			  for(i=0;i<map.getListeCases().size();i++){
+				  map.getListeCases().get(i).setListeCasesAdjacentes(genererListeCaseAdjacentes(map.getListeCases().get(i)));
+			  }
+				  
 			  // Execute la m�thode live() de chaque animal.
 			 ArrayList<Animal> listeAnimaux=this.getListeAnimaux();
 			 Case c=null;
-			  for(Integer i=0; i<listeAnimaux.size();i++){
+			  for( i=0; i<listeAnimaux.size();i++){
 				  for(int j=0; j< getMap().getListeCases().size(); j++)
 				  {
 					  if(getMap().getListeCases().get(j).getId()== listeAnimaux.get(i).getId())
@@ -245,6 +254,62 @@ public class Ordonnanceur {
 		return listeRessource;
 	}
 	
+	public ArrayList<Case> genererListeCaseAdjacentes (Case c){
+		int i,j;
+		//ArrayList<Animal>lanimaux = getListeAnimaux();
+		int xanimal,yanimal;
+		int xcase,ycase;
+		int champvision;
+		int cpt=0;
+		ArrayList<Case>lcase = map.getListeCases();
+		ArrayList<Case> listecasesadjacentes = new ArrayList<Case>();
+		
+		for(i=0;i<c.getListeElements().size();i++){
+			
+		if(c.getListeElements().get(i)instanceof Animal){
+			xanimal = c.getListeElements().get(i).getPosition().getX();
+			yanimal = c.getListeElements().get(i).getPosition().getY();
+			champvision = c.getListeElements().get(i).getChampVision();
+			System.out.println("Animal Position "+xanimal +" , "+yanimal);
+			for(j=0;j<lcase.size();j++){
+				xcase = lcase.get(j).getPosition().getX();
+				ycase = lcase.get(j).getPosition().getY();
+				
+				if((xcase >= (xanimal-champvision)) && (xcase <= (xanimal+champvision))){ //Condition de limite de champ de vision en x
+					if((ycase >= (yanimal-champvision))&& (ycase <= (yanimal+champvision))){ //condition de limite de champ de vision en y
+						if((xcase == xanimal) && (ycase==yanimal)){
+						}
+						else{
+						listecasesadjacentes.add(lcase.get(j));						
+						System.out.println("\tAjout case adjac Position "+xcase+" , "+ycase);
+					}
+					}
+				}
+			
+				
+			}
+		}
+	}
+		/*
+		for(i=0;i<lanimaux.size();i++){
+			xanimal = lanimaux.get(i).getPosition().getX();
+			yanimal = lanimaux.get(i).getPosition().getY();
+			champvision = lanimaux.get(i).getChampVision();
+			System.out.println("Animal Position "+xanimal +" , "+yanimal);
+			for(j=0;j<lcase.size();j++){
+				xelement = lcase.get(i).getPosition().getX();
+				yelement = lcase.get(i).getPosition().getY();
+				if((xelement >= (xanimal-champvision)) && (xelement <= (xanimal+champvision))){ //Condition de limite de champ de vision en x
+					if((yelement >= (yanimal-champvision))&& (yelement <= (yanimal+champvision))){ //condition de limite de champ de vision en y
+						listecasesadjacentes.add(lcase.get(j));
+						System.out.println("\tAjout case adjac Position "+xelement+" , "+yelement);
+					}
+				}
+			}
+		}
+		*/
+		return listecasesadjacentes;
+	}
 	  /*_______________________________________________________________*/
 		/**
 		 * @param args

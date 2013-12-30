@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?> <!-- MAP DE 8X8 ENTOUREE D OBSTACLE (donc 7x7 utilisable)-->
  <savane><map id = "1" width ="8" length = "8" defaut_type_case = "Terre"> <!-- (64*64)+(-1)=4095 = id max pour cette taille -->
-         <case id = "0">  		<!-- 8x8 id max = 63 -->  
+         <case id = "1">  		<!-- 8x8 id max = 63 -->  
              <position>
                  <x>0</x> 
                  <y>0</y>
              </position>
              <type>TERRE</type>
          </case>
-         <case id = "1">  		<!-- 8x8 id max = 63 -->  
+         <case id = "0">  		<!-- 8x8 id max = 63 -->  
              <position>
                  <x>0</x> 
                  <y>1</y>
              </position>
              <type>TERRE</type>
          </case>
-         <case id = "2">  		<!-- 8x8 id max = 63 -->
-            
+         <case id = "2">  		  
+          
              <position>
                  <x>0</x> 
                  <y>2</y>
              </position>
              <type>TERRE</type>
-         </case>
+         </case> 
          <case id = "3">  		<!-- 8x8 id max = 63 -->
             
              <position>
@@ -517,7 +517,7 @@
              <sexe>male</sexe>
              <caseid>12</caseid>
          </animal>
-         <animal>
+       <!--    <animal>
              <type>hyene</type>
              <sexe>male</sexe>
              <caseid>44</caseid>
@@ -531,7 +531,7 @@
              <type>gazelle</type>
              <sexe>femelle</sexe>
              <caseid>13</caseid>
-         </animal>
+         </animal> -->
      </espece>
          
      <objet>

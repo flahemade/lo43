@@ -242,7 +242,12 @@ public void supprimerAnimal(Animal animal)
   }
   
   
-  
+  public void genererPositionElement(){ //TODO l'inserer à la bonne place dans le code
+	  int i;
+	  for(i=0;i<listeElements.size();i++){
+		  listeElements.get(i).setPosition(this.position);
+	  }
+  }
   
   
 

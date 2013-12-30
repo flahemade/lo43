@@ -21,7 +21,7 @@ public class Hyene extends Animal{
 	
 	private void init(){
 		setAgeMax(100);
-		setChampVision(2);
+		setChampVision(1);
 		setRangChaineAlimentaire(8);
 		setPV(80);
 		setModifierVie(50);
