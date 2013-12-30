@@ -117,6 +117,12 @@ public Animal(int idcase){
 	  Position nouvelle = new Position();
 	  Random rand = new Random();
 	  int valeur = rand.nextInt(8-1+1) + 1;
+	  try {
+		Thread.sleep(33);
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 	  switch (valeur)
 	  {
 	  	case 1: nouvelle.setX(p.getX()-1);
@@ -178,6 +184,7 @@ public int seNourrir(Element element){ //TODO A TERMINER
   }
   
   public void live(Case c){
+
 	  System.out.println(this.getClass().getSimpleName()+"\tID "+this.getId()+"\t live()");
 	  Position positionCible=seDeplacer(c.getPosition());
 	  Case ancienne=c;

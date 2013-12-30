@@ -527,11 +527,11 @@
              <sexe>male</sexe>
              <caseid>26</caseid>
          </animal>
-  <!--        <animal>
+          <animal>
              <type>gazelle</type>
              <sexe>femelle</sexe>
              <caseid>13</caseid>
-         </animal> -->
+         </animal> 
      </espece>
          
      <objet>

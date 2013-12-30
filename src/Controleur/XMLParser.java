@@ -137,7 +137,7 @@ public ArrayList<Case> parseXML(){
 			*/
 			listefinale=trierListe(listecase);
 			listefinale=reparerListe(listefinale, dimensionmap, casedefaut);
-			listeobstacle=genererCeintureObstacle(listeobstacle, dimensionmap);
+			//listeobstacle=genererCeintureObstacle(listeobstacle, dimensionmap);
 			listefinale=assemblerCaseObstacle(listecase, listeobstacle);
 			listefinale=assemblerCaseAnimal(listecase, listeanimaux);
 			listefinale=assemblerCaseRessource(listecase, listeressource);

@@ -64,7 +64,7 @@ public class Plateau extends JFrame implements ActionListener, MouseListener{
     
     private JPanel jp_gaucheHaut;
     
-   
+ 
 	
 	/*_______________________________________________________________*/
 	/**le constructeur de la fenêtre
@@ -178,10 +178,10 @@ public class Plateau extends JFrame implements ActionListener, MouseListener{
  	 */
  	public void afficherMap(Map maMap)
  	{
- 		this.repaint();
+ 		//this.repaint();	
  		ArrayList<Case> mesCases = maMap.getListeCases();
+ 		  JPanel pan = new JPanel(new GridLayout(16,16));
  		
- 		JPanel pan = new JPanel(new GridLayout(8,8));
 		Border blackline = BorderFactory.createLineBorder(Color.black,1);
  		for(int i=0; i<mesCases.size(); i++)
  		{
@@ -211,13 +211,15 @@ public class Plateau extends JFrame implements ActionListener, MouseListener{
  				
  			}
  			
- 				
+ 			
  			//System.out.println("num case : " + mesCases.get(i).getId()+ " " + mesCases.get(i).getPosition().getX()+ " " + mesCases.get(i).getPosition().getY());
  		}
  		pan.setBorder(blackline);
+ 		//jpDroit.removeAll();
  		jpDroit.add(pan, BorderLayout.CENTER);
+ 		//this.pack();//nicolas : avec ca j'aiplus besoin de mettre la fenetre en plein ecran pour avoir un affichage
+ 		this.paintAll(getGraphics());
  		
- 		this.pack();//nicolas : avec ca j'aiplus besoin de mettre la fenetre en plein ecran pour avoir un affichage
  	}
  	
  	/*_______________________________________________________________*/
