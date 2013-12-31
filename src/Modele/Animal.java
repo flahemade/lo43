@@ -184,15 +184,29 @@ public int seNourrir(Element element){ //TODO A TERMINER
   }
   
   public void live(Case c){
-
+	  int i,j;
 	  System.out.println(this.getClass().getSimpleName()+"\tID "+this.getId()+"\t live()");
 	  Position positionCible=seDeplacer(c.getPosition());
 	  Case ancienne=c;
 	  Case nouvelle=c;
 	  ArrayList<Case> listeCases=c.getListeCasesAdjacentes();
-	  for(int i=0;i<listeCases.size();i++){
+	  for(i=0; i<listeCases.size(); i++){
 		  if(listeCases.get(i).getPosition().getX()==positionCible.getX()){
 			  nouvelle=listeCases.get(i);
+			  ArrayList<Element> listeElementsCible=nouvelle.getListeElements();
+			  System.out.println("Liste elements cible :"+nouvelle.getListeElements().toString());
+			  for(j=0; j<listeElementsCible.size(); j++){
+				  Element element_temp=listeElementsCible.get(j);
+				  if(element_temp instanceof Animal){
+					  System.out.println("Animal sur la case cible.");
+				  }
+				  if(element_temp instanceof Ressource){
+					  System.out.println("Ressource sur la case cible.");
+				  }
+				  if(element_temp instanceof Obstacle){
+					  System.out.println("Obstacle sur la case cible.");
+				  }
+			  }
 		  }
 	  }
 	  //Gestion du d�placement.
