@@ -232,8 +232,6 @@ public int seNourrir(Element element){ //TODO A TERMINER
 		  }
 	  }
 	  //Gestion du d�placement.
-	  
-	  
 	  nouvelle.addAnimal(this);
 	  System.out.println("Nouvelle :"+nouvelle.getId());
 	  ancienne.supprimerAnimal(this);
