@@ -221,9 +221,12 @@ public int seNourrir(Element element){ //TODO A TERMINER
 				  }
 				  if(element_temp instanceof Ressource){
 					  System.out.println("Ressource sur la case cible.");
+					  //Ici la question est de savoir quels animaux peuvent consommer quelle ressource
+					  //Pas très long à implémenter.
 				  }
 				  if(element_temp instanceof Obstacle){
 					  System.out.println("Obstacle sur la case cible.");
+					  this.live(ancienne);
 				  }
 			  }
 		  }
