@@ -194,11 +194,21 @@ public int seNourrir(Element element){ //TODO A TERMINER
 		  if(listeCases.get(i).getPosition().getX()==positionCible.getX()){
 			  nouvelle=listeCases.get(i);
 			  ArrayList<Element> listeElementsCible=nouvelle.getListeElements();
-			  System.out.println("Liste elements cible :"+nouvelle.getListeElements().toString());
 			  for(j=0; j<listeElementsCible.size(); j++){
 				  Element element_temp=listeElementsCible.get(j);
 				  if(element_temp instanceof Animal){
 					  System.out.println("Animal sur la case cible.");
+					  if(this.getClass()==element_temp.getClass()){
+						  System.out.println("Reproduction ?");
+						  Animal animalCible=(Animal)element_temp;
+						  if(this.seReproduire(animalCible)){
+							  System.out.println("Création d'un nouvel animal.");
+						  }else{
+							  System.out.println("Il ne se passe rien.");
+						  }
+					  }else{
+						  System.out.println("Baston !");
+					  }
 				  }
 				  if(element_temp instanceof Ressource){
 					  System.out.println("Ressource sur la case cible.");
