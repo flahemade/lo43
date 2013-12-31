@@ -198,9 +198,9 @@ public int seNourrir(Element element){ //TODO A TERMINER
 				  Element element_temp=listeElementsCible.get(j);
 				  if(element_temp instanceof Animal){
 					  System.out.println("Animal sur la case cible.");
+					  Animal animalCible=(Animal)element_temp;
 					  if(this.getClass()==element_temp.getClass()){
 						  System.out.println("Reproduction ?");
-						  Animal animalCible=(Animal)element_temp;
 						  if(this.seReproduire(animalCible)){
 							  System.out.println("Création d'un nouvel animal.");
 						  }else{
@@ -208,6 +208,15 @@ public int seNourrir(Element element){ //TODO A TERMINER
 						  }
 					  }else{
 						  System.out.println("Baston !");
+						  if(this.getRangChaineAlimentaire()>=animalCible.getRangChaineAlimentaire()){
+							  System.out.println("Victoire");
+							  //this.seNourrir(animalCible);
+							  //animalCible.mourir();
+						  }else{
+							  System.out.println("Défaite");
+							  //animalCible.seNourrir(this);
+							  //this.mourir();
+						  }
 					  }
 				  }
 				  if(element_temp instanceof Ressource){
