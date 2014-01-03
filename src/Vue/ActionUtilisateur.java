@@ -41,6 +41,8 @@ public class ActionUtilisateur extends JInternalFrame implements Runnable, Actio
 	/**  */
 	//private ArrayList<JButton> listeBouton;
 	private JPanel pan_ensemble;
+	
+	private boolean arret;
 
 	/*_______________________________________________________________*/
 	/**Constructeur
@@ -49,9 +51,28 @@ public class ActionUtilisateur extends JInternalFrame implements Runnable, Actio
 	{
 		super("Action utilisateur", true, false);
 		this.setVisible(true);
+		this.setArret(true);
 	
 	}
 	
+	/*_______________________________________________________________*/
+	/** Permet d'obtenir la valeur du champ arret.
+	 * @return la valeur du champ arret.
+	 */
+	public boolean getArret()
+	{
+		return arret;
+	}
+
+	/*_______________________________________________________________*/
+	/** Modifie la valeur du champ arret.
+	 * @param arret la nouvelle valeur du champ arret.
+	 */
+	public void setArret(boolean arret)
+	{
+		this.arret = arret;
+	}
+
 	/*_______________________________________________________________*/
 	/**Creer les composants
 	 */
@@ -133,6 +154,7 @@ public class ActionUtilisateur extends JInternalFrame implements Runnable, Actio
 		this.getContentPane().setLayout(new BorderLayout());
 		this.getContentPane().add(pan_ensemble, BorderLayout.WEST);
 	}
+	
 
 	/*_______________________________________________________________*/
 	/**
@@ -142,6 +164,10 @@ public class ActionUtilisateur extends JInternalFrame implements Runnable, Actio
 	{
 		creerComposants();
 		placerComposants();
+		while(arret)
+		{
+			
+		}
 		
 	}
 

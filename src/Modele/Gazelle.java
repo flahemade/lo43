@@ -24,4 +24,13 @@ public class Gazelle extends Animal {
 		setImage("./res/animaux/gazelle/gazelle.png");
   }
 	
+	 public void consommerRessource(Element ressource)
+	  {
+		  if (ressource instanceof Plante)
+		  {
+			   this.modifierVie = 5;
+		  }
+			  
+	  }
+	
 }

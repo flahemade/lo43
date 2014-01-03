@@ -124,11 +124,6 @@ public class Ordonnanceur {
 		fen_plateau.setMyMap(getMap());
 		listeElement = new ArrayList<Element>();
 		fen_plateau.afficherMap(getMap());
-		/*A quoi servent les 4 lignes au dessous ?*/
-		getListeAnimaux();
-		getListeElement();
-		getListeObstacles();
-		getListeRessource();
 		fen_plateau.afficherStat(getListeAnimaux().size(), getListeObstacles().size(), getListeRessource().size());
 	}
 	/*_______________________________________________________________*/
@@ -264,6 +259,11 @@ public class Ordonnanceur {
 		return listeRessource;
 	}
 	
+	/*_______________________________________________________________*/
+	/**
+	 * @param c
+	 * @return la liste des cases adjacentes
+	 */
 	public ArrayList<Case> genererListeCaseAdjacentes (Case c){
 		int i,j;
 		//ArrayList<Animal>lanimaux = getListeAnimaux();

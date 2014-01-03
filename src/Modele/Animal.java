@@ -163,6 +163,7 @@ public int seNourrir(Element element){ //TODO A TERMINER
 	  Boolean reproduction;
 	  if(animal.sexe!=this.sexe){
 		  reproduction=true;
+		  
 	  }else{
 		  reproduction=false;
 	  }
@@ -202,9 +203,10 @@ public int seNourrir(Element element){ //TODO A TERMINER
 					  if(this.getClass()==element_temp.getClass()){
 						  System.out.println("Reproduction ?");
 						  if(this.seReproduire(animalCible)){
-							  System.out.println("Création d'un nouvel animal.");
+							  System.out.println("Crï¿½ation d'un nouvel animal.");
 						  }else{
 							  System.out.println("Il ne se passe rien.");
+							 
 						  }
 					  }else{
 						  System.out.println("Baston !");
@@ -213,7 +215,7 @@ public int seNourrir(Element element){ //TODO A TERMINER
 							  //this.seNourrir(animalCible);
 							  //animalCible.mourir();
 						  }else{
-							  System.out.println("Défaite");
+							  System.out.println("Dï¿½faite");
 							  //animalCible.seNourrir(this);
 							  //this.mourir();
 						  }
@@ -221,8 +223,10 @@ public int seNourrir(Element element){ //TODO A TERMINER
 				  }
 				  if(element_temp instanceof Ressource){
 					  System.out.println("Ressource sur la case cible.");
+					  consommerRessource(element_temp);
+					  this.setPV(getPV() + getModifierVie());
 					  //Ici la question est de savoir quels animaux peuvent consommer quelle ressource
-					  //Pas très long à implémenter.
+					  //Pas trï¿½s long ï¿½ implï¿½menter.
 				  }
 				  if(element_temp instanceof Obstacle){
 					  System.out.println("Obstacle sur la case cible.");
@@ -238,6 +242,10 @@ public int seNourrir(Element element){ //TODO A TERMINER
 	  System.out.println("Ancienne :"+ancienne.getId());
 	  Age++;
   }
+  
+  public void consommerRessource(Element ressource){
+  }
+  
 }
   
  

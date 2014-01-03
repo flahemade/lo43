@@ -24,4 +24,12 @@ public class Girafe extends Animal{
 		setImage("./res/animaux/girafe/girafe.png");
   }
 	
+	 public void consommerRessource(Element ressource)
+	  {
+		  if (ressource instanceof Plante)
+		  {
+			   this.modifierVie = 5;
+		  }
+			  
+	  }	
 }

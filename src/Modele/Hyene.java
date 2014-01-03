@@ -15,6 +15,15 @@ public class Hyene extends Animal{
 		
 	}
 	
+	 public void consommerRessource(Element ressource)
+	  {
+		  if (ressource instanceof Viande)
+		  {
+			   this.modifierVie = 5;
+		  }
+			  
+	  }
+	
 	public void seBattre(){
 	
 	}

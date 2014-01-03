@@ -144,7 +144,9 @@ public class Plateau extends JFrame implements ActionListener, MouseListener{
 		{
 			//JOptionPane fen_quitter = new JOptionPane("Voulez-vous quitter?", JOptionPane.QUESTION_MESSAGE, JOptionPane.YES_NO_OPTION);
 			//fen_quitter.setVisible(true);
-			this.dispose();
+			utilisateur.setArret(false);
+			
+			System.exit(0);
 			
 		}
 		if(e.getSource()== btn_pause)
