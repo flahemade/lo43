@@ -52,8 +52,6 @@ public class Plateau extends JFrame implements ActionListener, MouseListener{
     /**  */
     private JSplitPane monSplitPane2;
     
-    private ActionUtilisateur utilisateur;
-    
     private JPanel jpDroit;
     
     private JPanel jp_gaucheBas;
@@ -63,6 +61,12 @@ public class Plateau extends JFrame implements ActionListener, MouseListener{
     private JPanel jpBas;
     
     private JPanel jp_gaucheHaut;
+    /**  */
+    private ActionUtilisateur utilisateur;
+    
+    private int actionCase;
+    
+    private ArrayList<JPanel> panel_case;
     
  
 	
@@ -70,9 +74,11 @@ public class Plateau extends JFrame implements ActionListener, MouseListener{
 	/**le constructeur de la fenêtre
 	 * @param titre le titre de la fenêtre
 	 */
-	public Plateau(String titre) 
+	public Plateau(String titre, ActionUtilisateur utilisateur) 
 	{
 		super(titre);
+		setActionCase(-1);
+		this.utilisateur = utilisateur;
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setSize(new Dimension(900,700));
 		this.setLocationRelativeTo(null);
@@ -99,8 +105,8 @@ public class Plateau extends JFrame implements ActionListener, MouseListener{
 		jpGauche = new JPanel();
 		jpBas = new JPanel();
 		jp_gaucheHaut = new JPanel();
-		utilisateur = new ActionUtilisateur();
-		(new Thread(utilisateur)).start(); 
+		panel_case = new ArrayList<JPanel>();
+		 
 		
 	}
 
@@ -175,6 +181,24 @@ public class Plateau extends JFrame implements ActionListener, MouseListener{
 	}
 
  	/*_______________________________________________________________*/
+	/** Permet d'obtenir la valeur du champ actionCase.
+	 * @return la valeur du champ actionCase.
+	 */
+	public int getActionCase()
+	{
+		return actionCase;
+	}
+
+	/*_______________________________________________________________*/
+	/** Modifie la valeur du champ actionCase.
+	 * @param actionCase la nouvelle valeur du champ actionCase.
+	 */
+	public void setActionCase(int actionCase)
+	{
+		this.actionCase = actionCase;
+	}
+
+	/*_______________________________________________________________*/
  	/**
  	 * @param maMap
  	 */
@@ -182,39 +206,27 @@ public class Plateau extends JFrame implements ActionListener, MouseListener{
  	{
  		//this.repaint();	
  		ArrayList<Case> mesCases = maMap.getListeCases();
- 		  JPanel pan = new JPanel(new GridLayout(16,16));
- 		
+ 		JPanel pan = new JPanel(new GridLayout(16,16));
 		Border blackline = BorderFactory.createLineBorder(Color.black,1);
  		for(int i=0; i<mesCases.size(); i++)
  		{
  			JPanel ptest = new JPanel();
+ 			panel_case.add(ptest);
+ 			ptest.addMouseListener(this);
  			ptest.setLayout(new BorderLayout());
  			ptest.setPreferredSize(new Dimension(40,40));
  			ptest.setMinimumSize(new Dimension(40, 40));
  			ptest.add(mesCases.get(i), BorderLayout.CENTER);
  			ptest.setBorder(blackline);
- 			/*int id = mesCases.get(i).getId();
- 			pan.add(new JLabel(Integer.toString(id))); DEBUG*/
  			pan.add(ptest);
- 			
- 			/*for(int j=0; j<mesCases.get(i).getListeElements().size(); j++)
- 				System.out.println(mesCases.get(i).getListeElements().get(j).getCaseId());*/
- 				
  			for(int j=0; j< mesCases.get(i).getListeElements().size(); j++)
  			{
- 				
- 				/*String nom = mesCases.get(i).getListeElements().get(j).getImage();
- 				ptest.add(new JLabel(nom));*/
  				ImageIcon icone = new ImageIcon(mesCases.get(i).getListeElements().get(j).getImage());
  				JLabel image = new JLabel(icone);
  				image.setLayout(new BorderLayout());
  				image.addMouseListener(this);
  				ptest.add(image, BorderLayout.CENTER);
- 				
  			}
- 			
- 			
- 			//System.out.println("num case : " + mesCases.get(i).getId()+ " " + mesCases.get(i).getPosition().getX()+ " " + mesCases.get(i).getPosition().getY());
  		}
  		pan.setBorder(blackline);
  		//jpDroit.removeAll();
@@ -260,7 +272,14 @@ public class Plateau extends JFrame implements ActionListener, MouseListener{
 	 */
 	public void mouseClicked(MouseEvent e)
 	{
-		System.out.println(e.getSource());
+		for(int i=0; i<panel_case.size(); i++)
+		{
+			if(e.getSource()==panel_case.get(i))
+			{
+				this.setActionCase(i);
+			}
+		}
+		
 		
 	}
 

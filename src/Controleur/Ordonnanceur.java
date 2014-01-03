@@ -1,13 +1,20 @@
 package Controleur;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import Modele.Animal;
 import Modele.Case;
 import Modele.Element;
+import Modele.Gazelle;
+import Modele.Girafe;
+import Modele.Hyene;
+import Modele.Lion;
 import Modele.Map;
 import Modele.Obstacle;
+import Modele.Plante;
 import Modele.Ressource;
+import Modele.Viande;
 import Vue.ActionUtilisateur;
 import Vue.Plateau;
 
@@ -105,16 +112,38 @@ public class Ordonnanceur {
 	{
 		this.listeElement = listeElement;
 	}
+	
+	/*_______________________________________________________________*/
+	/** Permet d'obtenir la valeur du champ utilisateur.
+	 * @return la valeur du champ utilisateur.
+	 */
+	public ActionUtilisateur getUtilisateur()
+	{
+		return utilisateur;
+	}
+	/*_______________________________________________________________*/
+	/** Modifie la valeur du champ utilisateur.
+	 * @param utilisateur la nouvelle valeur du champ utilisateur.
+	 */
+	public void setUtilisateur(ActionUtilisateur utilisateur)
+	{
+		this.utilisateur = utilisateur;
+	}
+	
 	//-------------------------------------------AUTRES METHODES-------------------------//
+	
 	
 	/*_______________________________________________________________*/
 	/**Initialise le plateau
 	 */
 	public void initPlateau()
 	{
+		utilisateur = new ActionUtilisateur();
+		(new Thread(utilisateur)).start();	
+		
 		/*FenetreAccueil fen = new FenetreAccueil("Le jeu de la savane");
 		fen.setVisible(true);*/
-		fen_plateau = new Plateau("Le jeu de la savane");
+		fen_plateau = new Plateau("Le jeu de la savane", getUtilisateur());
 		fen_plateau.setVisible(true);
 		//monXML = new XMLParser("./res/8x8_simple.xml");
 		monXML = new XMLParser("./res/16x16_auto_gen_test.xml");
@@ -125,12 +154,44 @@ public class Ordonnanceur {
 		listeElement = new ArrayList<Element>();
 		fen_plateau.afficherMap(getMap());
 		fen_plateau.afficherStat(getListeAnimaux().size(), getListeObstacles().size(), getListeRessource().size());
+
 	}
 	/*_______________________________________________________________*/
 	/**
 	 */
 	public void run() {
 		int i,j,k;
+		if(utilisateur.getAction()!= -1 && fen_plateau.getActionCase()!= -1) //si l'utilisateur a appuyer sur un des éléments
+		{
+			for(int num=0; num<map.getListeCases().size(); num++)
+			{
+				if(map.getListeCases().get(num).getId() == fen_plateau.getActionCase())
+				{
+					Random rand = new Random();
+					int valeur = rand.nextInt(2);
+					boolean sexeAnimal;
+					if (valeur == 1)
+						sexeAnimal = true;
+					else sexeAnimal = false;
+					switch (utilisateur.getAction())
+					{
+						case 0: map.getListeCases().get(num).addAnimal(new Gazelle(fen_plateau.getActionCase(), sexeAnimal));
+						case 6: map.getListeCases().get(num).addAnimal(new Girafe(fen_plateau.getActionCase(), sexeAnimal));
+						case 2: map.getListeCases().get(num).addAnimal(new Hyene(fen_plateau.getActionCase(), sexeAnimal));
+						case 3: map.getListeCases().get(num).addAnimal(new Lion(fen_plateau.getActionCase(), sexeAnimal));
+						case 4: map.getListeCases().get(num).addObstacle(new Obstacle(fen_plateau.getActionCase()));
+						case 5: map.getListeCases().get(num).addRessource(new Plante(fen_plateau.getActionCase()));
+						case 1: map.getListeCases().get(num).addRessource(new Viande(fen_plateau.getActionCase()));
+						default:
+							break;
+					}
+					
+				}
+			}
+			fen_plateau.setActionCase(-1);
+			utilisateur.setAction(-1);
+			fen_plateau.afficherMap(getMap());
+		}
 		  if(this.pause=!false){
 			  map.rafraichirPositionElement();
 			  for(i=0;i<map.getListeCases().size();i++){
@@ -159,31 +220,7 @@ public class Ordonnanceur {
 				 
 				  //reste à rajouter l'animal dans la liste des éléments de la case
 			  }
-			// Essai de faire un rafraichissement à modifier bien sur !
-			/*	Animal simba = new Animal();
-				int indexNewCase=0;
-				simba = (Animal) getMap().getListeCases().get(12).getListeElements().get(0);
-				Position p = getMap().getListeCases().get(12).getListeElements().get(0).seDeplacer(getMap().getListeCases().get(12).getPosition());
-				getMap().getListeCases().get(12).supprimerAnimal((Animal) getMap().getListeCases().get(12).getListeElements().get(0));
-				for(int i=0; i<getMap().getListeCases().size(); i++)
-				{
-					if(getMap().getListeCases().get(i).getPosition().getX() == p.getX() && getMap().getListeCases().get(i).getPosition().getY() == p.getY())
-					{
-						getMap().getListeCases().get(i).addAnimal(simba);
-						indexNewCase = i;
-						System.out.println("ça rentre");
-					}
-				}
-				System.out.println("nouvelle case: " + getMap().getListeCases().get(indexNewCase).getListeElements().size());
-				try
-				{
-					Thread.sleep(5000);
-				} catch (InterruptedException e)
-				{
-					// PENSER à IMPLEMENTER Auto-generated catch block
-					e.printStackTrace();
-				}
-				System.out.println("coucou");*/
+			
 				fen_plateau.afficherMap(map);
 				
 			  // To be completed.
@@ -323,6 +360,14 @@ public class Ordonnanceur {
 	public void updateGUI(){
 		
 		fen_plateau.afficherMap(getMap());
+		try
+		{
+			Thread.sleep(5000);
+		} catch (InterruptedException e)
+		{
+			// PENSER à IMPLEMENTER Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	  /*_______________________________________________________________*/
 		/**
