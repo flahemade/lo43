@@ -11,6 +11,7 @@ package Vue;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -102,10 +103,16 @@ public class ActionUtilisateur extends JInternalFrame implements Runnable, Actio
 	private void creerComposants()
 	{
 		
-		JLabel label_haut = new JLabel("Sélectionnez votre élément");
+		JLabel label_haut_haut = new JLabel("Sélectionnez votre élément");
+		JLabel label_haut = new JLabel(" puis votre case.");
 		label_haut.setPreferredSize(new Dimension(20, 20));
+		label_haut_haut.setPreferredSize(new Dimension(20, 20));
+		JPanel pan_label_haut = new JPanel();
+		pan_label_haut.setLayout(new GridLayout(2, 1));
+		pan_label_haut.add(label_haut_haut);
+		pan_label_haut.add(label_haut);
 		pan_ensemble = new JPanel(new BorderLayout());
-		pan_ensemble.add(label_haut, BorderLayout.NORTH);
+		pan_ensemble.add(pan_label_haut, BorderLayout.NORTH);
 		pan_image = new JPanel();
 		pan_image.setLayout(new GridLayout(3,3));
 		pan_image.setMinimumSize(new Dimension(400,500));

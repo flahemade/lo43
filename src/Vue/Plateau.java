@@ -125,7 +125,7 @@ public class Plateau extends JFrame implements ActionListener, MouseListener{
 	//	jpGauche.setPreferredSize(new Dimension(250, this.getHeight()));
 		jpGauche.setPreferredSize(new Dimension(250, 4*40)); //Pas adaptatif
 	//	jp_gaucheHaut.setPreferredSize(new Dimension(250, this.getHeight()/2));
-		jp_gaucheHaut.setPreferredSize(new Dimension(250, 4*40)); //C'est moche
+		jp_gaucheHaut.setPreferredSize(new Dimension(250, 6*40)); //C'est moche
 		jp_gaucheHaut.setLayout(new BorderLayout());
 		jp_gaucheHaut.add(utilisateur, BorderLayout.CENTER);
 		jp_gaucheBas.setLayout(new BorderLayout());

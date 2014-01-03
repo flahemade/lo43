@@ -163,6 +163,7 @@ public class Ordonnanceur {
 		int i,j,k;
 		if(utilisateur.getAction()!= -1 && fen_plateau.getActionCase()!= -1) //si l'utilisateur a appuyer sur un des éléments
 		{
+			System.out.println("actionUtilisateur : " + utilisateur.getAction());
 			for(int num=0; num<map.getListeCases().size(); num++)
 			{
 				if(map.getListeCases().get(num).getId() == fen_plateau.getActionCase())
@@ -176,12 +177,12 @@ public class Ordonnanceur {
 					switch (utilisateur.getAction())
 					{
 						case 0: map.getListeCases().get(num).addAnimal(new Gazelle(fen_plateau.getActionCase(), sexeAnimal));
-						case 6: map.getListeCases().get(num).addAnimal(new Girafe(fen_plateau.getActionCase(), sexeAnimal));
+						case 1: map.getListeCases().get(num).addAnimal(new Girafe(fen_plateau.getActionCase(), sexeAnimal));
 						case 2: map.getListeCases().get(num).addAnimal(new Hyene(fen_plateau.getActionCase(), sexeAnimal));
 						case 3: map.getListeCases().get(num).addAnimal(new Lion(fen_plateau.getActionCase(), sexeAnimal));
 						case 4: map.getListeCases().get(num).addObstacle(new Obstacle(fen_plateau.getActionCase()));
 						case 5: map.getListeCases().get(num).addRessource(new Plante(fen_plateau.getActionCase()));
-						case 1: map.getListeCases().get(num).addRessource(new Viande(fen_plateau.getActionCase()));
+						case 6: map.getListeCases().get(num).addRessource(new Viande(fen_plateau.getActionCase()));
 						default:
 							break;
 					}
