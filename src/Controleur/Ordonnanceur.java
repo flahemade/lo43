@@ -376,7 +376,7 @@ public class Ordonnanceur {
 		fen_plateau.afficherMap(getMap());
 		try
 		{
-			Thread.sleep(5000);
+			Thread.sleep(1000);
 		} catch (InterruptedException e)
 		{
 			// PENSER à IMPLEMENTER Auto-generated catch block
