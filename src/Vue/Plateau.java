@@ -238,21 +238,13 @@ public class Plateau extends JFrame implements ActionListener, MouseListener{
  	
  	/*_______________________________________________________________*/
  	/**Afficher les statistiques
- 	 * @param lion le nombre de lion présent sur la carte
- 	 * @param hyene le nombre de hyene présent sur la carte
- 	 * @param girafe le nombre de girafe présent sur la carte
- 	 * @param gazelle le nombre de gazelle présent sur la carte
  	 * @param obstacle le nombre d'obstacle présent sur la carte
  	 * @param ressource le nombre de ressource présent sur la carte
  	 */
- 	public void afficherStat(/*int lion, int hyene, int girafe, int gazelle*/int animal, int obstacle, int ressource)
+ 	public void afficherStat(int animal, int obstacle, int ressource)
  	{
  		ArrayList<JLabel> labels = new ArrayList<JLabel>();
  		labels.add(new JLabel("Statistique du jeu:"));
- 		//labels.add(new JLabel("Nombre de Lions :" + lion));
- 		//labels.add(new JLabel("Nombre de Hyenes :" + hyene));
- 		//labels.add(new JLabel("Nombre de Girafes :" + girafe));
- 		//labels.add(new JLabel("Nombre de Gazelles :" + gazelle));
  		labels.add(new JLabel("Nombre d'Animal :" + animal));
  		labels.add(new JLabel("Nombre d'Obstacles :" + obstacle));
  		labels.add(new JLabel("Nombre de Ressources :" + ressource));

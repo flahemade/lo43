@@ -35,7 +35,7 @@ public class Ordonnanceur {
 	private ArrayList<Element> listeElement;
 	/** partie utilisateur */
 	private ActionUtilisateur utilisateur;
-	
+	/** le plateau du jeu */
 	private Plateau fen_plateau;
 	
 
@@ -176,13 +176,20 @@ public class Ordonnanceur {
 					else sexeAnimal = false;
 					switch (utilisateur.getAction())
 					{
-						case 0: map.getListeCases().get(num).addAnimal(new Gazelle(fen_plateau.getActionCase(), sexeAnimal));
-						case 1: map.getListeCases().get(num).addAnimal(new Girafe(fen_plateau.getActionCase(), sexeAnimal));
-						case 2: map.getListeCases().get(num).addAnimal(new Hyene(fen_plateau.getActionCase(), sexeAnimal));
-						case 3: map.getListeCases().get(num).addAnimal(new Lion(fen_plateau.getActionCase(), sexeAnimal));
-						case 4: map.getListeCases().get(num).addObstacle(new Obstacle(fen_plateau.getActionCase()));
-						case 5: map.getListeCases().get(num).addRessource(new Plante(fen_plateau.getActionCase()));
-						case 6: map.getListeCases().get(num).addRessource(new Viande(fen_plateau.getActionCase()));
+						case 0: map.getListeCases().get(num).addAnimal(new Gazelle(fen_plateau.getActionCase(), sexeAnimal)); 
+								break;
+						case 1: map.getListeCases().get(num).addAnimal(new Girafe(fen_plateau.getActionCase(), sexeAnimal)); 
+								break;
+						case 2: map.getListeCases().get(num).addAnimal(new Hyene(fen_plateau.getActionCase(), sexeAnimal)); 
+								break;
+						case 3: map.getListeCases().get(num).addAnimal(new Lion(fen_plateau.getActionCase(), sexeAnimal)); 
+								break;
+						case 4: map.getListeCases().get(num).addObstacle(new Obstacle(fen_plateau.getActionCase())); 
+								break;
+						case 5: map.getListeCases().get(num).addRessource(new Plante(fen_plateau.getActionCase())); 
+								break;
+						case 6: map.getListeCases().get(num).addRessource(new Viande(fen_plateau.getActionCase())); 
+								break;
 						default:
 							break;
 					}
@@ -358,8 +365,14 @@ public class Ordonnanceur {
 		*/
 		return listecasesadjacentes;
 	}
-	public void updateGUI(){
-		
+	
+	
+	/*_______________________________________________________________*/
+	/**
+	 */
+	public void updateGUI()
+	{
+		fen_plateau.afficherStat(getListeAnimaux().size(), getListeObstacles().size(), getListeRessource().size());
 		fen_plateau.afficherMap(getMap());
 		try
 		{
