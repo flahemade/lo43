@@ -306,7 +306,7 @@ public void live(Case c){
 	  Case nouvelle=c;
 	  ArrayList<Case> listeCases=c.getListeCasesAdjacentes();
 	  for(i=0; i<listeCases.size(); i++){
-		  if(listeCases.get(i).getPosition().getX()==positionCible.getX()){
+		  if(listeCases.get(i).getPosition().getX()==positionCible.getX() && listeCases.get(i).getPosition().getY() == positionCible.getY()){
 			  nouvelle=listeCases.get(i);
 			  ArrayList<Element> listeElementsCible=nouvelle.getListeElements();
 			  for(j=0; j<listeElementsCible.size(); j++){
