@@ -301,7 +301,7 @@ public void live(Case c){
 	  int i,j;
 	  
 	  System.out.println(this.getClass().getSimpleName()+"\tID "+this.getId()+"\t live()");
-	  Position positionCible=seDeplacer(c.getPosition());
+	  Position positionCible=seDeplacer(c.getPosition()); //Affectation position initiale
 	  Case ancienne=c;
 	  Case nouvelle=c;
 	  ArrayList<Case> listeCases=c.getListeCasesAdjacentes();

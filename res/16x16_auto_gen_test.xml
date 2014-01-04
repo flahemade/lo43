@@ -8,16 +8,7 @@
              <sexe>male</sexe>
              <caseid>255</caseid>
          </animal>
-         <animal>
-             <type>lion</type>
-             <sexe>male</sexe>
-             <caseid>200</caseid>
-         </animal>
-         <animal>
-             <type>lion</type>
-             <sexe>male</sexe>
-             <caseid>0</caseid>
-         </animal>
+         
      </espece>
      <objet>
  
