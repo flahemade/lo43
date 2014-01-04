@@ -1,5 +1,9 @@
 package Modele;
 
+import java.util.ArrayList;
+
+import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
+
 public class Lion extends Animal {
 
 	public Lion(){
@@ -45,6 +49,30 @@ public class Lion extends Animal {
   {
 	  return new Lion(caseid, sexe);
   }
+  
+
+  @Override
+  protected Position choixDeplacement (ArrayList<Case> listecaseadj){
+	  Position nouvelleposition;
+	  int i,j ,choix;
+	  for(i =0; i< listecaseadj.size();i++){
+		  for(j=0;j<listecaseadj.get(i).getListeElements().size();j++){
+			  
+			  if(listecaseadj.get(i).getListeElements().get(j) instanceof Viande){
+				  return  listecaseadj.get(i).getListeElements().get(j).getPosition();
+			  }
+			  if(listecaseadj.get(i).getListeElements().get(j) instanceof Animal){
+				  Animal tmp = (Animal) listecaseadj.get(i).getListeElements().get(j);
+				  if(tmp.getRangChaineAlimentaire()<this.getRangChaineAlimentaire()){
+					  return listecaseadj.get(i).getListeElements().get(j).getPosition();
+				  }
+			  }
+		  }
+	  }
+	  
+  
+  return seDeplacer(getPosition());
+  }
   private void init(){
 		setAgeMax(100);
 		setChampVision(1);
@@ -53,4 +81,5 @@ public class Lion extends Animal {
 		setModifierVie(100);
 		setImage("./res/animaux/lion/lion1.png");
   }
+  
 }

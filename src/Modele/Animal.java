@@ -293,7 +293,8 @@ public void live(Case c){
 	  int i,j;
 	  
 	  System.out.println(this.getClass().getSimpleName()+"\tID "+this.getId()+"\t live()");
-	  Position positionCible=seDeplacer(c.getPosition()); //Affectation position initiale
+	  //Position positionCible=seDeplacer(c.getPosition()); //Affectation position initiale
+	  Position positionCible = choixDeplacement(c.getListeCasesAdjacentes());
 	  Case ancienne=c;
 	  Case nouvelle=c;
 	  ArrayList<Case> listeCases=c.getListeCasesAdjacentes();
@@ -348,7 +349,9 @@ public void live(Case c){
 	  System.out.println("Ancienne :"+ancienne.getId());
 	  Age++;
   }
-  private Position choixDeplacement (Position position, ArrayList<Case> listecaseadj){
+
+  protected Position choixDeplacement (ArrayList<Case> listecaseadj){
+	  System.out.println("Pas la bonne méthode");
 	  return position;
   }
 
