@@ -291,7 +291,7 @@ public void mourir(){
  */
 public void live(Case c){
 	  int i,j;
-	  
+	  Element supprimer;
 	  System.out.println(this.getClass().getSimpleName()+"\tID "+this.getId()+"\t live()");
 	  //Position positionCible=seDeplacer(c.getPosition()); //Affectation position initiale
 	  Position positionCible = choixDeplacement(c.getListeCasesAdjacentes());
@@ -330,8 +330,9 @@ public void live(Case c){
 				  }
 				  if(element_temp instanceof Ressource){
 					  System.out.println("Ressource sur la case cible.");
-					  consommerRessource(element_temp);
+					 supprimer = consommerRessource(element_temp);
 					  this.setPV(getPV() + getModifierVie());
+					  
 					  //Ici la question est de savoir quels animaux peuvent consommer quelle ressource
 					  //Pas tr�s long � impl�menter.
 				  }
@@ -359,7 +360,8 @@ public void live(Case c){
 /**fonction redéfinie dans les classes filles
  * @param ressource
  */
-public void consommerRessource(Element ressource){
+protected Element consommerRessource(Element ressource){
+	return null;
   }
   
 }

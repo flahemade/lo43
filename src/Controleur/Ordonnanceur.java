@@ -365,7 +365,35 @@ public class Ordonnanceur {
 		*/
 		return listecasesadjacentes;
 	}
-	
+	private ArrayList<Case> trierListe (ArrayList<Case> l){
+		
+		
+		int i;
+		Boolean permut;
+		//Trier la liste par ordre croissant d'id de case
+		do {
+			// hypothèse : le tableau est trié
+			permut = false;
+			for ( i = 0; i < l.size() - 1; i++) {
+				// Teste si 2 éléments successifs sont dans le bon ordre ou non
+				if (l.get(i).getId() > l.get(i+1).getId()) {
+					// s'ils ne le sont pas, on échange leurs positions
+					l.add(i, l.get(i+1));
+					l.remove(i+2);
+					permut = true;
+					/*tampon = tableau[i];
+					tableau[i] = tableau[i + 1];
+					tableau[i + 1] = tampon;
+					permut = true;
+					*/
+					
+				}
+				
+			}
+		} while (permut);
+
+	return l;
+	}
 	
 	/*_______________________________________________________________*/
 	/**

@@ -20,7 +20,8 @@ public class Lion extends Animal {
   public void seBattre() {
   }
   
-  public void consommerRessource(Element ressource)
+  @Override
+  protected Element consommerRessource(Element ressource)
   {
 	  if (ressource instanceof Viande)
 	  {
@@ -39,10 +40,10 @@ public class Lion extends Animal {
 				e.printStackTrace();
 			}
 		  }	
-		ressource = null;
+		return ressource;
 			   
 	  }
-		  
+		return null;  
   }
 
   public Lion seReproduire(int caseid, boolean sexe)
