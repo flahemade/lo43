@@ -24,12 +24,32 @@ public class Gazelle extends Animal {
 		setImage("./res/animaux/gazelle/gazelle.png");
   }
 	
-	 public void consommerRessource(Element ressource)
+	/*_______________________________________________________________*/
+	/**
+	 *@param ressource
+	 * @see Modele.Animal#consommerRessource(Modele.Element)
+	 */
+	public void consommerRessource(Element ressource)
 	  {
-		  if (ressource instanceof Plante)
+		 if (ressource instanceof Plante)
 		  {
-			   this.modifierVie = 5;
-		  }
+			   
+			  this.setModifierVie(getPV() + ressource.getModifierVie());
+			  if (this.getPV() > 100)
+				  this.setPV(100);
+			  if(this.getPV() <=0)
+			  {
+				try
+				{
+					finalize();
+				} catch (Throwable e)
+				{
+					// PENSER à IMPLEMENTER Auto-generated catch block
+					e.printStackTrace();
+				}
+			  }	
+			ressource = null;
+		  }	
 			  
 	  }
 	
