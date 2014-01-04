@@ -356,7 +356,10 @@ public void live(Case c){
 	  System.out.println("Ancienne :"+ancienne.getId());
 	  Age++;
   }
-  
+  private Position choixDeplacement (Position position, ArrayList<Case> listecaseadj){
+	  return position;
+  }
+
   /*_______________________________________________________________*/
 /**fonction redéfinie dans les classes filles
  * @param ressource
