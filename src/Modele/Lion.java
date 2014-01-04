@@ -20,7 +20,23 @@ public class Lion extends Animal {
   {
 	  if (ressource instanceof Viande)
 	  {
-		   this.modifierVie = 5;
+		   
+		  this.setModifierVie(getPV() + ressource.getModifierVie());
+		  if (this.getPV() > 100)
+			  this.setPV(100);
+		  if(this.getPV() <=0)
+		  {
+			try
+			{
+				finalize();
+			} catch (Throwable e)
+			{
+				// PENSER à IMPLEMENTER Auto-generated catch block
+				e.printStackTrace();
+			}
+		  }	
+		ressource = null;
+			   
 	  }
 		  
   }

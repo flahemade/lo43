@@ -246,15 +246,7 @@ public Position seDeplacer(Position p)
 	  return nouvelle;
   }
 
-/*_______________________________________________________________*/
-/**
- * @param element
- * @return
- */
-public int seNourrir(Element element){ //TODO A TERMINER
-	  Integer result=0;
-	  return result;
-  }
+
 
   /*_______________________________________________________________*/
 /**
