@@ -4,22 +4,47 @@ import java.util.ArrayList;
 import java.util.Random;
 
 
+/*_______________________________________________________________*/
+/**
+ * @author 
+ *
+ */
 public class Animal extends Element {
 
   
-  protected int Vitesse;
-  protected int Direction;
-  protected int RangChaineAlimentaire;
-  protected int Age;
-  protected int AgeMax;
-  protected int PV;
-  protected Boolean sexe;
+		/** vitesse de l'animal */
+	protected int Vitesse;
+	  /** direction de l'animal*/
+	protected int Direction;
+	  /** rang dans la chaine alimentaire */
+	protected int RangChaineAlimentaire;
+	  /** age de l'animal */
+	protected int Age;
+	  /** age max de l'espèce */
+	protected int AgeMax;
+	  /** pv de l'animal */
+	protected int PV;
+	  /** sexe de l'animal */
+	protected Boolean sexe;
+
 //  protected int idCase; //Se trouve dans Element
  // protected int modifierVie; //Se trouve dans Element
  // protected int champVision; //Se trouve dans Element
   
   //------------------------------CONSTRUCTEUR-------------------------------------------//
-  public Animal(String image, String nom,int Vitesse,int RCA,int AgeMax,int PV,Boolean sexe, int modifierVie, int champVision){
+	/*_______________________________________________________________*/
+	/**constructeur complet
+	 * @param image
+	 * @param nom
+	 * @param Vitesse
+	 * @param RCA
+	 * @param AgeMax
+	 * @param PV
+	 * @param sexe
+	 * @param modifierVie
+	 * @param champVision
+	 */
+	public Animal(String image, String nom,int Vitesse,int RCA,int AgeMax,int PV,Boolean sexe, int modifierVie, int champVision){
 	  super(image, "nom"+(ID+1), modifierVie, champVision);
 	  init();
 	  setVitesse(Vitesse);
@@ -29,13 +54,20 @@ public class Animal extends Element {
 	  setSexe(sexe);
   }
   
- public Animal(){
+ /*_______________________________________________________________*/
+/**constructeur simple
+ */
+public Animal(){
 	  super();
 	  init();    
  
   }
  
   
+/*_______________________________________________________________*/
+/**constructeur avec id de case
+ * @param idcase
+ */
 public Animal(int idcase){
 	super(idcase);
 	init();
@@ -45,59 +77,115 @@ public Animal(int idcase){
 //------------------------------GETTERS AND SETTERS------------------------------------//
 
 
+	/*_______________________________________________________________*/
+	/**getter de vitesse
+	 * @return la vitesse
+	 */
 	public Integer getVitesse() {
 		return Vitesse;
 	}
 
+	/*_______________________________________________________________*/
+	/**setter de vitesse
+	 * @param vitesse
+	 */
 	public void setVitesse(Integer vitesse) {
 		Vitesse = vitesse;
 	}
 
+	/*_______________________________________________________________*/
+	/**getter
+	 * @return direction
+	 */
 	public Integer getDirection() {
 		return Direction;
 	}
 
+	/*_______________________________________________________________*/
+	/**setter
+	 * @param direction
+	 */
 	public void setDirection(Integer direction) {
 		Direction = direction;
 	}
 
+	/*_______________________________________________________________*/
+	/**getter
+	 * @return le rang
+	 */
 	public Integer getRangChaineAlimentaire() {
 		return RangChaineAlimentaire;
 	}
 
+	/*_______________________________________________________________*/
+	/**setter
+	 * @param rangChaineAlimentaire
+	 */
 	public void setRangChaineAlimentaire(Integer rangChaineAlimentaire) {
 		RangChaineAlimentaire = rangChaineAlimentaire;
 	}
 
+	/*_______________________________________________________________*/
+	/**getter age
+	 * @return l'age
+	 */
 	public Integer getAge() {
 		return Age;
 	}
 
+	/*_______________________________________________________________*/
+	/**setter age
+	 * @param age
+	 */
 	public void setAge(Integer age) {
 		Age = age;
 	}
 
+	/*_______________________________________________________________*/
+	/**getter
+	 * @return l'age max de l'espèce
+	 */
 	public Integer getAgeMax() {
 		return AgeMax;
 	}
 
+	/*_______________________________________________________________*/
+	/**setter age max
+	 * @param ageMax
+	 */
 	public void setAgeMax(Integer ageMax) {
 		AgeMax = ageMax;
 	}
 
+	/*_______________________________________________________________*/
+	/**getter pv 
+	 * @return les pv de l'animal
+	 */
 	public Integer getPV() {
 		return PV;
 	}
 
+	/*_______________________________________________________________*/
+	/**setter pv
+	 * @param pV
+	 */
 	public void setPV(Integer pV) {
 		PV = pV;
 	}
 
 
+	/*_______________________________________________________________*/
+	/**getter sexe de l'animal
+	 * @return le sexe de l'animal
+	 */
 	public Boolean getSexe() {
 		return sexe;
 	}
 
+	/*_______________________________________________________________*/
+	/**setter sexe de l'animal
+	 * @param sexe
+	 */
 	public void setSexe(Boolean sexe) {
 		this.sexe = sexe;
 	}
@@ -107,11 +195,20 @@ public Animal(int idcase){
 		
   //------------------------------Autres M�thodes----------------------------------------//
 
-	 private void init(){
+	 /*_______________________________________________________________*/
+	/**fonction qui initialise un animal
+	 */
+	private void init(){
 		 setAge(0);
 		  setDirection(0);
 	 }
-  public Position seDeplacer(Position p)
+  /*_______________________________________________________________*/
+/** va permettre à l'animal de choisir une nouvelle position sur la map
+ *@param p
+ *@return la nouvelle position
+ * @see Modele.Element#seDeplacer(Modele.Position)
+ */
+public Position seDeplacer(Position p)
   { 
 	  Integer case_cible=0;
 	  Position nouvelle = new Position();
@@ -154,12 +251,22 @@ public Animal(int idcase){
 	  return nouvelle;
   }
 
+/*_______________________________________________________________*/
+/**
+ * @param element
+ * @return
+ */
 public int seNourrir(Element element){ //TODO A TERMINER
 	  Integer result=0;
 	  return result;
   }
 
-  public Boolean seReproduire(Animal animal){
+  /*_______________________________________________________________*/
+/**
+ * @param animal
+ * @return si la reproduction a eu lieu
+ */
+public Boolean seReproduire(Animal animal){
 	  Boolean reproduction;
 	  if(animal.sexe!=this.sexe){
 		  reproduction=true;
@@ -170,7 +277,11 @@ public int seNourrir(Element element){ //TODO A TERMINER
 	  return reproduction;
   }
   
-  public Boolean verifierAge(){
+  /*_______________________________________________________________*/
+/**
+ * @return
+ */
+public Boolean verifierAge(){
 	  Boolean vivant;
 	  if(this.Age<=this.AgeMax){
 		  vivant=true;
@@ -180,11 +291,18 @@ public int seNourrir(Element element){ //TODO A TERMINER
 	  return vivant;
   }
 
-  public void mourir(){
+  /*_______________________________________________________________*/
+/**
+ */
+public void mourir(){
 	  
   }
   
-  public void live(Case c){
+  /*_______________________________________________________________*/
+/**
+ * @param c
+ */
+public void live(Case c){
 	  int i,j;
 	  System.out.println(this.getClass().getSimpleName()+"\tID "+this.getId()+"\t live()");
 	  Position positionCible=seDeplacer(c.getPosition());
@@ -243,7 +361,11 @@ public int seNourrir(Element element){ //TODO A TERMINER
 	  Age++;
   }
   
-  public void consommerRessource(Element ressource){
+  /*_______________________________________________________________*/
+/**fonction redéfinie dans les classes filles
+ * @param ressource
+ */
+public void consommerRessource(Element ressource){
   }
   
 }
