@@ -6,11 +6,14 @@
                  <animal>
              <type>lion</type>
              <sexe>male</sexe>
-             <caseid>255</caseid>
+             <caseid>129</caseid>
          </animal>
-         
      </espece>
      <objet>
- 
+ <ressource>
+    <type>ViaNde</type>
+         <caseid>128</caseid>
+     
+ </ressource>
      </objet>
      </savane> 
