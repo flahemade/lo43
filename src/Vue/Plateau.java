@@ -82,6 +82,7 @@ public class Plateau extends JFrame implements ActionListener, MouseListener{
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setSize(new Dimension(900,700));
 		this.setLocationRelativeTo(null);
+		this.setResizable(false);
 		creerComposants();
 		placerComposants();
 		

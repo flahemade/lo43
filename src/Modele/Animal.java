@@ -213,13 +213,8 @@ public Position seDeplacer(Position p)
 	  Integer case_cible=0;
 	  Position nouvelle = new Position();
 	  Random rand = new Random();
-	  int valeur = rand.nextInt(9-1+1) + 1;
-	  try {
-		Thread.sleep(33);
-	} catch (InterruptedException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+	  int valeur = rand.nextInt(8-1+1) + 1;
+	  
 	  switch (valeur)
 	  {
 	  	case 1: nouvelle.setX(p.getX()-1);
