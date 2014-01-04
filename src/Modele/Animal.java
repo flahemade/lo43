@@ -304,6 +304,7 @@ public void mourir(){
  */
 public void live(Case c){
 	  int i,j;
+	  
 	  System.out.println(this.getClass().getSimpleName()+"\tID "+this.getId()+"\t live()");
 	  Position positionCible=seDeplacer(c.getPosition());
 	  Case ancienne=c;
