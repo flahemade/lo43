@@ -87,7 +87,6 @@ public ArrayList<Case> parseXML(){
 	
 	NodeList list = document.getDocumentElement().getChildNodes(); //On recupere le premier niveau de Node (map & espece)
 	int i;
-	int cpt=0;
 	Dimension dimensionmap= new Dimension();
 	ArrayList<Case>listefinale = new ArrayList<Case>();
 	ArrayList<Case> listecase = new ArrayList<Case>();

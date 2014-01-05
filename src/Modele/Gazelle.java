@@ -58,8 +58,8 @@ public class Gazelle extends Animal {
 	  }
 	@Override
 	  protected Position choixDeplacement (ArrayList<Case> listecaseadj){
-		  Position nouvelleposition;
-		  int i,j ,choix;
+		  
+		  int i,j;
 		  for(i =0; i< listecaseadj.size();i++){
 			  for(j=0;j<listecaseadj.get(i).getListeElements().size();j++){
 				  

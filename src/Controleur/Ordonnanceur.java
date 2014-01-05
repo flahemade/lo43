@@ -173,10 +173,11 @@ public class Ordonnanceur {
 			}
 			for(i=0;i<map.getListeCases().size();i++)
 			{
-				for(j=0;j<map.getListeCases().get(i).getListeCasesAdjacentes().size();j++)
+				/*for(j=0;j<map.getListeCases().get(i).getListeCasesAdjacentes().size();j++)
 				{
 					System.out.println(map.getListeCases().get(i).getListeCasesAdjacentes().get(j).getId());
 				}
+				*/
 			}
 			// Execute la m�thode live() de chaque animal.
 			ArrayList<Animal> listeAnimaux=this.getListeAnimaux();
@@ -341,7 +342,6 @@ public class Ordonnanceur {
 		int xanimal,yanimal;
 		int xcase,ycase;
 		int champvision;
-		int cpt=0;
 		ArrayList<Case>lcase = map.getListeCases();
 		ArrayList<Case> listecasesadjacentes = new ArrayList<Case>();
 		
@@ -367,7 +367,7 @@ public class Ordonnanceur {
 							else
 							{
 								listecasesadjacentes.add(lcase.get(j));						
-								System.out.println("\tAjout case adjac Position "+xcase+" , "+ycase);
+								//System.out.println("\tAjout case adjac Position "+xcase+" , "+ycase);
 							}
 						}
 					}
@@ -376,24 +376,7 @@ public class Ordonnanceur {
 				}
 			}
 		}
-		/*
-		for(i=0;i<lanimaux.size();i++){
-			xanimal = lanimaux.get(i).getPosition().getX();
-			yanimal = lanimaux.get(i).getPosition().getY();
-			champvision = lanimaux.get(i).getChampVision();
-			System.out.println("Animal Position "+xanimal +" , "+yanimal);
-			for(j=0;j<lcase.size();j++){
-				xelement = lcase.get(i).getPosition().getX();
-				yelement = lcase.get(i).getPosition().getY();
-				if((xelement >= (xanimal-champvision)) && (xelement <= (xanimal+champvision))){ //Condition de limite de champ de vision en x
-					if((yelement >= (yanimal-champvision))&& (yelement <= (yanimal+champvision))){ //condition de limite de champ de vision en y
-						listecasesadjacentes.add(lcase.get(j));
-						System.out.println("\tAjout case adjac Position "+xelement+" , "+yelement);
-					}
-				}
-			}
-		}
-		*/
+		
 		return listecasesadjacentes;
 	}
 	
@@ -443,7 +426,7 @@ public class Ordonnanceur {
 				
 				if(getMap().getListeCases().get(i).getPosition().getX() == listeElements.get(j).getPosition().getX() && getMap().getListeCases().get(i).getPosition().getY() == listeElements.get(j).getPosition().getY())
 				{
-					System.out.println(listeElements.get(j).getId());
+					//System.out.println(listeElements.get(j).getId());
 					if(listeElements.get(j) instanceof Animal)
 						getMap().getListeCases().get(i).supprimerAnimal((Animal)listeElements.get(j));
 					if(listeElements.get(j) instanceof Obstacle)
