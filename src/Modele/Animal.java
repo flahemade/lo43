@@ -353,12 +353,12 @@ public Element live(Case c){
 						  System.out.println("Baston !");
 						  if(this.getRangChaineAlimentaire()>=animalCible.getRangChaineAlimentaire()){
 							  System.out.println("Victoire");
-							  //this.seNourrir(animalCible);
-							  //animalCible.mourir();
+							  this.consommerRessource(animalCible);
+							  animalCible.mourir();
 						  }else{
 							  System.out.println("D�faite");
-							  //animalCible.seNourrir(this);
-							  //this.mourir();
+							  animalCible.consommerRessource(this);
+							  this.mourir();
 						  }
 					  }
 				  }
