@@ -46,7 +46,7 @@ public class Girafe extends Animal{
 		  }
 		  
 	  
-	  return seDeplacer(getPosition());
+	  return seDeplacer(getPosition(), listecaseadj);
 	  }
 	
 	/*_______________________________________________________________*/

@@ -203,17 +203,49 @@ public Animal(int idcase){
 		  setDirection(0);
 	 }
   /*_______________________________________________________________*/
+	
+	private ArrayList<Case> getCaseDispo (ArrayList<Case> listecaseadj){
+		int i,j;
+		Boolean obstacle = false;
+		ArrayList<Case> listecasedispo = new ArrayList<Case>();
+		for(i=0;i<listecaseadj.size();i++){
+			for(j=0;j<listecaseadj.get(i).getListeElements().size();j++){
+				if(listecaseadj.get(i).getListeElements().get(j) instanceof Obstacle){
+					obstacle = true;
+				}
+			}
+			if(!obstacle){
+				listecasedispo.add(listecaseadj.get(i));
+			}
+			obstacle = false;
+		}
+		return listecasedispo;
+	}
 /** va permettre à l'animal de choisir une nouvelle position sur la map
  *@param p
  *@return la nouvelle position
  * @see Modele.Element#seDeplacer(Modele.Position)
  */
-public Position seDeplacer(Position p)
+public Position seDeplacer(Position p, ArrayList<Case> listecaseadj)
   { 
 	  Integer case_cible=0;
-	  Position nouvelle = new Position();
+	  Position nouvelle = p;
 	  Random rand = new Random();
-	  int valeur = rand.nextInt(8-1+1) + 1;
+	  int valeur;
+	/*Nouveau*/
+	  ArrayList<Case> listecasedispo = getCaseDispo(listecaseadj);
+	  if(listecasedispo.size()==0){
+		  return nouvelle;
+	  }
+	  valeur = rand.nextInt(listecasedispo.size());
+	  nouvelle = listecasedispo.get(valeur).getPosition();
+	  return nouvelle;
+	  
+	  
+	  
+	  /*// ANCIEN
+	   valeur = rand.nextInt(8-1+1) + 1;
+	 
 	  
 	  switch (valeur)
 	  {
@@ -244,6 +276,7 @@ public Position seDeplacer(Position p)
 	  	default:break;
 	}
 	  return nouvelle;
+	  */
   }
 
 

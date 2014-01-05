@@ -60,7 +60,7 @@ public class Hyene extends Animal{
 		  }
 		  
 	  
-	  return seDeplacer(getPosition());
+	  return seDeplacer(getPosition(), listecaseadj);
 	  }
 	public void seBattre(){
 	
