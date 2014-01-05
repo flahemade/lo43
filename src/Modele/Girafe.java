@@ -54,6 +54,7 @@ public class Girafe extends Animal{
 	 *@param ressource
 	 * @see Modele.Animal#consommerRessource(Modele.Element)
 	 */
+	@Override
 	public Element consommerRessource(Element ressource)
 	  {
 		 if (ressource instanceof Plante)

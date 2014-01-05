@@ -2,8 +2,6 @@ package Modele;
 
 import java.util.ArrayList;
 
-import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
-
 public class Lion extends Animal {
 
 	public Lion(){
@@ -17,13 +15,12 @@ public class Lion extends Animal {
 		setSexe(sexe);
 		//setCaseId(caseid);
 	}
-  public void seBattre() {
-  }
+  
   
   @Override
   protected Element consommerRessource(Element ressource)
   {
-	  if (ressource instanceof Viande)
+	  if (ressource instanceof Viande || ressource instanceof Animal)
 	  {
 		   
 		  this.setModifierVie(getPV() + ressource.getModifierVie());
@@ -46,10 +43,7 @@ public class Lion extends Animal {
 		return null;  
   }
 
-  public Lion seReproduire(int caseid, boolean sexe)
-  {
-	  return new Lion(caseid, sexe);
-  }
+ 
   
 
   @Override
