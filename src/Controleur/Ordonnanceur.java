@@ -161,6 +161,7 @@ public class Ordonnanceur {
 	 */
 	public void run() {
 		int i,j,k;
+		ArrayList<Element> listeElementASupprimer = new ArrayList<Element>();
 		if(utilisateur.getAction()!= -1 && fen_plateau.getActionCase()!= -1) //si l'utilisateur a appuyer sur un des éléments
 		{
 			System.out.println("actionUtilisateur : " + utilisateur.getAction());
@@ -200,6 +201,7 @@ public class Ordonnanceur {
 			utilisateur.setAction(-1);
 			fen_plateau.afficherMap(getMap());
 		}
+		
 		  if(this.pause=!false){
 			  map.rafraichirPositionElement();
 			  for(i=0;i<map.getListeCases().size();i++){
@@ -214,6 +216,7 @@ public class Ordonnanceur {
 			  // Execute la m�thode live() de chaque animal.
 			 ArrayList<Animal> listeAnimaux=this.getListeAnimaux();
 			 Case c=null;
+			 
 			  for( i=0; i<listeAnimaux.size();i++){
 				  for(j=0; j< map.getListeCases().size(); j++){
 					  Case temp=map.getListeCases().get(j);
@@ -224,11 +227,12 @@ public class Ordonnanceur {
 						  }
 					  }
 				  }
-				  listeAnimaux.get(i).live(c);
+				  listeElementASupprimer.add(listeAnimaux.get(i).live(c)); // ajoute à la liste les éléments à supprimer de la map
 				 
 				  //reste à rajouter l'animal dans la liste des éléments de la case
 			  }
-			
+			  if(listeElementASupprimer.size()!=0)
+				  supprimerElements(listeElementASupprimer); // supprimer les éléments "mangés" de la map
 				fen_plateau.afficherMap(map);
 				
 			  // To be completed.
