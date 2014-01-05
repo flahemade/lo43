@@ -206,6 +206,7 @@ public class Ordonnanceur {
 				
 				  //reste à rajouter l'animal dans la liste des éléments de la case
 			}
+			
 			fen_plateau.afficherMap(map);
 				
 		}
@@ -249,6 +250,12 @@ public class Ordonnanceur {
 								break;
 						case 6: map.getListeCases().get(num).addRessource(new Viande(fen_plateau.getActionCase())); 
 								break;
+						case 7 : 
+							
+								System.out.println("toto");
+								supprimerElements(map.getListeCases().get(num).getListeElements());
+							
+							break;
 						default:
 							break;
 					}
@@ -259,6 +266,32 @@ public class Ordonnanceur {
 			fen_plateau.afficherMap(getMap());
 		}
 		
+	}
+	
+	
+	/*_______________________________________________________________*/
+	/**Suppression des élements par l'utilisateur
+	 */
+	private void supprimerElementDeCase()
+	{
+		if(utilisateur.getBtn_supprimer().isSelected() && fen_plateau.getActionCase()!=-1)
+		{
+			System.out.println("toto");
+			for(int num=0; num<map.getListeCases().size(); num++)
+			{
+				if(map.getListeCases().get(num).getId() == fen_plateau.getActionCase())
+				{
+					/*for(int i=0; i<map.getListeCases().get(num).getListeElements().size(); i++)
+					{
+						if(map.getListeCases().get(num).getListeElements().get(i) instanceof Obstacle)
+							map.getListeCases().get(num).supprimerObstacle((Obstacle) map.getListeCases().get(num).getListeElements().get(i));
+					}*/
+					supprimerElements(map.getListeCases().get(num).getListeElements());
+				}
+			}	
+		}
+		fen_plateau.setActionCase(-1);
+		fen_plateau.afficherMap(getMap());
 	}
 	/*_______________________________________________________________*/
 	/**met le jeu sur pause 
