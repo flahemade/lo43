@@ -1,7 +1,7 @@
 package Modele;
 /**
  * Class permettant de représenter 
- * simplement une position
+ * une position sur 2 axes
  * @author nicolas
  *
  */

@@ -32,16 +32,7 @@ public class Obstacle extends Element {
 		 
 	 }
 
-	  /*_______________________________________________________________*/
-/*	/** getter de l'ID
-	 * @return lID
-	 */
-	/*public int getId()
-	  {
-		  return ID;
-	  }
-	*/
-
+	
 	/*_______________________________________________________________*/
 	/**
 	 * @see Modele.Element#afficherElement()

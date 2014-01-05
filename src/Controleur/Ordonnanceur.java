@@ -397,7 +397,12 @@ public class Ordonnanceur {
 		return listecasesadjacentes;
 	}
 	
-	
+	/**
+	 * Permet de trier la liste par ordre de position croissante
+	 * 
+	 * @param l ArrayList<Element> liste d'Element non-triee
+	 * @return ArrayList<Element> liste d'Element triee
+	 */
 	private ArrayList<Element> trierListeParPosition (ArrayList<Element> l){
 		
 		
@@ -405,7 +410,7 @@ public class Ordonnanceur {
 		Boolean permut;
 		//Trier la liste par ordre croissant d'id de case
 		do {
-			// hypothèse : le tableau est trié
+			// hypothèse : la liste est triée
 			permut = false;
 			for ( i = 0; i < l.size() - 1; i++) {
 				// Teste si 2 éléments successifs sont dans le bon ordre ou non
@@ -415,11 +420,6 @@ public class Ordonnanceur {
 					l.add(i, l.get(i+1));
 					l.remove(i+2);
 					permut = true;
-					/*tampon = tableau[i];
-					tableau[i] = tableau[i + 1];
-					tableau[i + 1] = tampon;
-					permut = true;
-					*/
 					
 				}
 				
@@ -431,7 +431,8 @@ public class Ordonnanceur {
 	
 	/*_______________________________________________________________*/
 	/**
-	 * @param listeElements
+	 * Permet de supprimer du jeu les Element contenus dans la liste
+	 * @param listeElements ArrayList<Element> liste des Element a supprimer
 	 */
 	private void supprimerElements(ArrayList<Element> listeElements)
 	{
@@ -482,12 +483,7 @@ public class Ordonnanceur {
 				for(;;){
 				ordonnanceur.run();
 				ordonnanceur.updateGUI();
-				/*try {
-					Thread.sleep(100);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}*/
+				
 				}
 		  }
 
