@@ -16,10 +16,10 @@ public class Hyene extends Animal{
 		setSexe(sexe);
 		
 	}
-	
+	@Override
 	 public Element consommerRessource(Element ressource)
 	  {
-		 if (ressource instanceof Viande)
+		 if (ressource instanceof Viande || ressource instanceof Animal)
 		  {
 			   
 			  this.setModifierVie(getPV() + ressource.getModifierVie());
