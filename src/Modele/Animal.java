@@ -352,8 +352,8 @@ public Boolean verifierAge(){
   /*_______________________________________________________________*/
 /**
  */
-public void mourir(){
-	  
+public void mourir(Case c){
+	  c.supprimerAnimal(this);
   }
   
   /*_______________________________________________________________*/
@@ -398,11 +398,11 @@ public Element live(Case c){
 						  if(this.getRangChaineAlimentaire()>=animalCible.getRangChaineAlimentaire()){
 							  System.out.println("Victoire");
 							  this.consommerRessource(animalCible);
-							  animalCible.mourir();
+							  animalCible.mourir(c);
 						  }else{
 							  System.out.println("D�faite");
 							  animalCible.consommerRessource(this);
-							  this.mourir();
+							  this.mourir(c);
 						  }
 					  }
 				  }
@@ -424,11 +424,10 @@ public Element live(Case c){
 		  }
 	  }
 	  //Gestion du d�placement.
-	  nouvelle.addAnimal(this);
-	  System.out.println("Nouvelle :"+nouvelle.getId());
-	  ancienne.supprimerAnimal(this);
-	  System.out.println("Ancienne :"+ancienne.getId());
 	  Age++;
+	  if(!verifierAge()){mourir(c);}
+	  nouvelle.addAnimal(this);
+	  ancienne.supprimerAnimal(this);
 	  cycleRepro++;
 	  return supprime;
   }
