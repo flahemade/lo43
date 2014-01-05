@@ -228,7 +228,7 @@ public Animal(int idcase){
  */
 public Position seDeplacer(Position p, ArrayList<Case> listecaseadj)
   { 
-	  Integer case_cible=0;
+	  //Integer case_cible=0;
 	  Position nouvelle = p;
 	  Random rand = new Random();
 	  int valeur;
@@ -338,10 +338,14 @@ public Element live(Case c){
 			  for(j=0; j<listeElementsCible.size(); j++){
 				  Element element_temp=listeElementsCible.get(j);
 				  //Animal sur la case cible
+				  
 				  if(element_temp instanceof Animal){
 					  System.out.println("Animal sur la case cible.");
 					  Animal animalCible=(Animal)element_temp;
 					  if(this.getClass()==element_temp.getClass()){
+						  
+						  //Gestion de la reproduction
+						  
 						  System.out.println("Reproduction ?");
 						  if(this.seReproduire(animalCible)){
 							  System.out.println("Cr�ation d'un nouvel animal.");
