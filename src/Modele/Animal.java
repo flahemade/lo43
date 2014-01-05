@@ -304,6 +304,7 @@ public Element live(Case c){
 			  ArrayList<Element> listeElementsCible=nouvelle.getListeElements();
 			  for(j=0; j<listeElementsCible.size(); j++){
 				  Element element_temp=listeElementsCible.get(j);
+				  //Animal sur la case cible
 				  if(element_temp instanceof Animal){
 					  System.out.println("Animal sur la case cible.");
 					  Animal animalCible=(Animal)element_temp;
@@ -328,6 +329,7 @@ public Element live(Case c){
 						  }
 					  }
 				  }
+				  //Ressource sur la case cible
 				  if(element_temp instanceof Ressource){
 					  System.out.println("Ressource sur la case cible.");
 					 supprime = consommerRessource(element_temp);
