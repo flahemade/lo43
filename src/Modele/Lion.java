@@ -69,7 +69,7 @@ public class Lion extends Animal {
   return seDeplacer(getPosition(), listecaseadj );
   }
   private void init(){
-		setAgeMax(5);
+		setAgeMax(20);
 		setChampVision(1);
 		setRangChaineAlimentaire(9);
 		setPV(100);
