@@ -27,15 +27,12 @@ import Modele.Viande;
 
 
 /*_______________________________________________________________*/
-/**
- * @author nicolas
- *
- */
+
 
 /**
- * This class is used to load the map and its content (obstacles and species) described
- * in the XML file.
- *  
+ * 
+ * Cette classe permet de générer une ArrayList<Case> contenant la carte, les espèces,
+ * obstacles ainsi que les ressource contenue dans un fichier XML
  * @author nicolas
  *
  */
@@ -49,9 +46,9 @@ public class XMLParser{
   private Document document;
 
 /** 
- * Initializes the parser using String Chemin 
- * to get to the file to parse
- * @param chemin
+ * Initialise le Parser et charge le document XML se trouvant à l'adresse chemin
+ * 
+ * @param chemin chemin relatif vers le fichier à parser
  */
   public XMLParser(String chemin){
 	  try {
@@ -69,7 +66,7 @@ public class XMLParser{
 	  
 
   
-/**-------- Getters & setters ------*/
+/*-------- Getters & setters ------*/
   
  public String getPath() {
 	return path;
@@ -79,11 +76,11 @@ public void setPath(String path) {
 	this.path = path;
 }
 
-/*------------ Methods ------------*/
+/*------------ Methodes ------------*/
 
 
 /**
- * Parse le fichier XML pour generer une liste des Casede la map
+ * Parse le fichier XML pour generer une liste des Cases de la map
  * @return Une liste de Case 
  */
 public ArrayList<Case> parseXML(){
@@ -98,7 +95,7 @@ public ArrayList<Case> parseXML(){
 	ArrayList<Obstacle> listeobstacle = new ArrayList<Obstacle>();
 	ArrayList<Ressource> listeressource = new ArrayList<Ressource>();
 	Case casedefaut= new Case(0,new Position(),TypeTerrain.TERRE);
-	System.out.println("Debut du parcours du XML"); //DEBUG
+	//System.out.println("Debut du parcours du XML"); //DEBUG
 	
 		//System.out.println(list.item(i).getNodeName()); //DEBUG
 
@@ -131,33 +128,36 @@ public ArrayList<Case> parseXML(){
 			
 			}
 			}
-			/*for(i=0;i<listefinale.size();i++){
-				System.out.println("ListeFinale : ID_Case "+listefinale.get(i).getId());
-			}
-			*/
+					/*for(i=0;i<listefinale.size();i++){
+						System.out.println("ListeFinale : ID_Case "+listefinale.get(i).getId());
+					}
+					*/
 			listefinale=trierListe(listecase);
 			listefinale=reparerListe(listefinale, dimensionmap, casedefaut);
-			//listeobstacle=genererCeintureObstacle(listeobstacle, dimensionmap);
+					//listeobstacle=genererCeintureObstacle(listeobstacle, dimensionmap);
 			listefinale=assemblerCaseObstacle(listecase, listeobstacle);
 			listefinale=assemblerCaseAnimal(listecase, listeanimaux);
 			listefinale=assemblerCaseRessource(listecase, listeressource);
-			for(i=0;i<listefinale.size();i++){
-				System.out.println("Listefinale Case ID\t"+listefinale.get(i).getId());
-				cpt++;
-			}
-			System.out.println("CPT "+cpt);
-		/*	for(i=0;i<listefinale.size();i++){
-				System.out.println("CaseFinale id\t"+listefinale.get(i).getId()+"\ttype "+listefinale.get(i).getType()+"\tposition\t"+listefinale.get(i).getPosition().getX()+" , "+listefinale.get(i).getPosition().getY());
-			}
-			*/
-			/*for(i=0;i<listeobstacle.size();i++)
-				System.out.println("Obstacle"+listeobstacle.get(i).getId()+
-						" CaseId "+listeobstacle.get(i).getCaseId());
-			}
-			*/
+					/*for(i=0;i<listefinale.size();i++){
+						System.out.println("Listefinale Case ID\t"+listefinale.get(i).getId());
+						cpt++;
+					
+					}
+					*/
+					/*
+					System.out.println("CPT "+cpt);
+					for(i=0;i<listefinale.size();i++){
+						System.out.println("CaseFinale id\t"+listefinale.get(i).getId()+"\ttype "+listefinale.get(i).getType()+"\tposition\t"+listefinale.get(i).getPosition().getX()+" , "+listefinale.get(i).getPosition().getY());
+					}
+					*/
+					/*for(i=0;i<listeobstacle.size();i++)
+						System.out.println("Obstacle"+listeobstacle.get(i).getId()+
+								" CaseId "+listeobstacle.get(i).getCaseId());
+					}
+					*/
 			return listefinale;
 	}
-/*
+/**
  * Fonction qui retourne un entier en fonction de la String pris en attribut afin de faire fonctionner les switch case
  * devrait pouvoir etre remplace par un enum
  * Si la String n'est pas une node contenue dans le .XML, la fonction retourne 0;
@@ -222,46 +222,37 @@ private int enumBourrin (String node){
 	return i;
 }
 
+/**
+ * Génère une case par défaut à partir du fichier XML
+ * @param n il doit s'agir de la node <map>
+ * @return une Case dont la positiob et l'id doivent être mis à jour avant d'être utilisable
+ */
 private Case getCaseDefaut(org.w3c.dom.Node n){
 	int id =-1;
 	Position position=new Position();
 	TypeTerrain type = TypeTerrain.TERRE;
-	Case casedefaut;
+	
 	
 	if(n.hasAttributes()){	
 
-	/*	INUTILE
-	 * if(n.getAttributes().getNamedItem("defaut_taille_case")!=null){
-			try{
-				taille =Integer.parseInt(n.getAttributes().getNamedItem("defaut_taille_case").getNodeValue().trim());
-			}
-			catch(Exception e){
-				//TODO gerer l'exception
-			}
-		}
-		
-	*/
 		if(n.getAttributes().getNamedItem("defaut_type_case")!=null){
-			try{
-				//type =n.getAttributes().getNamedItem("defaut_type_case").getNodeValue().toLowerCase().trim();
-			//TODO TERMINER
-			}
-			
-			catch(Exception e){
-				//TODO gerer l'exception
+			/* Si l'attribut "defaut_type_case" = "eau"*/
+			if(n.getAttributes().getNamedItem("defaut_type_case").getNodeValue().toLowerCase().trim().equals("eau")){
+				type = TypeTerrain.EAU; //Alors on set le type à EAU
 			}
 		}
 	}
-	 casedefaut =new Case(id,position,type);
-	 return casedefaut;
+	 
+	 return new Case(id,position,type); //Return de la case par defaut
 }
 
 /**
+ * N'EST PLUS UTILISE
  * Recupere l'attribut taille de la classe Case contenue dans le XML
  * Si la node <case> ne contient pas d'enfant <taille> (cf XML) alors la fonction retourne -1
  * Sinon retourne la taille contenue entre <taille></taille>  au format Integer
  * @param l
- * @return
+ * @return Integer Taille
  */
 private Integer getTaille(NodeList l){ //TODO Ajouter une gestion de l'attribut "default"
 	Integer taille = -1;
@@ -281,22 +272,21 @@ private Integer getTaille(NodeList l){ //TODO Ajouter une gestion de l'attribut 
 	return taille;
 }
 /**
- * Recupere l'attribut Type (TERRE, EAU, HERBE ...) de la classe (Case ?) à partir du XMl et le retourne au format String
- * @param l
- * @return
+ * Recupere l'attribut Type (TERRE, EAU...) de la Case
+ * @param l NodeList 
+ * @return Enum TypeTerrain
  */
 private TypeTerrain getTypeTerrain(NodeList l){
 	int i;
-	TypeTerrain type = TypeTerrain.TERRE;
-	for(i=0;i<l.getLength();i++)
+	TypeTerrain type = TypeTerrain.TERRE; //Terre par defaut
+	for(i=0;i<l.getLength();i++) //Parcours de la liste
 	{
 		if(l.item(i).getNodeName().toLowerCase().trim()=="type")
 		{
-			/* Ne veut pas entrer dans ce if*/
+			
 			if(l.item(i).getTextContent().trim().toLowerCase().equals("eau")){
-				
-				System.out.println("PASSED");
-				type = TypeTerrain.EAU;
+				//System.out.println("PASSED");
+				type = TypeTerrain.EAU; 
 			}
 		}
 		
@@ -305,6 +295,11 @@ private TypeTerrain getTypeTerrain(NodeList l){
 	return type;
 }
 
+/**
+ * Recupere le Type d'animal (Lion, Gazelle, Hyene, Girafe)
+ * @param l NodeList 
+ * @return Enum TypeAnimal
+ */
 private TypeAnimal getTypeAnimal(NodeList l){
 	int i;
 	TypeAnimal type = TypeAnimal.GAZELLE;
@@ -329,6 +324,11 @@ private TypeAnimal getTypeAnimal(NodeList l){
 	return type;
 }
 
+/**
+ * Recupère le Type de ressource (Plante, Viande)
+ * @param l NodeList
+ * @return enum TypeRessource
+ */
 private TypeRessource getTypeRessource(NodeList l){
 	
 	int i;
@@ -346,8 +346,8 @@ private TypeRessource getTypeRessource(NodeList l){
 }
 /**
  * Recupere les attribution position x et y de la classe Case à partir du XML et les retourne au format Position
- * @param l
- * @return
+ * @param l NodeList
+ * @return La Position de la case
  */
 private Position getPosition(NodeList l){
 	int i,j;
@@ -383,6 +383,11 @@ private Position getPosition(NodeList l){
 	return position;
 }
 
+/**
+ * Retourne l'attribut id de la Node
+ * @param n org.w3c.dom.Node
+ * @return int id
+ */
 private Integer getId(org.w3c.dom.Node n){
 	Integer id =-1;
 	
@@ -400,6 +405,11 @@ private Integer getId(org.w3c.dom.Node n){
 	return id;
 }
 
+/**
+ * Recupere la valeur du champ caseid et
+ * @param l NodeList	
+ * @return Integer caseid
+ */
 private Integer getCaseId(NodeList l){
 	Integer id =-1;
 	int i;
@@ -418,6 +428,11 @@ private Integer getCaseId(NodeList l){
 	return id;
 }
 
+/**
+ * Recupere les attributs "length" et "width" de la node <map>
+ * @param n org.w3c.dom.Node
+ * @return Dimension La Dimension de la map
+ */
 private Dimension getDimension(org.w3c.dom.Node n){
 	
 	Dimension dimension=new Dimension();
@@ -442,11 +457,11 @@ private Dimension getDimension(org.w3c.dom.Node n){
 	}	
 	return dimension;
 }
-
-private String getNomClass(NodeList l){ //n'est plus utilisé
+/*n'est plus utilisé*/
+private String getNomClass(NodeList l){ 
 	
 	int i;
-	String nomclass="test";
+	String nomclass="";
 	
 	for(i=0;i<l.getLength();i++)
 	{
@@ -457,7 +472,11 @@ private String getNomClass(NodeList l){ //n'est plus utilisé
 	}
 	return nomclass;
 }
-
+/**
+ * Recupere le sexe de l'animal
+ * @param l NodeList
+ * @return Boolean sexe (true = male, false = femelle)
+ */
 private Boolean getSexe(NodeList l){
 	int i;
 	Boolean sexe = true; //Par defaut male 
@@ -478,9 +497,9 @@ private Boolean getSexe(NodeList l){
 	return sexe;
 }
 /**
- * Recupere les differente case definient dans le XML et creer une liste de case qui sera ensuite retournée
- * @param l
- * @return
+ * Recupere les differentes case definies dans le XML et creer une liste de case qui sera ensuite retournée
+ * @param l NodeList
+ * @return ArrayList<Case> Liste de Case ne contenant aucun element
  */
 private ArrayList <Case> parseMap(NodeList l){
 	int i;
@@ -497,11 +516,12 @@ private ArrayList <Case> parseMap(NodeList l){
 		position = getPosition(l.item(i).getChildNodes());
 		id = getId(l.item(i));
 		listecase.add(new Case(id,position,type)); 
-
-		System.out.println("Case : id : "+id +
-				", Type : "+type.name()+
-				", Position : "+position.getX()+ 				//DEBUG
-				" , "+position.getY());
+				/*
+				System.out.println("Case : id : "+id +
+						", Type : "+type.name()+
+						", Position : "+position.getX()+ 				//DEBUG
+						" , "+position.getY());
+				*/
 				
 		break;
 		default : break;
@@ -513,6 +533,11 @@ private ArrayList <Case> parseMap(NodeList l){
 	
 }
 
+/**
+ * Recupere les differentes animaux definies dans le XML et creer une liste d'animaux
+ * @param l NodeList
+ * @return ArrayList<animal> Liste des animaux présents dans le parser
+ */
 private ArrayList<Animal> parseEspece(NodeList l){
 	
 	int i;
@@ -537,19 +562,23 @@ private ArrayList<Animal> parseEspece(NodeList l){
 			case HYENE: listeanimaux.add(new Hyene(caseid, sexe)); break;
 			default : break;
 			}
-		
-		System.out.println("Animal : "+
-				", type : "+type.toString()+
-				", caseID : "+caseid+
-				", sexe : "+sexe);
-				
+				/*
+				System.out.println("Animal : "+
+						", type : "+type.toString()+
+						", caseID : "+caseid+
+						", sexe : "+sexe);
+				*/		
 		break;
 		}
 	}
 	return listeanimaux;
 }
 
-
+/**
+ * Recupere les differents obstacles definis dans le XML.
+ * @param l NodeList
+ * @return ArrayList<Obstacle> Liste d'obstacles
+ */
 private ArrayList<Obstacle> parseObstacle(NodeList l){
 	int i;
 	//Integer id =-1;
@@ -562,15 +591,20 @@ private ArrayList<Obstacle> parseObstacle(NodeList l){
 			//id = getId(l.item(i));
 			caseid = getCaseId(l.item(i).getChildNodes());
 			listeobstacle.add(new Obstacle(caseid));   //Ajout d'un obstacle à la listeobstacle
-			System.out.println("Obstacle "+ //DEBUG
+			/*System.out.println("Obstacle "+ //DEBUG
 					" caseID : "+caseid);
+			*/
 		}
 		
 	}
 
 	return listeobstacle;
 }
-
+/**
+ * Recupere les differentes ressources definies dans le XML.
+ * @param l NodeList
+ * @return ArrayList<Ressource> Liste des ressources
+ */
 private ArrayList<Ressource> parseRessource(NodeList l){
 	int i;
 	int caseid=-1;
@@ -591,10 +625,11 @@ private ArrayList<Ressource> parseRessource(NodeList l){
 				case VIANDE : listeressource.add(new Viande (caseid));break;
 				default : break;
 			}
-			//Ajout d'un obstacle à la liste
-			System.out.println("Ressource "+
-					" Type : "+type+
-					" CaseId : "+caseid);
+					/*
+					System.out.println("Ressource "+
+							" Type : "+type+
+							" CaseId : "+caseid);
+					*/
 		}
 		
 	}
@@ -602,11 +637,9 @@ private ArrayList<Ressource> parseRessource(NodeList l){
 }
 
 /**
- * Retourne une liste de case valide (liste triée, possedant le bon nombre d'element, avec des id valides);
- * @param l
- * @param casedefaut
- * @param dimensionmap
- * @return
+ * Retourne une liste de cases triée par ordre d'id
+ * @param l ArrayList<Case> Liste non-triée
+ * @return ArrayList<Case> Liste triée
  */
 private ArrayList<Case> trierListe (ArrayList<Case> l){
 	
@@ -615,7 +648,7 @@ private ArrayList<Case> trierListe (ArrayList<Case> l){
 	Boolean permut;
 	//Trier la liste par ordre croissant d'id de case
 	do {
-		// hypothèse : le tableau est trié
+		// hypothèse : la liste est triée
 		permut = false;
 		for ( i = 0; i < l.size() - 1; i++) {
 			// Teste si 2 éléments successifs sont dans le bon ordre ou non
@@ -624,62 +657,37 @@ private ArrayList<Case> trierListe (ArrayList<Case> l){
 				l.add(i, l.get(i+1));
 				l.remove(i+2);
 				permut = true;
-				/*tampon = tableau[i];
-				tableau[i] = tableau[i + 1];
-				tableau[i + 1] = tampon;
-				permut = true;
-				*/
-				
+	
 			}
 			
 		}
 	} while (permut);
 
-/*	System.out.println("l.size() "+l.size());
-	for(j=0;j<64;j++){
-	 System.out.println("j "+j);
-		if(l.get(j).getId()>j ){
-			System.out.println("PASSED");
-			l.add(new Case(j,new Position(j%dimensionmap.getLength(),j/dimensionmap.getWidth()),casedefaut.getType()));
-			l.ad
-		}
 
-	*/
 	return l;
-	/*for(i=0;i<l.size();i++){
-		if(l.get(i).getId()>=0){
-			listereparee.add(i, l.get(i)); //si l'id de la case est valide (superieur a 0), on ajoute la case à la liste
-		}
-		else{
-			//casedef.setId(i);
-			listereparee.get(i).add(new Case(i, new Position(), casedefaut.getType()));
-		}
-	}
-*/
-	/*for(i = listereparee.size() ;i < nbcasemax ; i++){
-			System.out.println("i "+i);
-			casedef.setId(i);
-			System.out.println("casedef "+casedef.getId());
-			listereparee.add(i,casedef);
-			System.out.println("liste "+listereparee.get(i).getId());
-			System.out.println();		
-	}
-	*/
 	
 	
 }
+/**
+ * Remplace les eventuels "trous" de la liste par des cases par defaut
+ * afin d'obtenir une liste de taille Longueur de map X Largeur de map
+ * @param lcase ArrayList<Case> Liste non reparée
+ * @param dmap Dimension Dimension de la map
+ * @param casedef Case case par defaut
+ * @return ArrayList<Case> Liste reparee
+ */
 private ArrayList<Case>	reparerListe (ArrayList<Case> lcase, Dimension dmap,Case casedef){
 	int i;;
 	int length = dmap.getLength();
 	int width = dmap.getWidth();
 	int nbcasemax = dmap.getLength()*dmap.getWidth();
 	ArrayList<Case> listereparee = lcase;
-	System.out.println("Liste size "+listereparee.size());
+	//System.out.println("Liste size "+listereparee.size());
 	//Si la liste n'est pas nulle, on repare
 	if(listereparee.size()!=0){ 
 	for(i=0;i<listereparee.size();i++){//On parcourt la liste à la recherche de case manquante
-		System.out.println("Id de la case analalysée "+listereparee.get(i).getId()+
-				" i "+i);
+		/*System.out.println("Id de la case analalysée "+listereparee.get(i).getId()+
+				" i "+i);*/
 		//Si la derniere case est manquante (situation particuliere), on l'ajoute
 		if((i==listereparee.size()-1)&& (listereparee.get(i).getId()==nbcasemax-2)){
 			listereparee.add(new Case(nbcasemax-1,new Position(length-1,width-1),casedef.getType()));
@@ -688,7 +696,7 @@ private ArrayList<Case>	reparerListe (ArrayList<Case> lcase, Dimension dmap,Case
 		//On ajoute donc une case d'id = i à cet emplacement
 		if(listereparee.get(i).getId()>i){
 		listereparee.add(i,new Case(i,new Position(i%length,i/width),casedef.getType()));
-		System.out.println("Ajout Case ID "+i);
+		//System.out.println("Ajout Case ID "+i);
 		}
 	
 	}
@@ -698,10 +706,16 @@ private ArrayList<Case>	reparerListe (ArrayList<Case> lcase, Dimension dmap,Case
 			listereparee.add(new Case(i,new Position(i%length,i/width),casedef.getType()));
 		}
 	}
-	System.out.println("Liste size "+listereparee.size());
+	//System.out.println("Liste size "+listereparee.size());
 
 	return listereparee;
 }
+/**
+ * Genere une seinture d'obstacle autour de la Carte
+ * @param listeobstacle Liste des obstacles déjà présents
+ * @param dimensionmap Dimension de la map
+ * @return ArrayList<Obstacle> Liste d'obstacle contenant les obstacles déjà présents et la ceinture d'obstacle
+ */
 private ArrayList<Obstacle> genererCeintureObstacle (ArrayList<Obstacle> listeobstacle,Dimension dimensionmap){
 	
 	int i;
@@ -720,6 +734,13 @@ private ArrayList<Obstacle> genererCeintureObstacle (ArrayList<Obstacle> listeob
 	}
 	return listeobstacle;
 }
+
+/**
+ * Integre chaque obstacle dans la case qui lui correspond
+ * @param listecase liste des cases
+ * @param listeobstacle liste des obstacles
+ * @return ArrayList<Case> la liste de Cases completee
+ */
 private ArrayList<Case> assemblerCaseObstacle(ArrayList<Case> listecase, ArrayList<Obstacle>listeobstacle){
 	int i,j;
 	//ArrayList<Case>lcase = listecase;
@@ -734,6 +755,12 @@ private ArrayList<Case> assemblerCaseObstacle(ArrayList<Case> listecase, ArrayLi
 	return listecase;
 }
 
+/**
+ * Integre les animaux dans les cases correspondantes
+ * @param listecase ArrayList<Case> liste des cases
+ * @param listeanimaux ArrayList<Animal> liste des animaux
+ * @return ArrayList<Case> la liste de Cases completees
+ */
 private ArrayList<Case> assemblerCaseAnimal(ArrayList<Case> listecase, ArrayList<Animal>listeanimaux){
 	int i,j;
 	//ArrayList<Case>lcase = listecase;
@@ -748,6 +775,12 @@ private ArrayList<Case> assemblerCaseAnimal(ArrayList<Case> listecase, ArrayList
 	return listecase;
 }
 
+/**
+ * Integre les Ressources dans les cases correspondantes
+ * @param listecase ArrayList<Case>  la liste des cases
+ * @param listeressources la liste des ressources
+ * @return ArrayList<Case> la liste de cases completee
+ */
 private ArrayList<Case> assemblerCaseRessource(ArrayList<Case> listecase, ArrayList<Ressource>listeressources){
 	int i,j;
 	//ArrayList<Case>lcase = listecase;
@@ -761,32 +794,6 @@ private ArrayList<Case> assemblerCaseRessource(ArrayList<Case> listecase, ArrayL
 	}
 	return listecase;
 }
-
-//TODO Ajouter la taille de la carte dans le XML et une case par defaut
-//TODO completer carte la liste de case par des case par deffaut
-//TODO Creer fonction pour verifier l'intégrité de la carte avant de la retourner
-/*
-public void write(String chemin, Map map) {
-  }
-
-  public Map read(String chemin) {
-	  	
-	  
-  }
-
-  public void save(String chemin, Map map ) {
-  }
-*/
-/* --------DEBUG -------------*/
-
-/*public static void main(String[] args) {
-	
-System.out.println("XMLParser debugger");
-XMLParser parser = new XMLParser("./res/8x8_test.xml"); //Création d'une instance de Parser, attention à bien spécifier une adresse correcte
-//XMLParser parser = new XMLParser("./res/map.xml");
-parser.parseXML(); //Debut du parsing
-}
-*/
 }
 
 

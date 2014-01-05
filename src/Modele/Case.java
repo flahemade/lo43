@@ -236,6 +236,7 @@ public void supprimerAnimal(Animal animal)
 		 if (animal.getId() == listeElements.get(i).getId())
 		 {
 			 listeElements.remove(i);
+			 System.out.println("test");
 		 }
 			 
 	  }  

@@ -322,7 +322,7 @@ protected Animal genererEnfant(Animal parent){
 		enfant=new Lion(idCaseParent,sexeEnfant);
 	}
 	if(parent instanceof Hyene){
-		//Naissance d'une hy�ne
+		//Naissance d'une hy�ne
 		enfant=new Hyene(idCaseParent,sexeEnfant);
 	}
 	if(parent instanceof Girafe){
@@ -433,7 +433,7 @@ public Element live(Case c){
   }
 
   protected Position choixDeplacement (ArrayList<Case> listecaseadj){
-	  System.out.println("Pas la bonne méthode");
+	 // System.out.println("Pas la bonne méthode");
 	  return position;
   }
 
