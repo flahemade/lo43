@@ -164,7 +164,7 @@ public Case(int id, Position p,TypeTerrain type){
 	
 //-----------------------------AUTRES METHODES-----------------------------------------//
   /*_______________________________________________________________*/
-/**
+/**Fonction qui ajoute un obstacle à la liste d'éléments de la case.
  * @param obstacle
  */
 public void addObstacle(Obstacle obstacle){
@@ -178,7 +178,7 @@ public void addObstacle(Obstacle obstacle){
   }
   
   /*_______________________________________________________________*/
-/**
+/**Fonction qui ajoute une ressource à la liste d'éléments de la case.
  * @param ressource
  */
 public void addRessource(Ressource ressource){
@@ -186,7 +186,7 @@ public void addRessource(Ressource ressource){
   }
   
   /*_______________________________________________________________*/
-/**
+/**Fonction qui ajoute un animal à la liste d'éléments de la case.
  * @param animal
  */
 public void addAnimal(Animal animal){
@@ -194,7 +194,7 @@ public void addAnimal(Animal animal){
   }
   
   /*_______________________________________________________________*/
-/**
+/**Fonction qui retire un obstacle de la liste d'éléments de la case.
  * @param obstacle
  */
 public void supprimerObstacle(Obstacle obstacle)
@@ -210,7 +210,7 @@ public void supprimerObstacle(Obstacle obstacle)
   }
   
   /*_______________________________________________________________*/
-/**
+/**Fonction qui retire une ressource de la liste d'éléments de la case.
  * @param ressoucre
  */
 public void supprimerRessource(Ressource ressource)
@@ -226,7 +226,7 @@ public void supprimerRessource(Ressource ressource)
   }
   
   /*_______________________________________________________________*/
-/**
+/**Fonction qui retire un animal de la liste d'éléments de la case.
  * @param animal
  */
 public void supprimerAnimal(Animal animal)
@@ -241,7 +241,9 @@ public void supprimerAnimal(Animal animal)
 	  }  
   }
   
-  
+  /**Fonction qui attribue une position à un élément.
+   * 
+   */
   public void genererPositionElement(){ //TODO l'inserer Ã  la bonne place dans le code
 	  int i;
 	  for(i=0;i<listeElements.size();i++){
