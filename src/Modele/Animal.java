@@ -303,10 +303,9 @@ public Position seDeplacer(Position p, ArrayList<Case> listecaseadj)
  */
 public Boolean seReproduire(Animal animal){
 	  Boolean reproduction;
-	  if(animal.sexe!=this.sexe && this.cycleRepro==10){
+	  if(animal.sexe!=this.sexe && this.cycleRepro>=10 && animal.cycleRepro>=10){
 		  reproduction=true;
 		  cycleRepro=0;
-		  
 	  }else{
 		  reproduction=false;
 	  }
