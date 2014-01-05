@@ -365,7 +365,7 @@ public class Ordonnanceur {
 		*/
 		return listecasesadjacentes;
 	}
-	private ArrayList<Case> trierListe (ArrayList<Case> l){
+	private ArrayList<Element> trierListeParPosition (ArrayList<Element> l){
 		
 		
 		int i;
@@ -376,7 +376,8 @@ public class Ordonnanceur {
 			permut = false;
 			for ( i = 0; i < l.size() - 1; i++) {
 				// Teste si 2 éléments successifs sont dans le bon ordre ou non
-				if (l.get(i).getId() > l.get(i+1).getId()) {
+				
+				if (l.get(i).getPosition().getX() > l.get(i+1).getPosition().getX() || (l.get(i).getPosition().getX() <= l.get(i+1).getPosition().getX() && l.get(i).getPosition().getY() <= l.get(i+1).getPosition().getY())) {
 					// s'ils ne le sont pas, on échange leurs positions
 					l.add(i, l.get(i+1));
 					l.remove(i+2);

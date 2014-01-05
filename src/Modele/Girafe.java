@@ -1,5 +1,7 @@
 package Modele;
 
+import java.util.ArrayList;
+
 public class Girafe extends Animal{
 
 	public Girafe(){
@@ -24,12 +26,35 @@ public class Girafe extends Animal{
 		setImage("./res/animaux/girafe/girafe.png");
   }
 	
+	@Override
+	  protected Position choixDeplacement (ArrayList<Case> listecaseadj){
+		  Position nouvelleposition;
+		  int i,j ,choix;
+		  for(i =0; i< listecaseadj.size();i++){
+			  for(j=0;j<listecaseadj.get(i).getListeElements().size();j++){
+				  
+				  if(listecaseadj.get(i).getListeElements().get(j) instanceof Plante){
+					  return  listecaseadj.get(i).getListeElements().get(j).getPosition();
+				  }
+				  if(listecaseadj.get(i).getListeElements().get(j) instanceof Animal){
+					  Animal tmp = (Animal) listecaseadj.get(i).getListeElements().get(j);
+					  if(tmp.getRangChaineAlimentaire()<this.getRangChaineAlimentaire()){
+						  return listecaseadj.get(i).getListeElements().get(j).getPosition();
+					  }
+				  }
+			  }
+		  }
+		  
+	  
+	  return seDeplacer(getPosition());
+	  }
+	
 	/*_______________________________________________________________*/
 	/**
 	 *@param ressource
 	 * @see Modele.Animal#consommerRessource(Modele.Element)
 	 */
-	public void consommerRessource(Element ressource)
+	public Element consommerRessource(Element ressource)
 	  {
 		 if (ressource instanceof Plante)
 		  {
@@ -48,8 +73,10 @@ public class Girafe extends Animal{
 					e.printStackTrace();
 				}
 			  }	
-			ressource = null;
-		  }	
-			  
-	  }
+			  return ressource;
+		  }		  
+	  
+	  
+	return null;
+}
 }
