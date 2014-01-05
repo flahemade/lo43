@@ -395,6 +395,26 @@ public class Ordonnanceur {
 	return l;
 	}
 	
+	private void supprimerElements(ArrayList<Element> listeElements)
+	{
+		for(int i = 0; i<getMap().getListeCases().size(); i++)
+		{
+			for(int j = 0; j< listeElements.size(); j++)
+			{
+				if(getMap().getListeCases().get(i).getPosition() == listeElements.get(j).getPosition())
+				{
+					if(listeElements.get(j) instanceof Animal)
+						getMap().getListeCases().get(i).supprimerAnimal((Animal)listeElements.get(j));
+					if(listeElements.get(j) instanceof Obstacle)
+						getMap().getListeCases().get(i).supprimerObstacle((Obstacle)listeElements.get(j));
+					if(listeElements.get(j) instanceof Ressource)
+						getMap().getListeCases().get(i).supprimerRessource((Ressource)listeElements.get(j));
+				}
+			}
+		}
+	}
+	
+	
 	/*_______________________________________________________________*/
 	/**
 	 */
