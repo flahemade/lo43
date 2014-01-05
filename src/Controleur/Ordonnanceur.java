@@ -201,7 +201,7 @@ public class Ordonnanceur {
 				e = null;
 				if(listeElementASupprimer.size()!=0)
 					supprimerElements(listeElementASupprimer); // supprimer les éléments "mangés" de la map
-				listeElementASupprimer = null;
+				
 				
 				  //reste à rajouter l'animal dans la liste des éléments de la case
 			}
