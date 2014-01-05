@@ -296,7 +296,30 @@ public Boolean seReproduire(Animal animal){
 	  }
 	  return reproduction;
   }
-  
+
+protected Animal genererEnfant(Animal parent){
+	int idCaseParent=parent.getCaseId();
+	Random random=new Random();
+	Boolean sexeEnfant=random.nextBoolean();
+	Animal enfant=new Animal();
+	if(parent instanceof Lion){
+		//Naissance d'un lion
+		enfant=new Lion(idCaseParent,sexeEnfant);
+	}
+	if(parent instanceof Hyene){
+		//Naissance d'une hyène
+		enfant=new Hyene(idCaseParent,sexeEnfant);
+	}
+	if(parent instanceof Girafe){
+		//Naissance d'une girafe
+		enfant=new Girafe(idCaseParent,sexeEnfant);
+	}
+	if(parent instanceof Gazelle){
+		//Naissance d'une gazelle
+		enfant=new Gazelle(idCaseParent,sexeEnfant);
+	}
+	return enfant;
+}
   /*_______________________________________________________________*/
 /**
  * @return
@@ -349,6 +372,8 @@ public Element live(Case c){
 						  System.out.println("Reproduction ?");
 						  if(this.seReproduire(animalCible)){
 							  System.out.println("Crï¿½ation d'un nouvel animal.");
+							  Animal enfant=genererEnfant(this);
+							  c.addAnimal(enfant);
 						  }else{
 							  System.out.println("Il ne se passe rien.");
 							 
