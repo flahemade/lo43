@@ -219,6 +219,8 @@ public Animal(int idcase){
 	 }
   /*_______________________________________________________________*/
 	
+	/**Fonction qui retourne la liste des cases disponibles.
+	 * */
 	private ArrayList<Case> getCaseDispo (ArrayList<Case> listecaseadj){
 		int i,j;
 		Boolean obstacle = false;
@@ -311,7 +313,11 @@ public Boolean seReproduire(Animal animal){
 	  }
 	  return reproduction;
   }
-
+/** Fonction qui génère un enfant à partir du parent.
+ * 
+ * @param parent
+ * @return
+ */
 protected Animal genererEnfant(Animal parent){
 	int idCaseParent=parent.getCaseId();
 	Random random=new Random();
@@ -357,7 +363,7 @@ public void mourir(Case c){
   }
   
   /*_______________________________________________________________*/
-/**
+/**Fonction qui gère le cycle de vie d'un animal (combat / reproduction...)
  * @param c
  */
 public Element live(Case c){
@@ -378,29 +384,22 @@ public Element live(Case c){
 				  //Animal sur la case cible
 				  
 				  if(element_temp instanceof Animal){
-					  System.out.println("Animal sur la case cible.");
 					  Animal animalCible=(Animal)element_temp;
 					  if(this.getClass()==element_temp.getClass()){
 						  
 						  //Gestion de la reproduction
 						  
-						  System.out.println("Reproduction ?");
 						  if(this.seReproduire(animalCible)){
-							  System.out.println("Crï¿½ation d'un nouvel animal.");
 							  Animal enfant=genererEnfant(this);
 							  c.addAnimal(enfant);
 						  }else{
-							  System.out.println("Il ne se passe rien.");
 							 
 						  }
 					  }else{
-						  System.out.println("Baston !");
 						  if(this.getRangChaineAlimentaire()>=animalCible.getRangChaineAlimentaire()){
-							  System.out.println("Victoire");
 							  this.consommerRessource(animalCible);
 							  animalCible.mourir(c);
 						  }else{
-							  System.out.println("Dï¿½faite");
 							  animalCible.consommerRessource(this);
 							  this.mourir(c);
 						  }
@@ -409,15 +408,10 @@ public Element live(Case c){
 				  //Ressource sur la case cible
 				  
 				  if(element_temp instanceof Ressource){
-					  System.out.println("Ressource sur la case cible.");
 					 supprime = consommerRessource(element_temp);
 					  this.setPV(getPV() + getModifierVie());
-					  
-					  //Ici la question est de savoir quels animaux peuvent consommer quelle ressource
-					  //Pas trï¿½s long ï¿½ implï¿½menter.
 				  }
 				  if(element_temp instanceof Obstacle){
-					  System.out.println("Obstacle sur la case cible.");
 					  this.live(ancienne);
 				  }
 			  }
