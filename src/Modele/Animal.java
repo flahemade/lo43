@@ -330,6 +330,7 @@ public Element live(Case c){
 					  }
 				  }
 				  //Ressource sur la case cible
+				  
 				  if(element_temp instanceof Ressource){
 					  System.out.println("Ressource sur la case cible.");
 					 supprime = consommerRessource(element_temp);
