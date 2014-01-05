@@ -306,6 +306,7 @@ public Boolean seReproduire(Animal animal){
 	  if(animal.sexe!=this.sexe && this.cycleRepro==10){
 		  reproduction=true;
 		  cycleRepro=0;
+		  
 	  }else{
 		  reproduction=false;
 	  }
