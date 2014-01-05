@@ -26,6 +26,8 @@ public class Animal extends Element {
 	protected int PV;
 	  /** sexe de l'animal */
 	protected Boolean sexe;
+	  /** cycle de reproduction */
+	protected int cycleRepro;
 
 //  protected int idCase; //Se trouve dans Element
  // protected int modifierVie; //Se trouve dans Element
@@ -172,8 +174,8 @@ public Animal(int idcase){
 	public void setPV(Integer pV) {
 		PV = pV;
 	}
-
-
+	
+	
 	/*_______________________________________________________________*/
 	/**getter sexe de l'animal
 	 * @return le sexe de l'animal
@@ -189,8 +191,20 @@ public Animal(int idcase){
 	public void setSexe(Boolean sexe) {
 		this.sexe = sexe;
 	}
-	
-
+	/*_______________________________________________________________*/
+	/**setter cycleRepro
+	 * @param cycleRepro
+	 */
+	public void setCycleRepro(int cycle){
+		cycleRepro=cycle;
+	}
+	/*_______________________________________________________________*/
+	/**getter cycleRepro
+	 * @return cycleRepro
+	 */
+	public int getCyclerepro(){
+		return cycleRepro;
+	}
 
 		
   //------------------------------Autres M�thodes----------------------------------------//
@@ -201,6 +215,7 @@ public Animal(int idcase){
 	private void init(){
 		 setAge(0);
 		  setDirection(0);
+		  setCycleRepro(0);
 	 }
   /*_______________________________________________________________*/
 	
@@ -288,9 +303,9 @@ public Position seDeplacer(Position p, ArrayList<Case> listecaseadj)
  */
 public Boolean seReproduire(Animal animal){
 	  Boolean reproduction;
-	  if(animal.sexe!=this.sexe){
+	  if(animal.sexe!=this.sexe && this.cycleRepro==10){
 		  reproduction=true;
-		  
+		  cycleRepro=0;
 	  }else{
 		  reproduction=false;
 	  }
@@ -414,6 +429,7 @@ public Element live(Case c){
 	  ancienne.supprimerAnimal(this);
 	  System.out.println("Ancienne :"+ancienne.getId());
 	  Age++;
+	  cycleRepro++;
 	  return supprime;
   }
 
