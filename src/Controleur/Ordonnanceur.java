@@ -228,7 +228,7 @@ public class Ordonnanceur {
 					  }
 				  }
 				  listeElementASupprimer.add(listeAnimaux.get(i).live(c)); // ajoute à la liste les éléments à supprimer de la map
-				 
+				  getMap().rafraichirPositionElement();
 				  //reste à rajouter l'animal dans la liste des éléments de la case
 			  }
 			  if(listeElementASupprimer.size()!=0)
@@ -406,7 +406,7 @@ public class Ordonnanceur {
 		{
 			for(int j = 0; j< listeElements.size(); j++)
 			{
-				if(getMap().getListeCases().get(i).getPosition() == listeElements.get(j).getPosition())
+				if(getMap().getListeCases().get(i).getPosition().getX() == listeElements.get(j).getPosition().getX() && getMap().getListeCases().get(i).getPosition().getY() == listeElements.get(j).getPosition().getY())
 				{
 					if(listeElements.get(j) instanceof Animal)
 						getMap().getListeCases().get(i).supprimerAnimal((Animal)listeElements.get(j));
