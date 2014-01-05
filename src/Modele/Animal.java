@@ -342,7 +342,7 @@ protected Animal genererEnfant(Animal parent){
 	return enfant;
 }
   /*_______________________________________________________________*/
-/**
+/**Fonction qui vérifie que l'animal n'est pas trop vieux.
  * @return
  */
 public Boolean verifierAge(){
@@ -356,7 +356,8 @@ public Boolean verifierAge(){
   }
 
   /*_______________________________________________________________*/
-/**
+/**Fonction qui gère la mort d'un animal
+ * 
  */
 public void mourir(Case c){
 	  c.supprimerAnimal(this);
