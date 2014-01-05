@@ -221,6 +221,11 @@ public class Ordonnanceur {
 			{
 				if(map.getListeCases().get(num).getId() == fen_plateau.getActionCase())
 				{
+					for(int i=0; i<map.getListeCases().get(num).getListeElements().size(); i++)
+					{
+						if(map.getListeCases().get(num).getListeElements().get(i) instanceof Obstacle)
+							map.getListeCases().get(num).supprimerObstacle((Obstacle) map.getListeCases().get(num).getListeElements().get(i));
+					}
 					Random rand = new Random();
 					int valeur = rand.nextInt(2);
 					boolean sexeAnimal;
@@ -250,7 +255,6 @@ public class Ordonnanceur {
 				}
 			}
 			fen_plateau.setActionCase(-1);
-			utilisateur.setAction(-1);
 			fen_plateau.afficherMap(getMap());
 		}
 		
