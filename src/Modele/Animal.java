@@ -359,9 +359,6 @@ public Boolean verifierAge(){
 /**Fonction qui gère la mort d'un animal
  * 
  */
-public void mourir(Case c){
-	  c.supprimerAnimal(this);
-  }
   
   /*_______________________________________________________________*/
 /**Fonction qui gère le cycle de vie d'un animal (combat / reproduction...)
@@ -399,10 +396,10 @@ public Element live(Case c){
 					  }else{
 						  if(this.getRangChaineAlimentaire()>=animalCible.getRangChaineAlimentaire()){
 							  this.consommerRessource(animalCible);
-							  animalCible.mourir(c);
+							  return animalCible;
 						  }else{
 							  animalCible.consommerRessource(this);
-							  this.mourir(c);
+							  return this;
 						  }
 					  }
 				  }
@@ -420,7 +417,7 @@ public Element live(Case c){
 	  }
 	  //Gestion du dï¿½placement.
 	  Age++;
-	  if(!verifierAge()){mourir(c);}
+	  if(!verifierAge()){return this;}
 	  nouvelle.addAnimal(this);
 	  ancienne.supprimerAnimal(this);
 	  cycleRepro++;
