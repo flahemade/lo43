@@ -22,6 +22,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 
 /*_______________________________________________________________*/
 /**
@@ -39,12 +40,14 @@ public class ActionUtilisateur extends JInternalFrame implements Runnable, Actio
 	/**  */
 	//private ArrayList<JButton> listeBouton;
 	private JPanel pan_ensemble;
-	
+	/**  */
 	private boolean arret;
-	
+	/**  */
 	private ArrayList<ImageIcon> icones;
-	
+	/**  */
 	private int action;
+	/**  */
+	private JRadioButton btn_supprimer;
 
 	/*_______________________________________________________________*/
 	/**Constructeur
@@ -95,6 +98,24 @@ public class ActionUtilisateur extends JInternalFrame implements Runnable, Actio
 	}
 
 	/*_______________________________________________________________*/
+	/** Permet d'obtenir la valeur du champ btn_supprimer.
+	 * @return la valeur du champ btn_supprimer.
+	 */
+	public JRadioButton getBtn_supprimer()
+	{
+		return btn_supprimer;
+	}
+
+	/*_______________________________________________________________*/
+	/** Modifie la valeur du champ btn_supprimer.
+	 * @param btn_supprimer la nouvelle valeur du champ btn_supprimer.
+	 */
+	public void setBtn_supprimer(JRadioButton btn_supprimer)
+	{
+		this.btn_supprimer = btn_supprimer;
+	}
+
+	/*_______________________________________________________________*/
 	/**Creer les composants
 	 */
 	private void creerComposants()
@@ -132,8 +153,8 @@ public class ActionUtilisateur extends JInternalFrame implements Runnable, Actio
 			images.get(i).addMouseListener(this);
 			pan_image.add(images.get(i));
 		}
-		
-		
+		btn_supprimer = new JRadioButton("Supprimer");
+		pan_image.add(btn_supprimer);
 		pan_ensemble.add(pan_image, BorderLayout.CENTER);
 		
 			
