@@ -67,11 +67,18 @@ public class XMLParser{
 
   
 /*-------- Getters & setters ------*/
-  
+  /**
+   * Retourne la valeur du champ Path
+   * @return String chemin relatif vers le fichier
+   */
  public String getPath() {
 	return path;
 }
 
+ /**
+  * set le chemin relaif vers le fichier XML
+  * @param path String  
+  */
 public void setPath(String path) {
 	this.path = path;
 }
@@ -137,12 +144,7 @@ public ArrayList<Case> parseXML(){
 			listefinale=assemblerCaseObstacle(listecase, listeobstacle);
 			listefinale=assemblerCaseAnimal(listecase, listeanimaux);
 			listefinale=assemblerCaseRessource(listecase, listeressource);
-					/*for(i=0;i<listefinale.size();i++){
-						System.out.println("Listefinale Case ID\t"+listefinale.get(i).getId());
-						cpt++;
 					
-					}
-					*/
 					/*
 					System.out.println("CPT "+cpt);
 					for(i=0;i<listefinale.size();i++){

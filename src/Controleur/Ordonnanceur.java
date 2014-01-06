@@ -146,7 +146,7 @@ public class Ordonnanceur {
 		fen_plateau = new Plateau("Le jeu de la savane", getUtilisateur());
 		fen_plateau.setVisible(true);
 		//monXML = new XMLParser("./res/8x8_simple.xml");
-		monXML = new XMLParser("./res/16x16_auto_gen_test.xml");
+		monXML = new XMLParser("./res/16x16_presentation.xml");
 		ArrayList<Case> mesCases;
 		mesCases= monXML.parseXML();
 		map = new Map("Savane", mesCases);
