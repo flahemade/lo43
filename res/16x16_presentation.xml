@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+ <savane><map id = "1" width ="16" length = "16" defaut_type_case = "Terre">
+
+     </map>
+     <espece>
+                 <animal>
+             <type>lion</type>
+             <sexe>male</sexe>
+             <caseid>129</caseid>
+         </animal>
+     </espece>
+     <objet>
+ <ressource>
+    <type>ViaNde</type>
+         <caseid>128</caseid>
+     
+ </ressource>
+     </objet>
+     </savane> 
