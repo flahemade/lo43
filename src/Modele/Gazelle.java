@@ -18,7 +18,7 @@ public class Gazelle extends Animal {
 	}
 	
 	private void init(){
-		setAgeMax(20);
+		setAgeMax(1000);
 		setChampVision(1);
 		setRangChaineAlimentaire(1);
 		setPV(10);

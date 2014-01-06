@@ -223,8 +223,8 @@ public class Plateau extends JFrame implements ActionListener, MouseListener{
  	public void afficherStat(int animal, int obstacle, int ressource)
  	{
  		ArrayList<JLabel> labels = new ArrayList<JLabel>();
- 		labels.add(new JLabel("Statistique du jeu:"));
- 		labels.add(new JLabel("Nombre d'Animal :" + animal));
+ 		labels.add(new JLabel("Statistiques du jeu:"));
+ 		labels.add(new JLabel("Nombre d'Animaux :" + animal));
  		labels.add(new JLabel("Nombre d'Obstacles :" + obstacle));
  		labels.add(new JLabel("Nombre de Ressources :" + ressource));
  		JPanel pan = new JPanel();

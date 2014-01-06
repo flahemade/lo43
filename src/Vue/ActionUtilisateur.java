@@ -29,7 +29,7 @@ import javax.swing.JRadioButton;
  * @author anaelle
  *
  */
-public class ActionUtilisateur extends JInternalFrame implements Runnable, ActionListener, MouseListener
+public class ActionUtilisateur extends JInternalFrame implements Runnable,  MouseListener
 {
 	/**  */
 	private static final long serialVersionUID = 1L;
@@ -186,15 +186,6 @@ public class ActionUtilisateur extends JInternalFrame implements Runnable, Actio
 		
 	}
 
-	/*_______________________________________________________________*/
-	/**
-	 *@param e
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	public void actionPerformed(ActionEvent e)
-	{
-		
-	}
 
 	
 	/*_______________________________________________________________*/

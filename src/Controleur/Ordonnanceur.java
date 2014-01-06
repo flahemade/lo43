@@ -271,6 +271,7 @@ public class Ordonnanceur {
 	/*_______________________________________________________________*/
 	/**Suppression des élements par l'utilisateur
 	 */
+	@SuppressWarnings("unused")
 	private void supprimerElementDeCase()
 	{
 		if(utilisateur.getBtn_supprimer().isSelected() && fen_plateau.getActionCase()!=-1)
