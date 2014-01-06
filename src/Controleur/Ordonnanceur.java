@@ -252,7 +252,6 @@ public class Ordonnanceur {
 								break;
 						case 7 : 
 							if(utilisateur.getBtn_supprimer().isSelected())
-								System.out.println("toto");
 								supprimerElements(map.getListeCases().get(num).getListeElements());
 							
 							break;
