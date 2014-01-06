@@ -31,14 +31,9 @@ import Modele.Map;
 @SuppressWarnings("serial")
 public class Plateau extends JFrame implements ActionListener, MouseListener{
 
-	/**  */
-	private JButton btn_pause;
 
 	/**  */
 	private JButton btn_quitter;
-	
-	/**  */
-	private JButton btn_aide;
 
     /**  */
     private Map myMap;
@@ -92,11 +87,6 @@ public class Plateau extends JFrame implements ActionListener, MouseListener{
 	{
 		btn_quitter = new JButton("Quitter");
 		btn_quitter.setPreferredSize(new Dimension(100, 30));
-		btn_pause = new JButton("Pause");
-		btn_pause.setPreferredSize(new Dimension(100, 30));
-		btn_pause.addActionListener(this);
-		btn_aide = new JButton("Aide");
-		btn_aide.setPreferredSize(new Dimension(100, 30));
 		btn_quitter.addActionListener(this);
 		jpDroit = new JPanel();
 		jp_gaucheBas = new JPanel();
@@ -114,15 +104,11 @@ public class Plateau extends JFrame implements ActionListener, MouseListener{
 	private void placerComposants()
 	{
 		jpBas.setLayout(new FlowLayout());
-		jpBas.add(btn_pause);
-		jpBas.add(btn_aide);
 		jpBas.add(btn_quitter);
 		jpDroit.setLayout(new BorderLayout());
 		jpDroit.add(jpBas, BorderLayout.SOUTH);
 		jpGauche.setLayout(new BorderLayout());
-	//	jpGauche.setPreferredSize(new Dimension(250, this.getHeight()));
 		jpGauche.setPreferredSize(new Dimension(250, 4*40)); //Pas adaptatif
-	//	jp_gaucheHaut.setPreferredSize(new Dimension(250, this.getHeight()/2));
 		jp_gaucheHaut.setPreferredSize(new Dimension(250, 6*40)); //C'est moche
 		jp_gaucheHaut.setLayout(new BorderLayout());
 		jp_gaucheHaut.add(utilisateur, BorderLayout.CENTER);
@@ -146,16 +132,11 @@ public class Plateau extends JFrame implements ActionListener, MouseListener{
 	{
 		if (e.getSource()== btn_quitter)
 		{
-			//JOptionPane fen_quitter = new JOptionPane("Voulez-vous quitter?", JOptionPane.QUESTION_MESSAGE, JOptionPane.YES_NO_OPTION);
-			//fen_quitter.setVisible(true);
+			
 			utilisateur.setArret(false);
 			
 			System.exit(0);
 			
-		}
-		if(e.getSource()== btn_pause)
-		{
-			//this.afficherMap(getMyMap());
 		}
 		
 	}
