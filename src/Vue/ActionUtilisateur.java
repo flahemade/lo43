@@ -153,7 +153,8 @@ public class ActionUtilisateur extends JInternalFrame implements Runnable, Actio
 			images.get(i).addMouseListener(this);
 			pan_image.add(images.get(i));
 		}
-		btn_supprimer = new JRadioButton("Supprimer");
+		btn_supprimer = new JRadioButton("Supp");
+		btn_supprimer.addMouseListener(this);
 		pan_image.add(btn_supprimer);
 		pan_ensemble.add(pan_image, BorderLayout.CENTER);
 		
@@ -209,6 +210,10 @@ public class ActionUtilisateur extends JInternalFrame implements Runnable, Actio
 			{
 				this.setAction(i);
 			}
+		}
+		if(e.getSource() == btn_supprimer)
+		{
+			this.setAction(7);
 		}
 		
 		

@@ -216,7 +216,7 @@ public class Ordonnanceur {
 	 */
 	private void faireActionUtilisateur()
 	{
-		if(utilisateur.getAction()!= -1 && fen_plateau.getActionCase()!= -1) //si l'utilisateur a appuyer sur un des éléments
+		if(utilisateur.getAction()!= -1 && fen_plateau.getActionCase()!= -1 ) //si l'utilisateur a appuyer sur un des éléments
 		{
 			System.out.println("actionUtilisateur : " + utilisateur.getAction());
 			for(int num=0; num<map.getListeCases().size(); num++)
@@ -251,7 +251,7 @@ public class Ordonnanceur {
 						case 6: map.getListeCases().get(num).addRessource(new Viande(fen_plateau.getActionCase())); 
 								break;
 						case 7 : 
-							
+							if(utilisateur.getBtn_supprimer().isSelected())
 								System.out.println("toto");
 								supprimerElements(map.getListeCases().get(num).getListeElements());
 							
