@@ -12,19 +12,22 @@ public class Element  {
 	protected String image;
 	/** Nom de l'élément */
 	protected String nom;
-	/**  */
+	/**le modifier de vie*/
 	protected int modifierVie;
-	/**  */
+	/** le champ de vision */
 	protected int champVision;
-	/**  */
+	/** l'id de la case */
 	protected int caseId;
-	/**  */
+	/** l'id général */
 	protected static int ID=0;
+	/** l'id perso */
 	protected int idPerso;
+	/** la position */
 	protected Position position;
    
 	/*_______________________________________________________________*/
     /**Constructeur par defaut
+     * @param caseId 
      */
     public Element(int caseId)
     {
@@ -33,7 +36,10 @@ public class Element  {
     	setId(ID);
     	
     }
-   public Element(){
+   /*_______________________________________________________________*/
+/**constructeur simple
+ */
+public Element(){
 	   ID++;
 	   setId(ID);
    }
@@ -41,6 +47,8 @@ public class Element  {
     /**Constructeur avec paramètre
      * @param image
      * @param nom
+     * @param modifierVie 
+     * @param champVision 
      */
     public Element(String image, String nom, int modifierVie, int champVision)
     {
@@ -51,6 +59,14 @@ public class Element  {
     	setChampVision(champVision);
     	setId(ID);
     }
+    /*_______________________________________________________________*/
+    /**constructeur
+     * @param image
+     * @param nom
+     * @param modifierVie
+     * @param champVision
+     * @param idcase
+     */
     public Element(String image, String nom, int modifierVie, int champVision, int idcase)
     {
     	ID++;
@@ -62,9 +78,17 @@ public class Element  {
     	setId(ID);
     } 
     
+    /*_______________________________________________________________*/
+    /**getter de position
+     * @return la position
+     */
     public Position getPosition() {
 		return position;
 	}
+	/*_______________________________________________________________*/
+	/**setter de position
+	 * @param position
+	 */
 	public void setPosition(Position position) {
 		this.position = position;
 	}
@@ -79,8 +103,8 @@ public class Element  {
 	}
 
 	/*_______________________________________________________________*/
-	/**
-	 * @return
+	/**getter de modifierVie
+	 * @return modifierVie
 	 */
 	public int getModifierVie(){
 		return modifierVie;
@@ -171,21 +195,30 @@ public class Element  {
 		}
 
 		
+		/*_______________________________________________________________*/
+		/**getter de id
+		 * @return id
+		 */
 		public int getId()
 		{
 			return idPerso;
 		}
 		
+		/*_______________________________________________________________*/
+		/**setter de id
+		 * @param id
+		 */
 		public void setId(int id)
 		{
 			this.idPerso = id;
 		}
-    /*_______________________________________________________________*/
-    /**Affiche l'élément
-     */
-    public void afficherElement() {
-    }
+  
 
+    /*_______________________________________________________________*/
+    /**renvoie la position de l'animal
+     * @param p
+     * @return la position
+     */
     public Position seDeplacer(Position p)
     {
 		return p;
