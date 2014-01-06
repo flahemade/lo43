@@ -28,6 +28,7 @@ import Modele.Map;
  * @author anaelle
  *
  */
+@SuppressWarnings("serial")
 public class Plateau extends JFrame implements ActionListener, MouseListener{
 
 	/**  */

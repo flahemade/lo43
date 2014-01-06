@@ -386,6 +386,7 @@ public class Ordonnanceur {
 	 * @param l ArrayList<Element> liste d'Element non-triee
 	 * @return ArrayList<Element> liste d'Element triee
 	 */
+	@SuppressWarnings("unused")
 	private ArrayList<Element> trierListeParPosition (ArrayList<Element> l){
 		
 		

@@ -253,6 +253,7 @@ private Case getCaseDefaut(org.w3c.dom.Node n){
  * @param l
  * @return Integer Taille
  */
+@SuppressWarnings("unused")
 private Integer getTaille(NodeList l){ //TODO Ajouter une gestion de l'attribut "default"
 	Integer taille = -1;
 	int i;
@@ -457,6 +458,7 @@ private Dimension getDimension(org.w3c.dom.Node n){
 	return dimension;
 }
 /*n'est plus utilisé*/
+@SuppressWarnings("unused")
 private String getNomClass(NodeList l){ 
 	
 	int i;
@@ -715,6 +717,7 @@ private ArrayList<Case>	reparerListe (ArrayList<Case> lcase, Dimension dmap,Case
  * @param dimensionmap Dimension de la map
  * @return ArrayList<Obstacle> Liste d'obstacle contenant les obstacles déjà présents et la ceinture d'obstacle
  */
+@SuppressWarnings("unused")
 private ArrayList<Obstacle> genererCeintureObstacle (ArrayList<Obstacle> listeobstacle,Dimension dimensionmap){
 	
 	int i;
